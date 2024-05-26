@@ -1,0 +1,160 @@
+.PerBulletin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 15px;
+  background-color: white;
+  width: 80vw;
+  min-height: 90vh;
+  padding: 20px 0;
+
+  .Line {
+    width: 75vw;
+    height: 2px;
+    background-color: black;
+  }
+
+  .SubTitle {
+    display: flex;
+    align-items: center;
+    width: 75vw;
+    height: 30px;
+    margin-top: 10px;
+    color: #585858;
+    font-size: 0.9rem;
+  }
+
+  .SendComment {
+    margin-top: 10px;
+    padding: 10px 0;
+    input {
+      width: 72vw;
+      height: 30px;
+      background-color: #d8d8d8;
+      border: none;
+      outline: none;
+      border-radius: 10px;
+      padding-left: 10px;
+      font-size: 1rem;
+      margin: 0 10px 10px 0;
+      float: left;
+    }
+    button {
+      cursor: pointer;
+      background-color: transparent;
+      border: none;
+      outline: none;
+      padding: 0;
+      margin: 0;
+    }
+  }
+
+  .CommentContent {
+    margin-bottom: 50px;
+  }
+
+  .Title {
+    display: flex;
+    flex-direction: row;
+    width: 75vw;
+    margin-top: 5px;
+    margin-bottom: 10px;
+
+    .RealTitle {
+      width: 53vw;
+      padding-bottom: 5px;
+      font-size: 1.7rem;
+      font-weight: bold;
+    }
+    .WriteRealTitle {
+      width: 52vw;
+      padding-bottom: 5px;
+      font-size: 1.5rem;
+      border-radius: 8px;
+      border: 2px solid #d8d8d8;
+    }
+    .Date {
+      display: flex;
+      justify-content: right;
+      align-items: end;
+      width: 23vw;
+    }
+  }
+
+  .Content {
+    margin: 20px 0;
+    width: 75vw;
+    min-height: 60vh;
+    img {
+      margin-top: 30px;
+      max-width: 350px;
+      max-height: 350px;
+    }
+    .images {
+      max-width: 250px;
+      max-height: 250px;
+      margin-right: 20px;
+    }
+  }
+
+  .WriteContent {
+    margin: 20px 0;
+    width: 75vw;
+    min-height: 60vh;
+    border-radius: 8px;
+    border: 2px solid #d8d8d8;
+  }
+
+  .UploadPicture {
+    img {
+      //float: left;
+      max-width: 100px;
+      max-height: 100px;
+    }
+  }
+
+  .uploadsee {
+    max-width: 400px;
+    max-height: 400px;
+  }
+
+  .Foot {
+    display: flex;
+    justify-content: right;
+    width: 72vw;
+    margin: 5px 0;
+
+    .Back {
+      cursor: pointer;
+      width: 80px;
+      height: 32px;
+      background-color: #6e6e6e;
+      border: none;
+      outline: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      font-weight: bold;
+      color: white;
+      margin-left: 10px;
+    }
+
+    .submit {
+      background-color: #610b0b;
+      color: white;
+      font-weight: bold;
+      font-size: 1.1rem;
+      border-radius: 5px;
+      border: 2px solid #bf9e27;
+      width: 90px;
+      height: 40px;
+      cursor: pointer;
+    }
+  }
+}
+
+.PerDiary {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

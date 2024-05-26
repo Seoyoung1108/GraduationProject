@@ -1,0 +1,119 @@
+.Login {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 60px;
+  padding-top: 30px;
+  padding-bottom: 50px;
+  width: 90vw;
+  height: 60vh;
+  //background-image: url("../assets/ODE07A0.jpg");
+  //background-color: #424242;
+  position: relative;
+  border-radius: 25px;
+
+  &::before {
+    content: "";
+    //background-image: url("../assets/ODE07A0.jpg");
+    background-size: cover;
+    opacity: 0.2;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    border-radius: 25px;
+  }
+
+  .LoginForm {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50vw;
+    height: 50vh;
+    border-right: 1px solid #bdbdbd;
+
+    .Title {
+      text-align: left;
+      width: 30vw;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #bf9e27;
+    }
+    form {
+      margin-top: 20px;
+      margin-bottom: 30px;
+      display: flex;
+      flex-direction: row;
+      width: 30vw;
+      .Input {
+        text-align: left;
+        width: 20vw;
+        #id {
+          width: 18vw;
+          height: 40px;
+          font-size: 1.2rem;
+          margin-bottom: 15px;
+          border-radius: 8px;
+          border: 1px solid #d8d8d8;
+        }
+
+        #password {
+          width: 18vw;
+          height: 40px;
+          font-size: 1.2rem;
+          border-radius: 8px;
+          border: 1px solid #d8d8d8;
+        }
+      }
+
+      button {
+        color: white;
+        background-color: #bf9e27;
+        height: auto;
+        font-size: 1.2rem;
+        width: 10vw;
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+      }
+    }
+
+    .Options {
+      width: 30vw;
+      justify-items: center;
+      .join {
+        //width: 80%;
+        outline: none;
+        border: none;
+        font-size: 0.9rem;
+        background-color: transparent;
+        color: #d8d8d8;
+        text-decoration: underline;
+        cursor: pointer;
+        &:hover {
+          color: #bdbdbd;
+        }
+      }
+    }
+  }
+  .Advertise {
+    width: 50vw;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+      width: 40vw;
+      //height: 200px;
+      background-color: #6e6e6e;
+      text-align: center;
+      font-size: 2.5rem;
+    }
+  }
+}

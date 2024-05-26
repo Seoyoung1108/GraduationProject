@@ -1,0 +1,123 @@
+//0513
+.Chat {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .Frame {
+    width: 70vw;
+    min-height: 80vh;
+    background-color: white;
+    .Title {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      background-color: #d8d8d8;
+      padding: 5px 0 0 10px;
+      .Who {
+        display: flex;
+        flex-direction: column;
+        width: 64vw;
+        height: 70px;
+        color: #585858;
+        p {
+          font-weight: bold;
+          font-size: 1.7rem;
+          margin: 0;
+          color: black;
+        }
+      }
+      .Back {
+        cursor: pointer;
+        width: 80px;
+        height: 32px;
+        background-color: #6e6e6e;
+        border: #585858 solid 2px;
+        border-radius: 5px;
+        font-size: 1rem;
+        font-weight: bold;
+        color: white;
+      }
+    }
+    .PrevMessages {
+      height: 50vh;
+      overflow-y: scroll;
+      //background-color: #a9d0f5;
+      .otherChat{
+        display: flex;
+        justify-content: left;
+        margin-top: 10px;
+        margin-left: 20px;
+        .otherImg > img{
+          border-radius: 30px;
+          width: 30px;
+          margin-right: 10px;
+        }
+        .otherChatBox{
+          display: inline-block;
+          position: relative;
+          background-color: #ea5936;
+          border-radius: 20px;
+          color: #fff;
+          padding: 7px 12px;
+          margin-bottom: 10px;
+          max-width: 230px;
+          .otherChatTime {
+            position: absolute;
+            left: -72px;
+            top: 15px;
+            color: #171717;
+          }
+        }
+      }
+      .myChat{
+        display: flex;
+        flex-direction: row;
+        justify-content: right;
+        margin-top: 10px;
+        margin-right: 20px;
+        .myChatBox{
+          display: inline-block;
+          position: relative;
+          background-color: #ea5936;
+          border-radius: 20px;
+          color: #fff;
+          padding: 7px 12px;
+          margin-bottom: 10px;
+          max-width: 230px;
+          .myChatTime {
+            position: absolute;
+            left: -72px;
+            top: 15px;
+            color: #171717;
+          }
+        }
+      }
+    }
+    .SendMessage {
+      margin-top: 20px;
+      padding-top: 10px;
+      input {
+        width: 65vw;
+        height: 90px;
+        background-color: #d8d8d8;
+        border: none;
+        outline: none;
+        border-radius: 10px;
+        padding-left: 10px;
+        font-size: 1rem;
+        margin: 0 10px 10px 10px;
+        float: left;
+      }
+      button {
+        cursor: pointer;
+        background-color: transparent;
+        border: none;
+        outline: none;
+        padding: 0;
+        margin: 0;
+      }
+    }
+  }
+}

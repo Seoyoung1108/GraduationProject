@@ -1,0 +1,33 @@
+.Navbar {
+  .ShowMenu {
+    display: flex;
+    flex-direction: column;
+    //background-color: aqua;
+    width: 180px;
+    margin-right: 70px;
+    margin-top: 40px;
+
+    div {
+      width: auto;
+      height: 30px;
+      margin-top: 35px;
+      font-size: 1.3rem;
+      color: #d8d8d8;
+      float: left;
+      &:hover {
+        color: #bf9e27;
+      }
+    }
+
+    .Title {
+      font-size: 1.5rem;
+      color: #bf9e27;
+    }
+
+    .Line {
+      height: 2px;
+      background-color: #bf9e27;
+      margin-top: 25px;
+    }
+  }
+}

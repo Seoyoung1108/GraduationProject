@@ -1,0 +1,128 @@
+.MyInformation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 15px;
+  background-color: white;
+  width: 65vw;
+  min-height: 100vh;
+  padding-top: 30px;
+  //padding-bottom: 20px;
+
+  .Line {
+    width: 55vw;
+    height: 2px;
+    background-color: black;
+  }
+
+  .Title {
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    width: 55vw;
+    .Letter {
+      width: 55vw;
+    }
+    .CreateButton {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 70px;
+      height: 30px;
+      background-color: #610b0b;
+      color: white;
+      font-weight: bold;
+      border-radius: 5px;
+      border: 2px solid #bf9e27;
+      margin-bottom: 5px;
+    }
+  }
+
+  .Content {
+    min-height: 75vh;
+    form {
+      display: flex;
+      width: 55vw;
+      margin-top: 20px;
+      flex-direction: column;
+      text-align: left;
+
+      p {
+        font-weight: bold;
+      }
+
+      input {
+        width: 300px;
+        height: 40px;
+        font-size: 1.2rem;
+        margin-bottom: 15px;
+        border-radius: 8px;
+        border: 2px solid #d8d8d8;
+      }
+
+      img {
+        max-width: 150px;
+        max-height: 150px;
+      }
+
+      div {
+        margin-bottom: 50px;
+      }
+
+      .NeedVerify {
+        display: flex;
+        flex-direction: row;
+        height: 55px;
+        margin-bottom: 0;
+        .FinishVerify {
+          margin-top: 10px;
+          margin-left: 10px;
+          font-size: 0.9rem;
+          color: blue;
+        }
+      }
+
+      .verified {
+        color: blue;
+      }
+
+      .nonverified {
+        color: red;
+      }
+
+      .submit {
+        margin-left: 47vw;
+        margin-bottom: 60px;
+        background-color: #610b0b;
+        color: white;
+        font-weight: bold;
+        font-size: 1.1rem;
+        border-radius: 5px;
+        border: 2px solid #bf9e27;
+        width: 90px;
+        height: 40px;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.gotoverify {
+  margin-left: 30px;
+  background-color: black;
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: none;
+  width: 90px;
+  height: 40px;
+  cursor: pointer;
+}
+
+.Diary {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

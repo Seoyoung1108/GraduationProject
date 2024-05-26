@@ -1,0 +1,234 @@
+.Art {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .Frame {
+    background-color: black;
+    border-radius: 15px;
+    width: 80vw;
+    height: 92vh;
+
+    .TitleFrame {
+      display: flex;
+      flex-direction: row;
+      align-items: end;
+      //width: auto;
+      margin-top: 15px;
+      padding-left: 2vw;
+      .ArtName {
+        font-size: 1.6rem;
+        font-weight: bold;
+        color: white;
+        width: 69vw;
+      }
+      .SellStatus {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 70px;
+        height: 25px;
+        font-weight: bold;
+        background-color: pink;
+        border-radius: 5px;
+      }
+    }
+
+    .ImageFrame {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 80vw;
+      height: 80vh;
+
+      .Image {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 74vw;
+        height: 75vh;
+        background-color: white;
+      }
+
+      .Menu {
+        display: flex;
+        flex-direction: column;
+        align-items: end;
+        width: 60px;
+        height: 75vh;
+
+        .Icon {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          margin-bottom: 7px;
+          width: 46px;
+          height: 3vw;
+          background-color: white;
+          color: black;
+          border-radius: 23px;
+          &:hover {
+            background-color: #d8d8d8;
+          }
+        }
+
+        .Name {
+          margin-bottom: 20px;
+          text-align: center;
+          width: 46px;
+          height: auto;
+          font-size: 0.8rem;
+          color: white;
+        }
+
+        .NeedBubbler {
+          display: block;
+          cursor: pointer;
+          padding: 0;
+          margin-bottom: 5px;
+          border: 0;
+          width: 46px;
+          height: 3vw;
+          background-color: white;
+          color: black;
+          border-radius: 23px;
+
+          .Bubbler {
+            display: none;
+          }
+
+          &:hover {
+            background-color: #d8d8d8;
+          }
+
+          &:focus {
+            background-color: #d8d8d8;
+            .Bubbler {
+              z-index: 50;
+              position: relative;
+              display: block;
+              border: 1px solid black;
+              border-radius: 4px;
+              width: 200px;
+              height: 100px;
+              left: -220px;
+              top: -50px;
+              box-shadow: 1.5px 1.5px 1.5px 1.5px #848484;
+              .AuthorName {
+                margin: 10px 0;
+                color: #610b0b;
+                font-weight: bold;
+                font-size: 1.3rem;
+              }
+              .SchoolName {
+                font-size: 1.2rem;
+              }
+              &::before {
+                content: "";
+                position: absolute;
+                border-style: solid;
+                border-width: 11px 0 11px 14px;
+                border-color: transparent black;
+                display: block;
+                width: 0;
+                z-index: 0;
+                right: -15px;
+                top: 9px;
+              }
+              &::after {
+                content: "";
+                position: absolute;
+                border-style: solid;
+                border-width: 10px 0 10px 15px;
+                border-color: transparent white;
+                display: block;
+                width: 0;
+                z-index: 1;
+                right: -15px;
+                top: 10px;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .ButtonFrame {
+      display: flex;
+      justify-content: right;
+      align-items: center;
+      width: 79vw;
+      .OpenComment {
+        cursor: pointer;
+        margin-bottom: 10px;
+        border: none;
+        outline: none;
+        background-color: transparent;
+        font-weight: bold;
+        font-size: 1rem;
+        color: #f5f6ce;
+        &:hover {
+          color: #a4a4a4;
+        }
+      }
+    }
+  }
+
+  .CommentFrame {
+    background-color: white;
+    border-radius: 15px;
+    width: 80vw;
+    min-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+
+    .SubTitle {
+      display: flex;
+      align-items: center;
+      width: 75vw;
+      height: 30px;
+      margin-top: 10px;
+      color: #585858;
+      margin-bottom: 10px;
+    }
+
+    .Line {
+      width: 75vw;
+      height: 2px;
+      background-color: #6e6e6e;
+    }
+
+    .SendComment {
+      margin-top: 10px;
+      padding: 10px 0;
+      input {
+        width: 72vw;
+        height: 30px;
+        background-color: #d8d8d8;
+        border: none;
+        outline: none;
+        border-radius: 10px;
+        padding-left: 10px;
+        font-size: 1rem;
+        margin: 0 10px 10px 0;
+        float: left;
+      }
+      button {
+        cursor: pointer;
+        background-color: transparent;
+        border: none;
+        outline: none;
+        padding: 0;
+        margin: 0;
+      }
+    }
+
+    .CommentContent {
+      margin-bottom: 50px;
+    }
+  }
+}

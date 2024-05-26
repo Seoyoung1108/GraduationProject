@@ -1,0 +1,52 @@
+.Footer {
+  width: 100%;
+  height: auto;
+
+  .ShowMenu {
+    padding-top: 80px;
+    text-align: center;
+
+    button {
+      margin-right: 70px;
+      margin-left: 70px;
+      font-size: 0.9rem;
+      border: none;
+      background-color: transparent;
+      color: white;
+      cursor: pointer;
+      &:hover {
+        color: #bdbdbd;
+      }
+    }
+  }
+  .Info {
+    margin-top: 80px;
+    .Company {
+      display: inline-block;
+      margin-left: 350px;
+      margin-right: 450px;
+      color: #f2f2f2;
+      font-size: 0.9rem;
+    }
+    .SocialMedia {
+      display: inline-block;
+      color: #f2f5a9;
+      font-weight: bold;
+      font-size: 1.2rem;
+      .Image {
+        margin-top: 20px;
+        img {
+          width: 40px;
+          height: auto;
+          margin-right: 20px;
+        }
+      }
+    }
+  }
+  p {
+    margin-left: 350px;
+    padding: 50px 0;
+    color: #bdbdbd;
+    font-size: 0.7rem;
+  }
+}

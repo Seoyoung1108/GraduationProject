@@ -1,0 +1,140 @@
+.Bulletin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 15px;
+  background-color: white;
+  width: 80vw;
+  min-height: 90vh;
+  padding-bottom: 20px;
+  border: 1px solid #d8d8d8;
+
+  .Line {
+    width: 75vw;
+    height: 2px;
+    background-color: black;
+  }
+
+  .Pages {
+    button {
+      cursor: pointer;
+      outline: none;
+      border: none;
+      background-color: transparent;
+      margin: 10px;
+      &:hover {
+        color: #bf9e27;
+      }
+    }
+  }
+
+  .Filter {
+    margin: 20px 0;
+    height: 30px;
+    width: 200px;
+    background-color: white;
+    border: 2px solid #585858;
+    font-size: 0.8rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    .Category {
+      width: 160px;
+      margin-left: 5px;
+      border: none;
+      outline: none;
+    }
+    button {
+      cursor: pointer;
+      border: none;
+      outline: none;
+      background-color: transparent;
+    }
+  }
+
+  .Title {
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    width: 75vw;
+    .Letter {
+      width: 70vw;
+    }
+    .CreateButton {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 70px;
+      height: 30px;
+      background-color: #610b0b;
+      color: white;
+      font-weight: bold;
+      border-radius: 5px;
+      border: 2px solid #bf9e27;
+      margin-bottom: 5px;
+    }
+  }
+
+  .StartContent {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 75vw;
+    height: 30px;
+
+    div {
+      font-weight: bold;
+    }
+    .info1 {
+      text-align: center;
+      width: 10vw;
+    }
+    .info2 {
+      text-align: center;
+      width: 50vw;
+    }
+    .info3 {
+      text-align: center;
+      width: 15vw;
+    }
+    .info4 {
+      text-align: left;
+      width: 43vw;
+      padding-left: 2vw;
+    }
+    .info5 {
+      text-align: center;
+      width: 15vw;
+    }
+  }
+
+  .Content {
+    min-height: 75vh;
+  }
+
+  .Foot {
+    display: flex;
+    justify-content: right;
+    width: 72vw;
+    margin: 5px 0;
+
+    .Back {
+      cursor: pointer;
+      width: 80px;
+      height: 32px;
+      background-color: #6e6e6e;
+      border: #585858 solid 2px;
+      border-radius: 5px;
+      font-size: 1rem;
+      font-weight: bold;
+      color: white;
+    }
+  }
+}
+
+.Diary {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

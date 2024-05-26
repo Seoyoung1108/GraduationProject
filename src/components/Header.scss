@@ -1,0 +1,131 @@
+.Header {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  height: 120px;
+  border-bottom: 3px solid #bf9e27;
+
+  .ShowMenu {
+    width: 1450px;
+    height: 120px;
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+
+    .SiteName {
+      display: flex;
+      align-items: center;
+      width: 300px;
+      height: 120px;
+      font-size: 2.3rem;
+      font-weight: bold;
+      margin-top: 20px;
+      margin-left: 40px;
+      color: white;
+    }
+
+    .Options {
+      display: flex;
+      flex-direction: row;
+      justify-content: right;
+      align-items: center;
+      width: 1150px;
+      padding-bottom: 7px;
+      //background-color: aqua;
+      .Option {
+        cursor: pointer;
+        width: auto;
+        height: auto;
+        margin-right: 35px;
+        font-size: 1.3rem;
+        color: #bdbdbd;
+        float: left;
+        &:hover {
+          color: white;
+        }
+        &:focus {
+          color: white;
+        }
+      }
+      .Profile {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        width: auto;
+        height: 50px;
+        background-color: black;
+        color: white;
+        border-radius: 30px;
+        padding: 0 5px;
+        img {
+          margin-left: 10px;
+          width: 35px;
+          height: 35px;
+          border-radius: 50%;
+          object-fit: cover;
+        }
+      }
+    }
+  }
+
+  .Notice {
+    display: block;
+    cursor: pointer;
+    padding: 0;
+    margin-top: 10px;
+    border: 0;
+    width: 46px;
+    height: 3vw;
+    //color: white;
+    background-color: transparent;
+    color: white;
+    .Bubbler {
+      display: none;
+    }
+
+    &:hover {
+      color: #bf9e27;
+    }
+
+    &:focus {
+      color: #bf9e27;
+      .Bubbler {
+        z-index: 50;
+        position: relative;
+        display: block;
+        border: 2px solid black;
+        border-radius: 4px;
+        width: 400px;
+        height: 500px;
+        left: -350px;
+        top: 18px;
+        background-color: white;
+        &::before {
+          content: "";
+          position: absolute;
+          border-style: solid;
+          border-width: 0 11px 11px 14px;
+          border-color: black transparent;
+          display: block;
+          width: 0;
+          z-index: 0;
+          right: 15px;
+          top: -11px;
+        }
+        &::after {
+          content: "";
+          position: absolute;
+          border-style: solid;
+          border-width: 0 10px 10px 15px;
+          border-color: white transparent;
+          display: block;
+          width: 0;
+          z-index: 1;
+          right: 15px;
+          top: -10px;
+        }
+      }
+    }
+  }
+}

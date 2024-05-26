@@ -1,0 +1,68 @@
+.FAQItem {
+  display: flex;
+  flex-direction: column;
+  //align-items: center;
+  width: 75vw;
+  height: 100px;
+  border-bottom: 1px solid black;
+  color: black;
+  padding: 10px 0;
+
+  .Question {
+    font-size: 1.5 rem;
+    height: 80px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    .Icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 35px;
+      height: 35px;
+      font-size: 1.5rem;
+      background-color: #610b0b;
+      border: 2px solid #bf9e27;
+      color: white;
+      border-radius: 20px;
+      margin-right: 10px;
+    }
+    .Contents {
+      display: flex;
+      align-items: center;
+      width: 70vw;
+      height: 40px;
+      font-size: 1.4rem;
+    }
+  }
+  .Answer {
+    font-size: 1.5 rem;
+    height: 80px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    .Icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 35px;
+      height: 35px;
+      font-size: 1.5rem;
+      background-color: #bf9e27;
+      border: 2px solid #610b0b;
+      color: white;
+      border-radius: 20px;
+      margin-right: 10px;
+    }
+    .Contents {
+      display: flex;
+      align-items: center;
+      width: 70vw;
+      height: 40px;
+      font-size: 1.4rem;
+    }
+  }
+}
