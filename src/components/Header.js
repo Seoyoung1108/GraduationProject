@@ -10,6 +10,7 @@ import { IoPersonCircleOutline } from "react-icons/io5";
 const Header = () => {
   const notices = Notices;
   const accessToken = localStorage.getItem("accessToken");
+  const [isLogin, setIsLogin] = useState(0);
   const [myNickName, setMyNickName] = useState("");
   const [myProfile, setMyProfile] = useState("");
 
@@ -17,17 +18,18 @@ const Header = () => {
     axios
       .get("/api/v1/user", {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          Authorization: `Bearer ${accessToken}`,
         },
       })
       .then((response) => {
         if (response.data.status === 401) {
-          localStorage.clear(); //로그인 관련 정보 다 삭제(내 닉네임, 토큰들)
+          //localStorage.clear(); //로그인 관련 정보 다 삭제(내 닉네임, 토큰들)
         } else {
           localStorage.setItem("myNickName", response.data.nickname);
           localStorage.setItem("myProfile", response.data.imageUrl);
           setMyNickName(response.data.nickname);
           setMyProfile(response.data.imageUrl);
+          setIsLogin(1);
         }
       });
   }, []);
@@ -53,7 +55,7 @@ const Header = () => {
             <div className="Option">FAQ</div>
           </Link>
           {(() => {
-            if (accessToken) {
+            if (isLogin === 1) {
               return (
                 <Link to="/community">
                   <div className="Option">커뮤니티</div>
@@ -68,7 +70,7 @@ const Header = () => {
             }
           })()}
           {(() => {
-            if (accessToken) {
+            if (isLogin === 1) {
               return (
                 <Link to="/mypage/myinformation">
                   <div className="Option">마이페이지</div>
@@ -83,17 +85,18 @@ const Header = () => {
             }
           })()}
           {(() => {
-            if (accessToken) {
+            if (isLogin === 1) {
               return (
                 <div className="Profile">
-                  {myNickName}님
+                  <div className="letter">{myNickName}님</div>
                   <img src={myProfile} />
                 </div>
               );
             } else {
               return (
-                <Link to="/login">
+                <Link to="/login" style={{ textDecoration: "none" }}>
                   <div className="Profile">
+                    <div className="letter">로그인</div>
                     <IoPersonCircleOutline size={46} />
                   </div>
                 </Link>

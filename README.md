@@ -6,6 +6,8 @@
 
 단체 전시 / 개인 전시 필터링 완료
 
+시작시 로그아웃 상태 구현 완료
+
 푸쉬알림 기능 구현 중
 
 # Getting Started with Create React App
