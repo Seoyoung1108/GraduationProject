@@ -73,60 +73,56 @@
 
   .Notice {
     display: block;
-    cursor: pointer;
     padding: 0;
     margin-top: 10px;
-    border: 0;
     width: 46px;
     height: 3vw;
-    //color: white;
-    background-color: transparent;
-    color: white;
+
+    .Bell {
+      background-color: transparent;
+      color: white;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      &:hover {
+        color: #bf9e27;
+      }
+    }
+
     .Bubbler {
-      display: none;
-    }
-
-    &:hover {
-      color: #bf9e27;
-    }
-
-    &:focus {
-      color: #bf9e27;
-      .Bubbler {
-        z-index: 50;
-        position: relative;
+      z-index: 50;
+      position: relative;
+      display: block;
+      border: 2px solid black;
+      border-radius: 4px;
+      width: 400px;
+      height: 500px;
+      left: -350px;
+      top: 18px;
+      background-color: white;
+      &::before {
+        content: "";
+        position: absolute;
+        border-style: solid;
+        border-width: 0 11px 11px 14px;
+        border-color: black transparent;
         display: block;
-        border: 2px solid black;
-        border-radius: 4px;
-        width: 400px;
-        height: 500px;
-        left: -350px;
-        top: 18px;
-        background-color: white;
-        &::before {
-          content: "";
-          position: absolute;
-          border-style: solid;
-          border-width: 0 11px 11px 14px;
-          border-color: black transparent;
-          display: block;
-          width: 0;
-          z-index: 0;
-          right: 15px;
-          top: -11px;
-        }
-        &::after {
-          content: "";
-          position: absolute;
-          border-style: solid;
-          border-width: 0 10px 10px 15px;
-          border-color: white transparent;
-          display: block;
-          width: 0;
-          z-index: 1;
-          right: 15px;
-          top: -10px;
-        }
+        width: 0;
+        z-index: 0;
+        right: 15px;
+        top: -11px;
+      }
+      &::after {
+        content: "";
+        position: absolute;
+        border-style: solid;
+        border-width: 0 10px 10px 15px;
+        border-color: white transparent;
+        display: block;
+        width: 0;
+        z-index: 1;
+        right: 15px;
+        top: -10px;
       }
     }
   }

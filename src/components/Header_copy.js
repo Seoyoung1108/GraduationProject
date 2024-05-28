@@ -39,8 +39,8 @@ const Header = () => {
     alert("로그인 후 사용해주세요.");
   }
 
-  function onClickAlarm(e) {
-    setIsOpen(!isOpen);
+  function onClickTest(e) {
+    e.preventDefault();
   }
 
   return (
@@ -119,23 +119,17 @@ const Header = () => {
           })()}
         </div>
       </div>
-      <div className="Notice">
-        <button className="Bell" onClick={onClickAlarm}>
-          <HiOutlineBell size={40} />
-        </button>
-        {(() => {
-          if (isOpen === true) {
-            return (
-              <div className="Bubbler">
-                {notices.map((notices) => (
-                  <NoticeItem notices={notices} key={notices.id} />
-                ))}
-                <button className="ss">예시버튼</button>
-              </div>
-            );
-          }
-        })()}
-      </div>
+      <button className="Notice">
+        <HiOutlineBell size={35} />
+        <div className="Bubbler">
+          {notices.map((notices) => (
+            <NoticeItem notices={notices} key={notices.id} />
+          ))}
+          <button className="ss" onClick={onClickTest}>
+            예시버튼
+          </button>
+        </div>
+      </button>
     </header>
   );
 };

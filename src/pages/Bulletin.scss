@@ -142,92 +142,45 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-.Modal {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  transform: translate(-50%, -50%);
-  width: 350px;
-  height: 240px;
-  background-color: white;
-  box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
-  border: 3px solid #610b0b;
-  outline: none;
-
-  p {
-    font-weight: bold;
-  }
-
-  input {
-    width: 260px;
-    height: 35px;
-    font-size: 1.1rem;
-    margin-bottom: 15px;
-    border-radius: 8px;
-    background-color: #d8d8d8;
-    outline: none;
-    border: none;
-  }
-
-  .sub {
-    width: 270px;
-    display: flex;
-    justify-content: center;
-    .submit {
-      margin-top: 20px;
-      background-color: #610b0b;
-      color: white;
-      font-weight: bold;
-      font-size: 1rem;
-      border-radius: 5px;
-      border: 2px solid #bf9e27;
-      width: 95px;
-      height: 40px;
-      cursor: pointer;
-    }
-  }
-}
-
-.Panorama {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  //align-items: center;
-  .project {
-    position: relative;
+  .Panorama {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    width: 100vw;
-    background-color: aqua;
-    //project-section
-    .frame {
+    justify-content: center;
+    padding-top: 50px;
+    //align-items: center;
+    .Letter {
+      color: #e4c2c2;
+      margin: 0 0 10px 10px;
+      font-size: 1.5rem;
+    }
+    .project {
+      position: relative;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      height: 500px;
-      width: 100%;
-      background-color: red;
-      .animation {
+      width: 100vw;
+      //project-section
+      .frame {
         display: flex;
-        flex-direction: row;
-        background-color: aliceblue;
-        .image {
+        align-items: center;
+        height: 450px;
+        width: 100%;
+        background-color: white;
+        overflow-x: hidden; //scroll
+        .animation {
           display: flex;
-          justify-content: center;
-          align-items: center;
-          width: 400px;
-          height: 400px;
-          background-color: antiquewhite;
-          margin-right: 100px;
-          img {
-            max-width: 400px;
-            max-height: 400px;
+          flex-direction: row;
+          .image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 400px;
+            height: 400px;
+            margin-right: 50px;
+            img {
+              max-width: 400px;
+              max-height: 400px;
+            }
           }
         }
       }

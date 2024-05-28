@@ -5,7 +5,6 @@ import axios from "axios";
 
 const UpdateDiary = () => {
   const accessToken = localStorage.getItem("accessToken");
-  const navigate = useNavigate();
 
   const myNickName = localStorage.getItem("myNickName");
   const { diaryId } = useParams();

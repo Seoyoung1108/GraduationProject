@@ -35,7 +35,6 @@ import UpdateMyGroup from "./pages/UpdateMyGroup";
 import UploadMyGroupProject from "./pages/UploadMyGroupProject";
 
 import Test from "./pages/test";
-import Panoramatest from "./pages/panoramatest";
 
 const App = () => {
   return (
@@ -43,7 +42,6 @@ const App = () => {
       <Route element={<Layout />}>
         <Route index element={<Main />} />
         <Route path="/test" element={<Test />} />
-        <Route path="/panoramatest" element={<Panoramatest />} />
         <Route path="/groups" element={<GroupExhibition />} />
         <Route path="/groups/:groupName/:groupId" element={<PerGroup />} />
         <Route path="/arts" element={<PersonalExhibition />} />
