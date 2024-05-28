@@ -13,6 +13,7 @@ const PerCommunity = () => {
 
   const [inputTitle, setInputTitle] = useState("");
   const [inputContent, setInputContent] = useState("");
+  const [inputCategory, setInputCategory] = useState("자유게시판");
   const [inputUserName, setInputUserName] = useState("");
   const [view, setView] = useState("");
   const [inputCreatedDate, setInputCreatedDate] = useState("");
@@ -20,6 +21,7 @@ const PerCommunity = () => {
   const [images, setImages] = useState(null);
   const [inputComment, setInputComment] = useState("");
   const [comments, setComments] = useState(null);
+  const pages = [1, 2, 3, 4, 5, 6, 7, 8];
 
   const saveInputComment = (e) => {
     setInputComment(e.target.value);
@@ -39,6 +41,9 @@ const PerCommunity = () => {
         setView(response.data.view);
         setInputLastModifiedDate(response.data.last_modified_date);
         setImages(response.data.imagesUrl);
+        if (response.data.category === "QUESTION") {
+          setInputCategory("질문게시판");
+        }
       });
 
     axios
@@ -99,9 +104,27 @@ const PerCommunity = () => {
     //e.preventDefault();
   }
 
+  function onClickPage(e) {
+    const page = e.target.value;
+    fetch(`/api/v1/comment/getComment/${postId}?page=${page}&size=10`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((response) => {
+        setComments(response.content);
+      })
+      .catch((error) => {
+        console.log(error.response);
+      });
+  }
+
   return (
     <div className="PerDiary">
       <div className="PerBulletin">
+        <div className="SubTitle">{inputCategory}</div>
         <div className="Title">
           <div className="RealTitle">{inputTitle}</div>
           <div className="Date">
@@ -165,6 +188,18 @@ const PerCommunity = () => {
         <div className="CommentContent">
           {comments.map((comments) => (
             <CommentItem comments={comments} key={comments.commentId} />
+          ))}
+        </div>
+        <div className="Pages">
+          {pages.map((pages) => (
+            <button
+              onClick={onClickPage}
+              value={pages}
+              pages={pages}
+              key={pages}
+            >
+              {pages}
+            </button>
           ))}
         </div>
       </div>

@@ -39,7 +39,10 @@ const MyProject = () => {
         <ul className="ArtList">
           {arts &&
             arts.map((arts) => (
-              <Link to={`/mypage/myproject/${arts.id}`}>
+              <Link
+                to={`/mypage/myproject/${arts.id}`}
+                style={{ textDecoration: "none" }}
+              >
                 <SubArtItem arts={arts} key={arts.id} />
               </Link>
             ))}

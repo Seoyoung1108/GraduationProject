@@ -14,8 +14,6 @@ const PerMyInvitation = () => {
   const { id } = useParams();
   const { state } = useLocation();
   const { isGroup } = state;
-  //const isGroup = 0;
-  console.log(isGroup);
 
   const [inputTitle, setInputTitle] = useState("");
   const [inputIntroduction, setInputIntroduction] = useState("");
@@ -72,8 +70,7 @@ const PerMyInvitation = () => {
       content: {
         title: inputTitle,
         description: myNickName + "으로부터 온 초대장",
-        imageUrl:
-          "https://mud-kage.kakao.com/dn/NTmhS/btqfEUdFAUf/FjKzkZsnoeE4o19klTOVI1/openlink_640x640s.jpg",
+        imageUrl: file,
         link: {
           mobileWebUrl:
             isGroup === 0

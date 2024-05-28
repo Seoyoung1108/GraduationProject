@@ -12,7 +12,7 @@ const Header = () => {
   const accessToken = localStorage.getItem("accessToken");
   const [isLogin, setIsLogin] = useState(0);
   const [myNickName, setMyNickName] = useState("");
-  const [myProfile, setMyProfile] = useState("");
+  const [myProfile, setMyProfile] = useState(null);
 
   useEffect(() => {
     axios
@@ -86,12 +86,21 @@ const Header = () => {
           })()}
           {(() => {
             if (isLogin === 1) {
-              return (
-                <div className="Profile">
-                  <div className="letter">{myNickName}님</div>
-                  <img src={myProfile} />
-                </div>
-              );
+              if (myProfile === null) {
+                return (
+                  <div className="Profile">
+                    <div className="letter">{myNickName}님</div>
+                    <IoPersonCircleOutline size={46} />
+                  </div>
+                );
+              } else {
+                return (
+                  <div className="Profile">
+                    <div className="letter">{myNickName}님</div>
+                    <img src={myProfile} />
+                  </div>
+                );
+              }
             } else {
               return (
                 <Link to="/login" style={{ textDecoration: "none" }}>

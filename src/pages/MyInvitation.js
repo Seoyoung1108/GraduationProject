@@ -10,8 +10,6 @@ const MyInvitation = () => {
 
   const [arts, setArts] = useState(null);
   const [groups, setGroups] = useState(null);
-  const [exhibitId, setExhibitId] = useState("");
-  const [groupId, setGroupId] = useState("");
   const [id, setId] = useState("");
   const [isGroup, setIsGroup] = useState(0);
 
@@ -23,13 +21,15 @@ const MyInvitation = () => {
         },
       })
       .then((response) => {
-        let distributed = [];
-        for (let i = 0; i < response.data.exhibitResponses.length; i++) {
-          if (response.data.exhibitResponses[i].distribute === true) {
-            distributed.push(response.data.exhibitResponses[i]);
+        if (response.data.exhibitResponses) {
+          let distributed = [];
+          for (let i = 0; i < response.data.exhibitResponses.length; i++) {
+            if (response.data.exhibitResponses[i].distribute === true) {
+              distributed.push(response.data.exhibitResponses[i]);
+            }
           }
+          setArts(distributed);
         }
-        setArts(distributed);
       });
 
     axios
@@ -48,7 +48,7 @@ const MyInvitation = () => {
       <div className="MyProject">
         <div className="Title">
           <div className="Letter">
-            <h2>초대장을 만들 작품 및 단체 전시회를 골라주세요.</h2>
+            <h2>초대장을 만들 작품 및 단체 전시관을 골라주세요.</h2>
           </div>
         </div>
         <div className="Line"></div>

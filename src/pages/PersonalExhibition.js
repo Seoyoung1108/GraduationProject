@@ -40,33 +40,40 @@ const PersonalExhibition = () => {
 
   function onClickFilter(e) {
     const category = e.target.value;
-    fetch("/api/v1/exhibit", {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    })
-      .then((response) => response.json())
-      .then((response) => {
-        let filteredExhibit = [];
-        if (category === "전체") {
-          setArts(response.exhibitResponses);
-        } else {
-          for (let i = 0; i < response.exhibitResponses.length; i++) {
-            if (response.exhibitResponses[i].workType === category) {
-              filteredExhibit.push(response.exhibitResponses[i]);
-            }
-          }
-          setArts(filteredExhibit);
-        }
+
+    if (category === "전체") {
+      fetch("/api/v1/exhibit", {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
       })
-      .catch((error) => {
-        console.log(error.response);
-      });
+        .then((response) => response.json())
+        .then((response) => {
+          setArts(response.exhibitResponses);
+        })
+        .catch((error) => {
+          console.log(error.response);
+        });
+    } else {
+      fetch(`/api/v1/exhibit/exhibits/${category}`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
+        .then((response) => response.json())
+        .then((response) => {
+          setArts(response.exhibitResponses);
+        })
+        .catch((error) => {
+          console.log(error.response);
+        });
+    }
   }
 
   function onClickFind(e) {
-    fetch(`/api/v1/post?keyword=${inputWord}&page=1&size=10`, {
+    fetch(`/api/v1/exhibit/keyword?keyword=${inputWord}&page=1&size=10`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${accessToken}`,
@@ -74,7 +81,7 @@ const PersonalExhibition = () => {
     })
       .then((response) => response.json())
       .then((response) => {
-        //setPosts(response.content);
+        setArts(response.content);
       })
       .catch((error) => {
         console.log(error.response);

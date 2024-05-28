@@ -1,5 +1,6 @@
 .SubArtItem {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 250px;
@@ -7,13 +8,24 @@
   background-color: white;
   //margin-bottom: 15px;
   border-radius: 10px;
-  border: 2px solid black;
+  border: 1px solid #d8d8d8;
 
-  img {
-    max-width: 200px; //1:1.3
-    max-height: 190px;
-    //border: 1px solid black;
+  .image {
+    width: 250px;
+    height: 150px;
+    img {
+      border-radius: 10px 10px 0 0;
+      width: 250px;
+      height: 150px;
+      object-fit: cover;
+    }
   }
-  color: black;
-  font-size: 1.3rem;
+  .name {
+    width: 250px;
+    height: 50px;
+    padding: 10px 0 0 20px;
+    color: black;
+    font-size: 1rem;
+    text-align: left;
+  }
 }

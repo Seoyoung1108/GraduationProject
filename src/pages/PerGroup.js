@@ -67,15 +67,18 @@ const PerGroup = () => {
   }
 
   function onClickFind(e) {
-    fetch(`/api/v1/post?keyword=${inputWord}&page=1&size=10`, {
+    fetch(`/api/v1/exhibit/keyword?keyword=${inputWord}&page=1&size=10`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
+      body: JSON.stringify({
+        keyword: inputWord,
+      }),
     })
       .then((response) => response.json())
       .then((response) => {
-        //setPosts(response.content);
+        setArts(response.content);
       })
       .catch((error) => {
         console.log(error.response);
@@ -103,6 +106,7 @@ const PerGroup = () => {
             <div className="Bar"></div>
           </>
         ))}
+        {/*
         <div className="Finder">
           <input
             className="Category"
@@ -113,7 +117,7 @@ const PerGroup = () => {
           <button onClick={onClickFind}>
             <BsSearch size="17" />
           </button>
-        </div>
+        </div>*/}
       </div>
       <ul className="ArtList">
         {arts.map((arts) => (

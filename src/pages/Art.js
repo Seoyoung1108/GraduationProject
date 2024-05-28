@@ -9,6 +9,7 @@ import axios from "axios";
 import { Helmet } from "react-helmet";
 import ArtCommentItem from "../components/ArtCommentItem";
 import { IoSend } from "react-icons/io5";
+import { IoReload } from "react-icons/io5";
 
 const Art = () => {
   const accessToken = localStorage.getItem("accessToken");
@@ -19,9 +20,11 @@ const Art = () => {
   const [inputTitle, setInputTitle] = useState("");
   const [inputIsSale, setInputIsSale] = useState("비매품");
   const [inputThumbnail, setInputThumbnail] = useState(null);
+  const [inputCheck3D, setInputCheck3D] = useState(false);
   const [inputModel, setInputModel] = useState(null);
   const [inputAuthor, setInputAuthor] = useState("");
   const [inputSchool, setInputtSchool] = useState("");
+  const [inputProfile, setInputProfile] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const [inputComment, setInputComment] = useState("");
   const [comments, setComments] = useState(null);
@@ -47,7 +50,9 @@ const Art = () => {
         setInputTitle(response.data.title);
         setInputAuthor(response.data.userInfoResponse.nickname);
         setInputtSchool(response.data.userInfoResponse.school);
+        setInputProfile(response.data.userInfoResponse.imageUrl);
         setInputThumbnail(response.data.thumbnail);
+        setInputCheck3D(response.data.checkVirtualSpace);
         setInputModel(response.data.image3d);
         if (response.data.forSale === true) {
           setInputIsSale("판매 중");
@@ -95,25 +100,57 @@ const Art = () => {
           <div className="SellStatus">{inputIsSale}</div>
         </div>
         <div className="ImageFrame">
-          <div className="Image">
-            <Helmet>
-              <script
-                type="module"
-                src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"
-              ></script>
-            </Helmet>
-            <model-viewer
-              src={inputModel}
-              shadow-intensity="1"
-              ar
-              camera-controls
-              touch-action="pan-y"
-              style={{ width: "74vw", height: "75vh" }}
-            ></model-viewer>
-          </div>
+          {(() => {
+            if (inputCheck3D === true) {
+              if (inputModel === null) {
+                return (
+                  <div className="Image">
+                    <IoReload size={55} />
+                    {"\u00A0"}
+                    {"\u00A0"}
+                    {"\u00A0"}
+                    모델 생성 중입니다. 잠시만 기다려 주세요.
+                  </div>
+                );
+              } else {
+                return (
+                  <div className="Image">
+                    <Helmet>
+                      <script
+                        type="module"
+                        src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"
+                      ></script>
+                    </Helmet>
+                    <model-viewer
+                      src={inputModel}
+                      shadow-intensity="1"
+                      ar
+                      camera-controls
+                      touch-action="pan-y"
+                      style={{ width: "74vw", height: "75vh" }}
+                    ></model-viewer>
+                  </div>
+                );
+              }
+            } else {
+              return (
+                <div className="Image">
+                  <img src={inputThumbnail} />
+                </div>
+              );
+            }
+          })()}
+
           <nav className="Menu">
             <button className="NeedBubbler">
-              <IoPersonCircleOutline size={46} />
+              {(() => {
+                if (inputProfile === null) {
+                  return <IoPersonCircleOutline size={46} />;
+                } else {
+                  return <img src={inputProfile} />;
+                }
+              })()}
+
               <div className="Bubbler">
                 <div className="AuthorName">{inputAuthor}</div>
                 <div className="SchoolName">{inputSchool}</div>
@@ -122,7 +159,7 @@ const Art = () => {
             <div className="Name">작가</div>
             <Link to={`/arts/${inputTitle}/${exhibitId}/aboutart`}>
               <div className="Icon">
-                <IoInformationCircleOutline size={50} />
+                <IoInformationCircleOutline size={55} />
               </div>
             </Link>
             <div className="Name">소개</div>

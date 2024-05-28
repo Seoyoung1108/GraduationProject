@@ -85,7 +85,6 @@ const Community = () => {
             }
           })()}
         </div>
-
         <div className="Line"></div>
         <div className="StartContent">
           <div className="info4">제목</div>

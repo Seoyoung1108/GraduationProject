@@ -13,6 +13,7 @@ const UpdateCommunity = () => {
 
   const [inputTitle, setInputTitle] = useState("");
   const [inputContent, setInputContent] = useState("");
+  const [inputCategory, setInputCategory] = useState("CHAT");
   const [images, setImages] = useState([]);
   const [prevImages, setPrevImages] = useState(null);
 
@@ -33,9 +34,17 @@ const UpdateCommunity = () => {
       .then((response) => {
         setInputTitle(response.data.title);
         setInputContent(response.data.content);
+        setInputCategory(response.data.category);
         setPrevImages(response.data.imagesUrl);
       });
   }, []);
+
+  const onClick0 = () => {
+    setInputCategory("CHAT");
+  };
+  const onClick1 = () => {
+    setInputCategory("QUESTION");
+  };
 
   const onChangeImg = (e) => {
     e.preventDefault();
@@ -65,6 +74,7 @@ const UpdateCommunity = () => {
     }
     formData.append("title", inputTitle);
     formData.append("content", inputContent);
+    formData.append("category", inputCategory);
 
     fetch(`/api/v1/post/${postId}`, {
       method: "PATCH",
@@ -75,7 +85,6 @@ const UpdateCommunity = () => {
     })
       .then((res) => {
         document.location.href = `/community/${postId}`;
-        alert("게시글이 수정되었습니다.");
       })
       .catch((error) => {
         console.log(error.response);
@@ -86,6 +95,29 @@ const UpdateCommunity = () => {
   return (
     <div className="PerDiary">
       <div className="PerBulletin">
+        <div className="SubTitle">
+          <div
+            onClick={onClick0}
+            style={{
+              color: inputCategory === "CHAT" ? "#610b0b" : "#585858",
+              fontWeight: inputCategory === "CHAT" ? "bold" : "normal",
+            }}
+          >
+            자유게시판
+          </div>
+          {"\u00A0"}
+          {"\u00A0"}|{"\u00A0"}
+          {"\u00A0"}
+          <div
+            onClick={onClick1}
+            style={{
+              color: inputCategory === "QUESTION" ? "#610b0b" : "#585858",
+              fontWeight: inputCategory === "QUESTION" ? "bold" : "normal",
+            }}
+          >
+            질문게시판
+          </div>
+        </div>
         <form onSubmit={onClickUpdate}>
           <div className="Title">
             <input

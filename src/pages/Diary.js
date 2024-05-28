@@ -1,18 +1,27 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import DiaryItem from "../components/DiaryItem";
 import "./Bulletin.scss";
 import axios from "axios";
+import Modal from "react-modal";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { motion } from "framer-motion";
 
 const Diary = () => {
   const accessToken = localStorage.getItem("accessToken");
   const myNickName = localStorage.getItem("myNickName");
+
+  const sectionRef = useRef(null); // useRef로 참조할 요소
+  const triggerRef = useRef(null);
   const navigate = useNavigate();
 
   const { exhibitId } = useParams();
   const { exhibitName } = useParams();
   const artist = sessionStorage.getItem("artist");
   const [diaries, setDiaries] = useState(null);
+  const [images, setImages] = useState(null);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   useEffect(() => {
     axios
@@ -24,53 +33,119 @@ const Diary = () => {
       .then((response) => {
         setDiaries(response.data.diaryGetResponses);
       });
+
+    axios
+      .get(`/api/v1/diary/user/${exhibitId}/images`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
+      .then((response) => {
+        setImages(response.data.images);
+      });
+
+    const pin = gsap.fromTo(
+      // from, to, fromTo가 있다.
+      sectionRef.current, // Gsap 애니메이션이 시작되는 요소 위치
+      { translateX: 100 }, // from 부분(초기 시작)
+      {
+        translateX: -6400, // to 부분
+        ease: "none", // 쓸데없는 애니메이션 없애는 부분
+        scrollTrigger: {
+          // 스크롤 애니메이션 발생하는 부분
+          trigger: triggerRef.current, // 스크롤이 발생되는 요소 위치
+          start: "top top", // "요소위치 시작위치"
+          end: "bottom center", // "요소위치 끝위치"
+          scrub: 0.7, // 되감기 기능, 또한 스크롤을 부드러운 애니메이션 추가.
+          pin: ".project-section", // 가로스크롤시 페이지를 고정할 수 있는 기능
+        },
+      }
+    );
+    return () => {
+      pin.kill(); // 모든 애니메이션 중단
+    };
   }, []);
+
+  if (!images) {
+    return null;
+  }
+
+  gsap.registerPlugin(ScrollTrigger); // ScrollTrigger시 필수
 
   const onClick = () => {
     navigate(-1);
   };
 
   return (
-    <div className="Diary">
-      <div className="Bulletin">
-        <div className="Title">
-          <div className="Letter">
-            <h1>{exhibitName}의 일기장</h1>
+    <>
+      <div className="Diary">
+        <div className="Bulletin">
+          <div className="Title">
+            <div className="Letter">
+              <h1>{exhibitName}의 일기장</h1>
+            </div>
+            {(() => {
+              if (myNickName === artist) {
+                return (
+                  <Link
+                    style={{ textDecoration: "none" }}
+                    to={`/arts/${exhibitName}/${exhibitId}/diary/upload`}
+                  >
+                    <div className="CreateButton">글쓰기</div>
+                  </Link>
+                );
+              }
+            })()}
           </div>
-          {(() => {
-            if (myNickName === artist) {
-              return (
-                <Link
-                  style={{ textDecoration: "none" }}
-                  to={`/arts/${exhibitName}/${exhibitId}/diary/upload`}
-                >
-                  <div className="CreateButton">글쓰기</div>
-                </Link>
-              );
-            }
-          })()}
+          <div className="Line"></div>
+          <div className="StartContent">
+            <div className="info1">번호</div>
+            <div className="info2">제목</div>
+            <div className="info3">등록일</div>
+          </div>
+          <div className="Line"></div>
+          <div className="Content">
+            {diaries &&
+              diaries.map((diaries) => (
+                <DiaryItem diaries={diaries} key={diaries.id} />
+              ))}
+          </div>
+          <div className="Line"></div>
+          <div className="Foot">
+            <button
+              className="Back"
+              onClick={() => setModalIsOpen(true)}
+              style={{ backgroundColor: "#bf9e27", width: "120px" }}
+            >
+              파노라마 보기
+            </button>
+            <button className="Back" onClick={onClick}>
+              돌아가기
+            </button>
+          </div>
         </div>
-        <div className="Line"></div>
-        <div className="StartContent">
-          <div className="info1">번호</div>
-          <div className="info2">제목</div>
-          <div className="info3">등록일</div>
-        </div>
-        <div className="Line"></div>
-        <div className="Content">
-          {diaries &&
-            diaries.map((diaries) => (
-              <DiaryItem diaries={diaries} key={diaries.id} />
-            ))}
-        </div>
-        <div className="Line"></div>
-        <div className="Foot">
-          <button className="Back" onClick={onClick}>
-            돌아가기
-          </button>
+        <div className="Panorama">
+          <section id="project" className="project">
+            <motion.div ref={triggerRef} className="frame">
+              {/* 여기서부터 Gsap 애니메이션 시작*/}
+              <div ref={sectionRef} className="animation">
+                {/* 여기 요소에서 ScrollTrigger 발생*/}
+                {images.map((images) => (
+                  <div key={images} className="image">
+                    <img src={images} />
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          </section>
         </div>
       </div>
-    </div>
+      <Modal
+        className="Modal"
+        isOpen={modalIsOpen}
+        onRequestClose={() => setModalIsOpen(false)}
+      ></Modal>
+    </>
   );
 };
 

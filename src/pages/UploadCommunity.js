@@ -11,12 +11,20 @@ const UploadCommunity = () => {
   const [inputContent, setInputContent] = useState("");
   const [images, setImages] = useState(null);
   const [seeImages, setSeeImages] = useState(null);
+  const [inputCategory, setInputCategory] = useState("CHAT");
 
   const saveInputTitle = (e) => {
     setInputTitle(e.target.value);
   };
   const saveInputContent = (e) => {
     setInputContent(e.target.value);
+  };
+
+  const onClick0 = () => {
+    setInputCategory("CHAT");
+  };
+  const onClick1 = () => {
+    setInputCategory("QUESTION");
   };
 
   const onChangeImg = (e) => {
@@ -47,6 +55,7 @@ const UploadCommunity = () => {
     }
     formData.append("title", inputTitle);
     formData.append("content", inputContent);
+    formData.append("category", inputCategory);
 
     fetch("/api/v1/post/upload", {
       method: "POST",
@@ -67,6 +76,29 @@ const UploadCommunity = () => {
   return (
     <div className="PerDiary">
       <div className="PerBulletin">
+        <div className="SubTitle">
+          <div
+            onClick={onClick0}
+            style={{
+              color: inputCategory === "CHAT" ? "#610b0b" : "#585858",
+              fontWeight: inputCategory === "CHAT" ? "bold" : "normal",
+            }}
+          >
+            자유게시판
+          </div>
+          {"\u00A0"}
+          {"\u00A0"}|{"\u00A0"}
+          {"\u00A0"}
+          <div
+            onClick={onClick1}
+            style={{
+              color: inputCategory === "QUESTION" ? "#610b0b" : "#585858",
+              fontWeight: inputCategory === "QUESTION" ? "bold" : "normal",
+            }}
+          >
+            질문게시판
+          </div>
+        </div>
         <form onSubmit={onClickUpload}>
           <div className="Title">
             <input
