@@ -121,6 +121,7 @@ const UpdateMyProject = () => {
 
   function onClickUpdate(e) {
     const formData = new FormData();
+    const modelFormData = new FormData();
 
     formData.append("thumbnail", file);
     for (let i = 0; i < images.length; i++) {
@@ -135,6 +136,7 @@ const UpdateMyProject = () => {
     formData.append("workType", inputType);
     formData.append("forSale", inputForSale);
     formData.append("checkVirtualSpace", inputVirtual);
+    modelFormData.append("file", file);
 
     fetch(`/api/v1/exhibit/user/${exhibitId}`, {
       method: "PATCH",
@@ -144,6 +146,10 @@ const UpdateMyProject = () => {
       },
     })
       .then((res) => {
+        fetch(`?exhibit_id=${exhibitId}`, {
+          method: "POST",
+          body: modelFormData,
+        });
         document.location.href = `/mypage/myproject/${exhibitId}`;
       })
       .catch((error) => {

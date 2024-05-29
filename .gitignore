@@ -3,8 +3,8 @@
 # modelglb
 #/public/model
 
-/src/keys
-
+#/src/keys
+.env
 
 # dependencies
 /node_modules

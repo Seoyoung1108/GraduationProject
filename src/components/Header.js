@@ -39,14 +39,6 @@ const Header = () => {
       });
   }, []);
 
-  function onClickBlock(e) {
-    alert("로그인 후 사용해주세요.");
-  }
-
-  function onClickAlarm(e) {
-    setIsOpen(!isOpen);
-  }
-
   useEffect(() => {
     // 토큰 있을 때만 채팅방 호출
     if (accessToken) {
@@ -64,6 +56,14 @@ const Header = () => {
         });
     }
   }, [isOpen]);
+
+  function onClickBlock(e) {
+    alert("로그인 후 사용해주세요.");
+  }
+
+  function onClickAlarm(e) {
+    setIsOpen(!isOpen);
+  }
 
   const [activeIndex, setActiveIndex] = useState(0);
 
