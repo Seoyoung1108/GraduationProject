@@ -2,7 +2,7 @@
   "name": "jolvre",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://port-0-jolvre-be-754g42alv5zac2b.sel5.cloudtype.app",
+  "proxy": "http://13.208.178.255:8081",
   "dependencies": {
     "@stomp/stompjs": "^7.0.0",
     "@testing-library/jest-dom": "^5.17.0",

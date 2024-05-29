@@ -1,3 +1,4 @@
+/*
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
@@ -54,3 +55,4 @@ const Test = () => {
 };
 
 export default Test;
+*/

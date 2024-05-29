@@ -90,7 +90,7 @@ const Art = () => {
     //e.preventDefault();
   }
 
-  // src="/model/8036ce28-c767-45bc-84ff-9a7fc7523e93.glb"
+  // src={inputModel}src="/model/8036ce28-c767-45bc-84ff-9a7fc7523e93.glb"
 
   return (
     <div className="Art">
@@ -122,11 +122,14 @@ const Art = () => {
                       ></script>
                     </Helmet>
                     <model-viewer
-                      src={inputModel}
+                      src="/model/8036ce28-c767-45bc-84ff-9a7fc7523e93.glb"
                       shadow-intensity="1"
                       ar
                       camera-controls
                       touch-action="pan-y"
+                      orientation="180deg 270deg 130deg"
+                      skybox-image="https://jolvrebucket.s3.ap-northeast-3.amazonaws.com/123_hdrmaps_com_free_4K.hdr"
+                      environment-image="https://jolvrebucket.s3.ap-northeast-3.amazonaws.com/123_hdrmaps_com_free_4K.hdr"
                       style={{ width: "74vw", height: "75vh" }}
                     ></model-viewer>
                   </div>

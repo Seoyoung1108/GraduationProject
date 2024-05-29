@@ -28,7 +28,7 @@ const Header = () => {
       })
       .then((response) => {
         if (response.data.status === 401) {
-          //localStorage.clear(); //로그인 관련 정보 다 삭제(내 닉네임, 토큰들)
+          localStorage.clear(); //로그인 관련 정보 다 삭제(내 닉네임, 토큰들)
         } else {
           localStorage.setItem("myNickName", response.data.nickname);
           localStorage.setItem("myProfile", response.data.imageUrl);
@@ -39,6 +39,7 @@ const Header = () => {
       });
   }, []);
 
+  /*
   useEffect(() => {
     // 토큰 있을 때만 채팅방 호출
     if (accessToken) {
@@ -56,6 +57,7 @@ const Header = () => {
         });
     }
   }, [isOpen]);
+  */
 
   function onClickBlock(e) {
     alert("로그인 후 사용해주세요.");

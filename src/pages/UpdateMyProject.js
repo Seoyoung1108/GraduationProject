@@ -124,6 +124,7 @@ const UpdateMyProject = () => {
     const modelFormData = new FormData();
 
     formData.append("thumbnail", file);
+
     for (let i = 0; i < images.length; i++) {
       formData.append("images", images[i]);
     }
