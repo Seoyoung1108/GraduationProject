@@ -10,6 +10,7 @@ const Community = () => {
 
   const [posts, setPosts] = useState(null);
   const pages = [1, 2, 3, 4, 5, 6, 7, 8];
+  const categories = ["전체", "자유", "질문"];
   const [inputWord, setInputWord] = useState("");
 
   const saveInputWord = (e) => {
@@ -65,12 +66,49 @@ const Community = () => {
       });
   }
 
+  function onClickFilter(e) {
+    const category = e.target.value;
+    const nameCategory = category === "자유" ? "CHAT" : "QUESTION";
+
+    if (category === "전체") {
+      fetch(`/api/v1/post/list?page=1&size=10`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
+        .then((response) => response.json())
+        .then((response) => {
+          setPosts(response.content);
+        })
+        .catch((error) => {
+          console.log(error.response);
+        });
+    } else {
+      fetch(`/api/v1/post/category/${nameCategory}?page=1&size=10`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
+        .then((response) => response.json())
+        .then((response) => {
+          setPosts(response.content);
+        })
+        .catch((error) => {
+          console.log(error.response);
+        });
+    }
+  }
+
   return (
     <div className="Diary">
       <div className="Bulletin">
         <div className="Title">
           <div className="Letter">
-            <h1>커뮤니티</h1>
+            <div>
+              <h1>커뮤니티</h1>
+            </div>
           </div>
           {(() => {
             if (accessToken) {
@@ -84,6 +122,29 @@ const Community = () => {
               );
             }
           })()}
+        </div>
+        <div className="Guide">
+          커뮤니티에서 졸업작품을 준비하며 생기는 고민을 나눠 보세요. 작품을
+          준비하며 조언을 구하고 받아 보세요. <br />
+          다양한 학교의 학생들과 소통하며 친목을 다지고, 서로의 이야기를 공유해
+          보세요.
+        </div>
+        <div className="Filtering">
+          <div className="Bar"></div>
+          {categories.map((categories) => (
+            <>
+              <button
+                className="Filter"
+                onClick={onClickFilter}
+                value={categories}
+                pages={categories}
+                key={categories}
+              >
+                {categories}
+              </button>
+              <div className="Bar"></div>
+            </>
+          ))}
         </div>
         <div className="Line"></div>
         <div className="StartContent">
@@ -110,7 +171,7 @@ const Community = () => {
             </button>
           ))}
         </div>
-        <div className="Filter">
+        <div className="Finder">
           <input
             className="Category"
             type="text"

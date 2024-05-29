@@ -123,40 +123,126 @@ const UpdateMyProject = () => {
     const formData = new FormData();
     const modelFormData = new FormData();
 
-    formData.append("thumbnail", file);
+    if (file === null && images.length === 0) {
+      formData.append("title", inputTitle);
+      formData.append("authorWord", inputAuthorWord);
+      formData.append("introduction", inputIntroduction);
+      formData.append("size", inputSize);
+      formData.append("productionMethod", inputProductionMethod);
+      formData.append("price", +inputPrice);
+      formData.append("workType", inputType);
+      formData.append("forSale", inputForSale);
+      formData.append("checkVirtualSpace", inputVirtual);
 
-    for (let i = 0; i < images.length; i++) {
-      formData.append("images", images[i]);
-    }
-    formData.append("title", inputTitle);
-    formData.append("authorWord", inputAuthorWord);
-    formData.append("introduction", inputIntroduction);
-    formData.append("size", inputSize);
-    formData.append("productionMethod", inputProductionMethod);
-    formData.append("price", +inputPrice);
-    formData.append("workType", inputType);
-    formData.append("forSale", inputForSale);
-    formData.append("checkVirtualSpace", inputVirtual);
-    modelFormData.append("file", file);
-
-    fetch(`/api/v1/exhibit/user/${exhibitId}`, {
-      method: "PATCH",
-      body: formData,
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    })
-      .then((res) => {
-        fetch(`?exhibit_id=${exhibitId}`, {
-          method: "POST",
-          body: modelFormData,
-        });
-        document.location.href = `/mypage/myproject/${exhibitId}`;
+      fetch(`/api/v1/exhibit/user/${exhibitId}`, {
+        method: "PATCH",
+        body: formData,
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
       })
-      .catch((error) => {
-        console.log(error.response);
-      });
-    e.preventDefault();
+        .then((res) => {
+          document.location.href = `/mypage/myproject/${exhibitId}`;
+        })
+        .catch((error) => {
+          console.log(error.response);
+        });
+      e.preventDefault();
+    } else if (file === null) {
+      for (let i = 0; i < images.length; i++) {
+        formData.append("images", images[i]);
+      }
+      formData.append("title", inputTitle);
+      formData.append("authorWord", inputAuthorWord);
+      formData.append("introduction", inputIntroduction);
+      formData.append("size", inputSize);
+      formData.append("productionMethod", inputProductionMethod);
+      formData.append("price", +inputPrice);
+      formData.append("workType", inputType);
+      formData.append("forSale", inputForSale);
+      formData.append("checkVirtualSpace", inputVirtual);
+
+      fetch(`/api/v1/exhibit/user/${exhibitId}`, {
+        method: "PATCH",
+        body: formData,
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
+        .then((res) => {
+          document.location.href = `/mypage/myproject/${exhibitId}`;
+        })
+        .catch((error) => {
+          console.log(error.response);
+        });
+      e.preventDefault();
+    } else if (images.length === 0) {
+      formData.append("thumbnail", file);
+      formData.append("title", inputTitle);
+      formData.append("authorWord", inputAuthorWord);
+      formData.append("introduction", inputIntroduction);
+      formData.append("size", inputSize);
+      formData.append("productionMethod", inputProductionMethod);
+      formData.append("price", +inputPrice);
+      formData.append("workType", inputType);
+      formData.append("forSale", inputForSale);
+      formData.append("checkVirtualSpace", inputVirtual);
+      modelFormData.append("file", file);
+
+      fetch(`/api/v1/exhibit/user/${exhibitId}`, {
+        method: "PATCH",
+        body: formData,
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
+        .then((res) => {
+          fetch(`?exhibit_id=${exhibitId}`, {
+            method: "POST",
+            body: modelFormData,
+          });
+          document.location.href = `/mypage/myproject/${exhibitId}`;
+        })
+        .catch((error) => {
+          console.log(error.response);
+        });
+      e.preventDefault();
+    } else {
+      formData.append("thumbnail", file);
+
+      for (let i = 0; i < images.length; i++) {
+        formData.append("images", images[i]);
+      }
+      formData.append("title", inputTitle);
+      formData.append("authorWord", inputAuthorWord);
+      formData.append("introduction", inputIntroduction);
+      formData.append("size", inputSize);
+      formData.append("productionMethod", inputProductionMethod);
+      formData.append("price", +inputPrice);
+      formData.append("workType", inputType);
+      formData.append("forSale", inputForSale);
+      formData.append("checkVirtualSpace", inputVirtual);
+      modelFormData.append("file", file);
+
+      fetch(`/api/v1/exhibit/user/${exhibitId}`, {
+        method: "PATCH",
+        body: formData,
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
+        .then((res) => {
+          fetch(`?exhibit_id=${exhibitId}`, {
+            method: "POST",
+            body: modelFormData,
+          });
+          document.location.href = `/mypage/myproject/${exhibitId}`;
+        })
+        .catch((error) => {
+          console.log(error.response);
+        });
+      e.preventDefault();
+    }
   }
 
   return (

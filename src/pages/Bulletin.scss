@@ -31,7 +31,7 @@
     }
   }
 
-  .Filter {
+  .Finder {
     margin: 20px 0;
     height: 30px;
     width: 200px;
@@ -62,19 +62,59 @@
     width: 75vw;
     .Letter {
       width: 70vw;
+      display: flex;
+      flex-direction: row;
     }
     .CreateButton {
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 70px;
-      height: 30px;
+      width: 80px;
+      height: 35px;
       background-color: #610b0b;
       color: white;
       font-weight: bold;
       border-radius: 5px;
       border: 2px solid #bf9e27;
       margin-bottom: 5px;
+    }
+  }
+
+  .Guide {
+    width: 75vw;
+    margin-bottom: 30px;
+    color: #6e6e6e;
+    font-weight: bold;
+  }
+
+  .Filtering {
+    display: flex;
+    flex-direction: row;
+    width: 75vw;
+    justify-content: right;
+    align-items: center;
+    margin-bottom: 10px;
+
+    .Filter {
+      cursor: pointer;
+      color: #585858;
+      border: none;
+      outline: none;
+      background-color: transparent;
+      font-size: 1rem;
+      &:hover {
+        color: black;
+      }
+      &:focus {
+        color: black;
+        font-weight: bold;
+      }
+    }
+    .Bar {
+      width: 1px;
+      height: 15px;
+      background-color: #bdbdbd;
+      margin: 0 10px;
     }
   }
 

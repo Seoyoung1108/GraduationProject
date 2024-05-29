@@ -152,7 +152,7 @@ const Diary = () => {
         if (isOpen === true) {
           return (
             <div className="Panorama">
-              <div className="Letter">사진으로 보는 작품의 기록</div>
+              <div className="Letter">사진으로 모아 보는 작품의 기록</div>
               <section id="project" className="project">
                 <motion.div ref={triggerRef} className="frame">
                   {/* 여기서부터 Gsap 애니메이션 시작*/}

@@ -143,27 +143,5 @@
     width: 80vw;
     padding: 0;
     list-style: none;
-    .Filter {
-      height: 35px;
-      width: 100px;
-      background-color: white;
-      border-radius: 8px;
-      border: 1px solid #eaeaea;
-      font-size: 0.8rem;
-      font-weight: bold;
-      display: flex;
-      align-items: center;
-      .Category {
-        flex: 1;
-      }
-      svg {
-        align-items: right;
-        font-size: 1.3rem;
-        margin-right: 0.5rem;
-      }
-      &:hover {
-        cursor: pointer;
-      }
-    }
   }
 }

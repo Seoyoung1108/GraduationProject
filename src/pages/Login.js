@@ -68,12 +68,14 @@ const Login = () => {
           <Link to="/signup">
             <button className="join">회원가입</button>
           </Link>
-          <Link to="/findID">
+          <button className="join">아이디 찾기</button>
+          <button className="join">비밀번호 찾기</button>
+          {/* <Link to="/findID">
             <button className="join">아이디 찾기</button>
           </Link>
           <Link to="/findPW">
             <button className="join">비밀번호 찾기</button>
-          </Link>
+          </Link>*/}
         </div>
       </div>
       <div className="Advertise">

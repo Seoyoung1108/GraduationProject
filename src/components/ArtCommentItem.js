@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import "./BulletinItem.scss";
 import axios from "axios";
 import { RiDeleteBin5Line } from "react-icons/ri";
@@ -8,7 +8,7 @@ const ArtCommentItem = ({ comments }) => {
   const accessToken = localStorage.getItem("accessToken");
 
   const myNickName = localStorage.getItem("myNickName");
-  const exhibitId = sessionStorage.getItem("exhibitId");
+  const { exhibitId } = useParams();
 
   const commentId = comments.commentId;
   const content = comments.content;

@@ -107,12 +107,12 @@ const SignUp = () => {
         .catch((error) => {
           console.log(error.response);
         });
-      e.preventDefault();
     } else if (isDupEmail) {
       alert("이메일 중복 확인을 해주세요.");
     } else if (isDupNick) {
       alert("닉네임 중복 확인을 해주세요.");
     }
+    e.preventDefault();
   }
 
   return (

@@ -90,7 +90,7 @@ const Art = () => {
     //e.preventDefault();
   }
 
-  // src={inputModel}src="/model/8036ce28-c767-45bc-84ff-9a7fc7523e93.glb"
+  // src="/model/8036ce28-c767-45bc-84ff-9a7fc7523e93.glb"
 
   return (
     <div className="Art">
@@ -122,7 +122,7 @@ const Art = () => {
                       ></script>
                     </Helmet>
                     <model-viewer
-                      src="/model/8036ce28-c767-45bc-84ff-9a7fc7523e93.glb"
+                      src={inputModel}
                       shadow-intensity="1"
                       ar
                       camera-controls

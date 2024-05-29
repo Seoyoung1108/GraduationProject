@@ -115,6 +115,63 @@
       }
     }
   }
+  .InviteContent {
+    display: flex;
+    width: 55vw;
+    min-height: 50vh;
+    flex-direction: row;
+    //justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+    .intro {
+      width: 28vw;
+      margin-right: 35px;
+    }
+    img {
+      max-width: 350px;
+      max-height: 350px;
+    }
+  }
+
+  .InviteButtons {
+    display: flex;
+    width: 55vw;
+    flex-direction: row;
+    justify-content: right;
+    align-items: center;
+    margin-top: 30px;
+    div {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin: 0 20px;
+      font-size: 0.8rem;
+      .invite {
+        cursor: pointer;
+        width: 60px;
+        height: 60px;
+        border-radius: 30px;
+        margin-right: 20px;
+        padding: 0;
+        outline: none;
+        border: none;
+        background-color: #f2f2f2;
+
+        img {
+          width: 60px;
+          height: 60px;
+          border-radius: 30px;
+        }
+        .gmail {
+          width: 40px;
+          height: 40px;
+          border-radius: 20px;
+        }
+      }
+    }
+  }
+
   .Content {
     min-height: 75vh;
     form {
@@ -199,7 +256,7 @@
           border-radius: 0;
           img {
             max-width: 300px;
-            max-height: 220px;
+            max-height: 300px;
           }
         }
         .Images {
@@ -255,8 +312,8 @@
   justify-content: center;
   align-items: center;
   transform: translate(-50%, -50%);
-  width: 350px;
-  height: 240px;
+  width: 450px;
+  height: 350px;
   background-color: white;
   box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
   border: 3px solid #610b0b;
@@ -289,7 +346,7 @@
       font-size: 1rem;
       border-radius: 5px;
       border: 2px solid #bf9e27;
-      width: 95px;
+      width: 120px;
       height: 40px;
       cursor: pointer;
     }

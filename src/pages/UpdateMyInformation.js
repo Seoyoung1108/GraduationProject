@@ -63,7 +63,9 @@ const UpdateMyInformation = () => {
   function onClickUpdate(e) {
     const formData = new FormData();
 
-    formData.append("image", file);
+    if (file !== null) {
+      formData.append("image", file);
+    }
     formData.append("name", prevName);
     formData.append("nickname", inputNickName);
     formData.append("age", +inputAge);

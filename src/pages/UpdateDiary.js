@@ -56,7 +56,9 @@ const UpdateDiary = () => {
   function onClickUpdate(e) {
     const formData = new FormData();
 
-    formData.append("image", file);
+    if (file !== null) {
+      formData.append("image", file);
+    }
     formData.append("title", inputTitle);
     formData.append("content", inputContent);
 
