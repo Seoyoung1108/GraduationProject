@@ -35,7 +35,7 @@ const Diary = () => {
       });
 
     axios
-      .get(`/api/v1/diary/user/${exhibitId}/images`, {
+      .get(`/api/v1/diary/images/${exhibitId}`, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
