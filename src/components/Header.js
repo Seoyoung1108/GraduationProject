@@ -3,9 +3,11 @@ import { Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { HiOutlineBell } from "react-icons/hi";
+import { IoPersonCircleOutline } from "react-icons/io5";
 import { Notices } from "../TestCases";
 import NoticeItem from "./NoticeItem";
-import { IoPersonCircleOutline } from "react-icons/io5";
+import PerChatRoom from "./PerChatRoom";
+import ChatRooms from "./ChatRooms";
 
 const Header = () => {
   const notices = Notices;
@@ -14,6 +16,8 @@ const Header = () => {
   const [myNickName, setMyNickName] = useState("");
   const [myProfile, setMyProfile] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
+  const [chatRooms, setChatRooms] = useState([]);
+  const [selectedChatRoom, setSelectedChatRoom] = useState(null);
 
   useEffect(() => {
     axios
@@ -42,6 +46,81 @@ const Header = () => {
   function onClickAlarm(e) {
     setIsOpen(!isOpen);
   }
+
+  useEffect(() => {
+    // 토큰 있을 때만 채팅방 호출
+    if (accessToken) {
+      axios
+        .get(`/chat/rooms`, {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        })
+        .then((response) => {
+          setChatRooms(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }, [isOpen]);
+
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const tabClickHandler = (index) => {
+    setActiveIndex(index);
+    setSelectedChatRoom(null);
+  };
+
+  const handleChatRoomClick = (chatRoom) => {
+    setSelectedChatRoom(chatRoom);
+  };
+
+  const renderChatTabContent = () => {
+    if (selectedChatRoom) {
+      return <PerChatRoom chatRoom={selectedChatRoom} />;
+    }
+    return chatRooms.map((chatRoom) => (
+      <ChatRooms
+        chatRoom={chatRoom}
+        key={chatRoom.roomId}
+        onClick={() => handleChatRoomClick(chatRoom)}
+      />
+    ));
+  };
+
+  const tabContArr = [
+    {
+      tabTitle: (
+        <li
+          className={activeIndex === 0 ? "is-active" : ""}
+          onClick={() => tabClickHandler(0)}
+        >
+          {" "}
+          채팅{" "}
+        </li>
+      ),
+      tabCont: <div className="PerChatBubbler">{renderChatTabContent()}</div>,
+    },
+    {
+      tabTitle: (
+        <li
+          className={activeIndex === 1 ? "is-active" : ""}
+          onClick={() => tabClickHandler(1)}
+        >
+          {" "}
+          알림{" "}
+        </li>
+      ),
+      tabCont: (
+        <div>
+          {notices.map((notices) => (
+            <NoticeItem notices={notices} key={notices.id} />
+          ))}
+        </div>
+      ),
+    },
+  ];
 
   return (
     <header className="Header">
@@ -127,10 +206,20 @@ const Header = () => {
           if (isOpen === true) {
             return (
               <div className="Bubbler">
+                {/* 
                 {notices.map((notices) => (
                   <NoticeItem notices={notices} key={notices.id} />
                 ))}
-                <button className="ss">예시버튼</button>
+                <button className="ss">예시버튼</button>*/}
+
+                <div className="Tabs">
+                  <ul className="is-boxed">
+                    {tabContArr.map((section, index) => {
+                      return section.tabTitle;
+                    })}
+                  </ul>
+                </div>
+                {tabContArr[activeIndex].tabCont}
               </div>
             );
           }

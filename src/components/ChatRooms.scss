@@ -1,0 +1,58 @@
+.ChatItem {
+  display: flex;
+  cursor: pointer;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  border-bottom: 1px solid #d9d9d9;
+  color: black;
+  padding: 15px;
+  margin: 0px 0;
+  transition:
+    background-color 0.3s,
+    transform 0.3s;
+
+  &:hover {
+    background-color: #f0f0f0;
+    transform: scale(1);
+  }
+
+  .ProfileImg {
+    width: 50px;
+    margin-right: 15px;
+    img {
+      width: 100%;
+      border-radius: 50%;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  .Content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-grow: 1;
+    margin-right: 15px;
+
+    .Nickname {
+      font-weight: bold;
+      font-size: 16px;
+      color: #333;
+      margin-bottom: 5px;
+    }
+
+    .Msg {
+      color: #585858;
+      font-size: 14px;
+    }
+  }
+
+  .Date {
+    text-align: right;
+    font-weight: bold;
+    color: #999;
+    font-size: 12px;
+    align-self: center;
+  }
+}
