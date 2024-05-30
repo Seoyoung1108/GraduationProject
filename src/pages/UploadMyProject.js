@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import "./MyProject.scss";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const UploadMyProject = () => {
   const accessToken = localStorage.getItem("accessToken");
@@ -15,6 +16,11 @@ const UploadMyProject = () => {
   const [inputType, setInputType] = useState("회화");
   const [inputForSale, setInputForSale] = useState(false);
   const [inputVirtual, setInputVirtual] = useState(false);
+  const [inputBack3D, setInputBack3D] = useState(
+    "https://jolvrebucket.s3.ap-northeast-3.amazonaws.com/028_hdrmaps_com_free_4K.hdr"
+  );
+  const [inputBack2D, setInputBack2D] = useState("");
+
   const [file, setFile] = useState(null);
   const [images, setImages] = useState(null);
   const [seeFile, setSeeFile] = useState(null);
@@ -40,6 +46,12 @@ const UploadMyProject = () => {
   };
   const saveInputType = (e) => {
     setInputType(e.target.value);
+  };
+  const saveInputBack3D = (e) => {
+    setInputBack3D(e.target.value);
+  };
+  const saveInputBack2D = (e) => {
+    setInputBack2D(e.target.value);
   };
 
   const onChangeCheckBoxSale = (e) => {
@@ -245,6 +257,69 @@ const UploadMyProject = () => {
               onChange={saveInputAuthorWord}
               placeholder="이 작품의 관람객들께 드리는 한마디"
             ></textarea>
+            <div className="Line"></div>
+            {(() => {
+              if (inputVirtual === false) {
+                return (
+                  <div className="Bundle">
+                    <div>
+                      <p>
+                        2D 전시회 배경 설정
+                        <br />
+                        (*의자는 예시입니다.)
+                      </p>
+                      <select id="product" onChange={saveInputBack2D}>
+                        <option value="">도시 해안가</option>
+                        <option value="">유럽 도심</option>
+                        <option value="">하늘과 들판</option>
+                      </select>
+                    </div>
+                  </div>
+                );
+              } else {
+                return (
+                  <div className="Bundle">
+                    <div>
+                      <p>
+                        3D 전시회 배경 설정
+                        <br />
+                        (*의자는 예시입니다.)
+                      </p>
+                      <select id="product" onChange={saveInputBack3D}>
+                        <option value="https://jolvrebucket.s3.ap-northeast-3.amazonaws.com/028_hdrmaps_com_free_4K.hdr">
+                          도시 해안가
+                        </option>
+                        <option value="https://jolvrebucket.s3.ap-northeast-3.amazonaws.com/123_hdrmaps_com_free_4K.hdr">
+                          유럽 도심
+                        </option>
+                        <option value="https://jolvrebucket.s3.ap-northeast-3.amazonaws.com/151_hdrmaps_com_free_4K.hdr">
+                          하늘과 들판
+                        </option>
+                      </select>
+                    </div>
+                    <div className="Image">
+                      <Helmet>
+                        <script
+                          type="module"
+                          src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"
+                        ></script>
+                      </Helmet>
+                      <model-viewer
+                        src="/model/examplechair.glb"
+                        shadow-intensity="1"
+                        ar
+                        camera-controls
+                        touch-action="pan-y"
+                        orientation="180deg 270deg 130deg"
+                        skybox-image={inputBack3D}
+                        environment-image={inputBack3D}
+                        style={{ width: "30vw", height: "40vh" }}
+                      ></model-viewer>
+                    </div>
+                  </div>
+                );
+              }
+            })()}
             <button className="submit" type="submit">
               등록
             </button>

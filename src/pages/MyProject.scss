@@ -115,6 +115,7 @@
       }
     }
   }
+
   .InviteContent {
     display: flex;
     width: 55vw;
@@ -122,14 +123,15 @@
     flex-direction: row;
     //justify-content: center;
     align-items: center;
-    padding: 20px 0;
+    padding: 20px;
+    border: 3px solid #6e6e6e;
     .intro {
-      width: 28vw;
-      margin-right: 35px;
+      width: 27vw;
+      margin-right: 1vw;
     }
     img {
-      max-width: 350px;
-      max-height: 350px;
+      max-width: 27vw;
+      max-height: 27vw;
     }
   }
 
@@ -229,6 +231,16 @@
         width: 55vw;
         margin-right: 0;
         margin-bottom: 20px;
+        .Image {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 30vw;
+          height: 40vh;
+          background-color: white;
+          font-size: 2rem;
+          color: #585858;
+        }
       }
       textarea {
         margin-bottom: 20px;
