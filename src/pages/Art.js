@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
 import "./Art.scss";
 import { IoPersonCircleOutline } from "react-icons/io5";
@@ -10,8 +10,11 @@ import { Helmet } from "react-helmet";
 import ArtCommentItem from "../components/ArtCommentItem";
 import { IoSend } from "react-icons/io5";
 import { IoReload } from "react-icons/io5";
+import squareframe from "../assets/squareframe.jpg";
 
 const Art = () => {
+  const thumbnailRef = useRef();
+
   const accessToken = localStorage.getItem("accessToken");
 
   const { exhibitId } = useParams();
@@ -30,6 +33,8 @@ const Art = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [inputComment, setInputComment] = useState("");
   const [comments, setComments] = useState(null);
+  const [frameWidth, setFrameWidth] = useState(0);
+  const [frameHeight, setFrameHeight] = useState(0);
 
   sessionStorage.setItem("artist", inputAuthor);
 
@@ -73,6 +78,13 @@ const Art = () => {
         setComments(response.data.responses);
       });
   }, []);
+
+  useEffect(() => {
+    setFrameWidth(thumbnailRef.current?.offsetWidth + 30);
+    setFrameHeight(thumbnailRef.current?.offsetHeight + 30);
+    console.log(thumbnailRef.current?.offsetWidth || 0); // 컴포넌트의 width
+    console.log(thumbnailRef.current?.offsetHeight || 0); // 컴포넌트의 height
+  }, [inputThumbnail]);
 
   function onClickCommentUpload(e) {
     fetch(`/api/v1/exhibit/${exhibitId}/comment`, {
@@ -134,7 +146,7 @@ const Art = () => {
                       orientation="180deg 270deg 130deg"
                       skybox-image={inputBack3D}
                       environment-image={inputBack3D}
-                      style={{ width: "74vw", height: "75vh" }}
+                      style={{ width: "1200px", height: "580px" }}
                     ></model-viewer>
                   </div>
                 );
@@ -142,7 +154,16 @@ const Art = () => {
             } else {
               return (
                 <div className="Image">
-                  <img src={inputThumbnail} />
+                  <img
+                    clasframe="squareframe"
+                    style={{ width: frameWidth, height: frameHeight }}
+                    src={squareframe}
+                  />
+                  <img
+                    ref={thumbnailRef}
+                    className="thumbnail"
+                    src={inputThumbnail}
+                  />
                 </div>
               );
             }

@@ -7,8 +7,8 @@
   .Frame {
     background-color: black;
     border-radius: 15px;
-    width: 80vw;
-    height: 92vh;
+    width: 1300px;
+    height: 710px;
 
     .TitleFrame {
       display: flex;
@@ -16,12 +16,12 @@
       align-items: end;
       //width: auto;
       margin-top: 15px;
-      padding-left: 2vw;
+      padding-left: 40px;
       .ArtName {
         font-size: 1.6rem;
         font-weight: bold;
         color: white;
-        width: 69vw;
+        width: 1150px;
       }
       .SellStatus {
         display: flex;
@@ -39,21 +39,25 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 80vw;
-      height: 80vh;
+      width: 1300px;
+      height: 620px;
 
       .Image {
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 74vw;
-        height: 75vh;
+        width: 1200px;
+        height: 580px;
         background-color: white;
         font-size: 2rem;
         color: #585858;
-        img {
-          max-width: 74vw;
-          max-height: 75vh;
+        .squareframe {
+          position: relative;
+        }
+        .thumbnail {
+          position: absolute;
+          max-width: 1050px;
+          max-height: 450px;
         }
       }
 
@@ -61,8 +65,8 @@
         display: flex;
         flex-direction: column;
         align-items: end;
-        width: 60px;
-        height: 75vh;
+        width: 65px;
+        height: 530px;
 
         .Icon {
           display: flex;
@@ -174,7 +178,7 @@
       display: flex;
       justify-content: right;
       align-items: center;
-      width: 79vw;
+      width: 1270px;
       .OpenComment {
         cursor: pointer;
         margin-bottom: 10px;
@@ -194,7 +198,7 @@
   .CommentFrame {
     background-color: white;
     border-radius: 15px;
-    width: 80vw;
+    width: 1300px;
     min-height: 50vh;
     display: flex;
     flex-direction: column;
@@ -204,7 +208,7 @@
     .SubTitle {
       display: flex;
       align-items: center;
-      width: 75vw;
+      width: 1180px;
       height: 30px;
       margin-top: 10px;
       color: #585858;
@@ -212,7 +216,7 @@
     }
 
     .Line {
-      width: 75vw;
+      width: 1180px;
       height: 2px;
       background-color: #6e6e6e;
     }
@@ -221,7 +225,7 @@
       margin-top: 10px;
       padding: 10px 0;
       input {
-        width: 72vw;
+        width: 1100px;
         height: 30px;
         background-color: #d8d8d8;
         border: none;
