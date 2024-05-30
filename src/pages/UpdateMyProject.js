@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import "./MyProject.scss";
 import { useParams } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const UpdateMyProject = () => {
   const accessToken = localStorage.getItem("accessToken");
@@ -16,9 +17,11 @@ const UpdateMyProject = () => {
   const [inputSize, setInputSize] = useState("");
   const [inputProductionMethod, setInputProductionMethod] = useState("");
   const [inputPrice, setInputPrice] = useState("");
-  const [inputType, setInputType] = useState("회화");
-  const [inputVirtual, setInputVirtual] = useState(false);
+  const [inputType, setInputType] = useState("");
+  const [inputVirtual, setInputVirtual] = useState("");
   const [inputForSale, setInputForSale] = useState(false);
+  const [inputBack3D, setInputBack3D] = useState("");
+  const [inputBack2D, setInputBack2D] = useState("");
   const [file, setFile] = useState(null);
   const [images, setImages] = useState([]);
 
@@ -43,6 +46,12 @@ const UpdateMyProject = () => {
   const saveInputType = (e) => {
     setInputType(e.target.value);
   };
+  const saveInputBack3D = (e) => {
+    setInputBack3D(e.target.value);
+  };
+  const saveInputBack2D = (e) => {
+    setInputBack2D(e.target.value);
+  };
 
   useEffect(() => {
     axios
@@ -61,14 +70,55 @@ const UpdateMyProject = () => {
         setInputType(response.data.workType);
         setInputForSale(response.data.forSale);
         setInputVirtual(response.data.checkVirtualSpace);
+        setInputBack2D(response.data.background2dImage);
+        setInputBack3D(response.data.background3dImage);
         setPrevImage(response.data.thumbnail);
         setPrevImages(response.data.imagesUrl);
         document.querySelector("input[id=isForSale]").checked =
           response.data.forSale;
         document.querySelector("input[id=isVirtual]").checked =
           response.data.checkVirtualSpace;
+        const categorySelected = document.querySelector(
+          "select[id=category]"
+        ).options;
+        for (let i = 0; i < categorySelected.length; i++) {
+          if (categorySelected[i].value === response.data.workType) {
+            categorySelected[i].selected = true;
+            break;
+          }
+        }
       });
   }, []);
+
+  useEffect(() => {
+    axios
+      .get(`/api/v1/exhibit/${exhibitId}`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
+      .then((response) => {
+        if (inputVirtual === false) {
+          const back2dSelected =
+            document.querySelector("select[id=back2d]").options;
+          for (let i = 0; i < back2dSelected.length; i++) {
+            if (back2dSelected[i].text === response.data.background2dImage) {
+              back2dSelected[i].selected = true;
+              break;
+            }
+          }
+        } else if (inputVirtual === true) {
+          const back3dSelected =
+            document.querySelector("select[id=back3d]").options;
+          for (let i = 0; i < back3dSelected.length; i++) {
+            if (back3dSelected[i].value === response.data.background3dImage) {
+              back3dSelected[i].selected = true;
+              break;
+            }
+          }
+        }
+      });
+  }, [inputVirtual]);
 
   const onChangeCheckBoxSale = (e) => {
     const checkboxSale = document.getElementById("isForSale");
@@ -133,6 +183,8 @@ const UpdateMyProject = () => {
       formData.append("workType", inputType);
       formData.append("forSale", inputForSale);
       formData.append("checkVirtualSpace", inputVirtual);
+      formData.append("backgroundImage2d", inputBack2D);
+      formData.append("backgroundImage3d", inputBack3D);
 
       fetch(`/api/v1/exhibit/user/${exhibitId}`, {
         method: "PATCH",
@@ -161,6 +213,8 @@ const UpdateMyProject = () => {
       formData.append("workType", inputType);
       formData.append("forSale", inputForSale);
       formData.append("checkVirtualSpace", inputVirtual);
+      formData.append("backgroundImage2d", inputBack2D);
+      formData.append("backgroundImage3d", inputBack3D);
 
       fetch(`/api/v1/exhibit/user/${exhibitId}`, {
         method: "PATCH",
@@ -187,6 +241,8 @@ const UpdateMyProject = () => {
       formData.append("workType", inputType);
       formData.append("forSale", inputForSale);
       formData.append("checkVirtualSpace", inputVirtual);
+      formData.append("backgroundImage2d", inputBack2D);
+      formData.append("backgroundImage3d", inputBack3D);
       modelFormData.append("file", file);
 
       fetch(`/api/v1/exhibit/user/${exhibitId}`, {
@@ -222,6 +278,8 @@ const UpdateMyProject = () => {
       formData.append("workType", inputType);
       formData.append("forSale", inputForSale);
       formData.append("checkVirtualSpace", inputVirtual);
+      formData.append("backgroundImage2d", inputBack2D);
+      formData.append("backgroundImage3d", inputBack3D);
       modelFormData.append("file", file);
 
       fetch(`/api/v1/exhibit/user/${exhibitId}`, {
@@ -306,7 +364,7 @@ const UpdateMyProject = () => {
             <div className="Bundle">
               <div>
                 <p>종류</p>
-                <select id="product" onChange={saveInputType}>
+                <select id="category" onChange={saveInputType}>
                   <option value="회화">회화</option>
                   <option value="디자인">디자인</option>
                   <option value="사진">사진</option>
@@ -357,6 +415,65 @@ const UpdateMyProject = () => {
               onChange={saveInputAuthorWord}
               placeholder="이 작품을 볼 관람객들께 드리는 한마디"
             ></textarea>
+            <div className="Line"></div>
+            {(() => {
+              if (inputVirtual === false) {
+                return (
+                  <div className="Bundle">
+                    <div>
+                      <p>2D 전시회 배경 설정</p>
+                      <select id="back2d" onChange={saveInputBack2D}>
+                        <option value="">도시 해안가</option>
+                        <option value="">유럽 도심</option>
+                        <option value="">하늘과 들판</option>
+                      </select>
+                    </div>
+                  </div>
+                );
+              } else {
+                return (
+                  <div className="Bundle">
+                    <div>
+                      <p>
+                        3D 전시회 배경 설정
+                        <br />
+                        (*의자는 예시입니다.)
+                      </p>
+                      <select id="back3d" onChange={saveInputBack3D}>
+                        <option value="https://jolvrebucket.s3.ap-northeast-3.amazonaws.com/028_hdrmaps_com_free_4K.hdr">
+                          도시 해안가
+                        </option>
+                        <option value="https://jolvrebucket.s3.ap-northeast-3.amazonaws.com/123_hdrmaps_com_free_4K.hdr">
+                          유럽 도심
+                        </option>
+                        <option value="https://jolvrebucket.s3.ap-northeast-3.amazonaws.com/151_hdrmaps_com_free_4K.hdr">
+                          하늘과 들판
+                        </option>
+                      </select>
+                    </div>
+                    <div className="Image">
+                      <Helmet>
+                        <script
+                          type="module"
+                          src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"
+                        ></script>
+                      </Helmet>
+                      <model-viewer
+                        src="/model/examplechair.glb"
+                        shadow-intensity="1"
+                        ar
+                        camera-controls
+                        touch-action="pan-y"
+                        orientation="180deg 270deg 130deg"
+                        skybox-image={inputBack3D}
+                        environment-image={inputBack3D}
+                        style={{ width: "30vw", height: "40vh" }}
+                      ></model-viewer>
+                    </div>
+                  </div>
+                );
+              }
+            })()}
             <button className="submit" type="submit">
               수정
             </button>

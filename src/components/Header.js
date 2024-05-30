@@ -39,10 +39,9 @@ const Header = () => {
       });
   }, []);
 
-  /*
   useEffect(() => {
     // 토큰 있을 때만 채팅방 호출
-    if (accessToken) {
+    if (isOpen === true && accessToken) {
       axios
         .get(`/chat/rooms`, {
           headers: {
@@ -57,7 +56,6 @@ const Header = () => {
         });
     }
   }, [isOpen]);
-  */
 
   function onClickBlock(e) {
     alert("로그인 후 사용해주세요.");

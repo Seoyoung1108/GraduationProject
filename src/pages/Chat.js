@@ -4,7 +4,7 @@ import io from "socket.io-client";
 import queryString from "query-string";
 import { IoSend } from "react-icons/io5";
 import * as StompJs from "@stomp/stompjs";
-import axios from 'axios';
+import axios from "axios";
 import "./Chat.scss";
 //0513
 
@@ -12,29 +12,29 @@ const SOCKET_SERVER_URL = "ws://localhost:8080/ws/chat";
 
 const Chat = () => {
   function getRoomId() {
-    const accessToken = localStorage.getItem('accessToken')
+    const accessToken = localStorage.getItem("accessToken");
 
-    fetch("http://localhost:8080/chat/room",{
+    fetch("http://13.208.178.255:8081/chat/room", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${accessToken}`
+        Authorization: `Bearer ${accessToken}`,
       },
       body: JSON.stringify({
         receiverEmail: "ms9648@naver.com", // receiverEmail 넣어주기.
-        sender: localStorage.getItem("user_id")
+        sender: localStorage.getItem("user_id"),
       }),
     })
-    .then((response) => response.json())
+      .then((response) => response.json())
       .then((response) => {
         console.log(response.roomId);
         setChatRoomId(response.roomId);
-        console.log("chatRoomId"+chatRoomId);
+        console.log("chatRoomId" + chatRoomId);
       })
       .catch(() => {
         alert("에러났어요.");
       });
-  };
+  }
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -44,7 +44,7 @@ const Chat = () => {
 
   const param = useParams();
   const accessToken = localStorage.getItem("accessToken");
-  const userId = localStorage.getItem("user_id")
+  const userId = localStorage.getItem("user_id");
   // const receiverEmail = getReceiverEmail(); 상대방 이메일 알아야 함.
 
   let [client, changeClient] = useState(null);
@@ -72,12 +72,13 @@ const Chat = () => {
           </div>
         </div>
       );
-    }
-    else {
+    } else {
       return (
         <div key={index} className="myChat">
           <div className="myChatBox">
-            <span className="myChatTime">{String(msg.sendTime).split('T')[1].substring(0,5)}</span>
+            <span className="myChatTime">
+              {String(msg.sendTime).split("T")[1].substring(0, 5)}
+            </span>
             <div className="myMsg">
               <span>{msg.message}</span>
             </div>
@@ -85,7 +86,7 @@ const Chat = () => {
         </div>
       );
     }
-  })
+  });
 
   const connect = () => {
     // 소켓 연결
@@ -93,7 +94,7 @@ const Chat = () => {
       const clientdata = new StompJs.Client({
         brokerURL: "ws://localhost:8080/ws/chat",
         connectHeaders: {
-          "Authorization": `Bearer ${accessToken}`
+          Authorization: `Bearer ${accessToken}`,
         },
         debug: function (str) {
           console.log(str);
@@ -107,7 +108,7 @@ const Chat = () => {
       clientdata.onConnect = function () {
         clientdata.subscribe("/sub/chat/" + chatRoomId, callback);
       };
-      
+
       clientdata.activate(); // 클라이언트 활성화
       changeClient(clientdata); // 클라이언트 갱신
     } catch (err) {
@@ -124,27 +125,27 @@ const Chat = () => {
   };
 
   // 채팅 불러오기
-  const fetchChat = function(chatRoomId) {
-    console.log("fetchChat: "+ chatRoomId);
-     fetch("http://localhost:8080/chat/room/message", {
+  const fetchChat = function (chatRoomId) {
+    console.log("fetchChat: " + chatRoomId);
+    fetch("http://13.208.178.255:8081/chat/room/message", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${accessToken}`
+        Authorization: `Bearer ${accessToken}`,
       },
       body: JSON.stringify({
         roomId: chatRoomId,
       }),
-      })
+    })
       .then((response) => response.json())
       .then((response) => {
-//        console.log(response);
-        for (let i=0; i<response.length; i++){
-            chatList.push(response[i])
+        //        console.log(response);
+        for (let i = 0; i < response.length; i++) {
+          chatList.push(response[i]);
         }
         console.log(chatList);
-      })
-  }
+      });
+  };
   // 콜백함수 => ChatList 저장하기
   const callback = function (message) {
     if (message.body) {
@@ -156,7 +157,6 @@ const Chat = () => {
   };
 
   const sendChat = () => {
-    
     if (chat === "") {
       return;
     }
@@ -164,10 +164,10 @@ const Chat = () => {
       destination: "/pub/chat/" + chatRoomId,
       body: JSON.stringify({
         message: chat,
-        sender: userId
+        sender: userId,
       }),
       header: {
-        "Authorization": `Bearer ${accessToken}`
+        Authorization: `Bearer ${accessToken}`,
       },
     });
 
@@ -186,21 +186,21 @@ const Chat = () => {
       console.log("useEffect | isConnect = true");
     }
     return () => {
-        disConnect();
-        setConnect(false);
-        console.log("useEffect | isConnect = false")
-        };
+      disConnect();
+      setConnect(false);
+      console.log("useEffect | isConnect = false");
+    };
   }, [chatRoomId]);
 
   useEffect(() => {
-  // isConnect가 1일 때 채팅 불러오기
-  if (isConnect == true) {
-    console.log("isConnect: "+isConnect);
-    console.log("chatRoomId" + chatRoomId);
-    fetchChat(chatRoomId);
-  }
-return () => console.log("isConnect: "+isConnect);
-}, [isConnect]);
+    // isConnect가 1일 때 채팅 불러오기
+    if (isConnect == true) {
+      console.log("isConnect: " + isConnect);
+      console.log("chatRoomId" + chatRoomId);
+      fetchChat(chatRoomId);
+    }
+    return () => console.log("isConnect: " + isConnect);
+  }, [isConnect]);
 
   const onChangeChat = (e) => {
     setChat(e.target.value);
@@ -226,9 +226,7 @@ return () => console.log("isConnect: "+isConnect);
             돌아가기
           </button>
         </div>
-        <div className="PrevMessages">
-          { msgBox }
-        </div>
+        <div className="PrevMessages">{msgBox}</div>
         <div className="SendMessage">
           <form onSubmit={handleSubmit}>
             <input

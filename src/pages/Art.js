@@ -25,6 +25,8 @@ const Art = () => {
   const [inputAuthor, setInputAuthor] = useState("");
   const [inputSchool, setInputtSchool] = useState("");
   const [inputProfile, setInputProfile] = useState(null);
+  const [inputBack3D, setInputBack3D] = useState("");
+  const [inputBack2D, setInputBack2D] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [inputComment, setInputComment] = useState("");
   const [comments, setComments] = useState(null);
@@ -54,6 +56,8 @@ const Art = () => {
         setInputThumbnail(response.data.thumbnail);
         setInputCheck3D(response.data.checkVirtualSpace);
         setInputModel(response.data.image3d);
+        setInputBack2D(response.data.background2dImage);
+        setInputBack3D(response.data.background3dImage);
         if (response.data.forSale === true) {
           setInputIsSale("판매 중");
         }
@@ -128,8 +132,8 @@ const Art = () => {
                       camera-controls
                       touch-action="pan-y"
                       orientation="180deg 270deg 130deg"
-                      skybox-image="https://jolvrebucket.s3.ap-northeast-3.amazonaws.com/123_hdrmaps_com_free_4K.hdr"
-                      environment-image="https://jolvrebucket.s3.ap-northeast-3.amazonaws.com/123_hdrmaps_com_free_4K.hdr"
+                      skybox-image={inputBack3D}
+                      environment-image={inputBack3D}
                       style={{ width: "74vw", height: "75vh" }}
                     ></model-viewer>
                   </div>

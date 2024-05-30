@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./MyProject.scss";
 import { Link, useLocation, useParams } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const AboutMyProject = () => {
   const accessToken = localStorage.getItem("accessToken");
@@ -18,7 +19,10 @@ const AboutMyProject = () => {
   const [inputProductionMethod, setInputProductionMethod] = useState("");
   const [inputPrice, setInputPrice] = useState("");
   const [inputType, setInputType] = useState("");
+  const [inputVirtual, setInputVirtual] = useState(false);
   const [isDistributed, setIsDistributed] = useState(false);
+  const [inputBack3D, setInputBack3D] = useState("");
+  const [inputBack2D, setInputBack2D] = useState("");
   const [file, setFile] = useState(null);
   const [images, setImages] = useState(null);
 
@@ -37,6 +41,9 @@ const AboutMyProject = () => {
         setInputProductionMethod(response.data.productionMethod);
         setInputPrice(response.data.price);
         setInputType(response.data.workType);
+        setInputVirtual(response.data.checkVirtualSpace);
+        setInputBack2D(response.data.background2dImage);
+        setInputBack3D(response.data.background3dImage);
         setIsDistributed(response.data.distribute);
         setFile(response.data.thumbnail);
         setImages(response.data.imagesUrl);
@@ -181,6 +188,51 @@ const AboutMyProject = () => {
               className="WriteWord"
               value={inputAuthorWord}
             ></textarea>
+            <div className="Line"></div>
+            {(() => {
+              if (inputVirtual === false) {
+                return (
+                  <div className="Bundle">
+                    <div>
+                      <p>2D 전시회 배경 설정</p>
+                      <img src={inputBack2D} />
+                    </div>
+                  </div>
+                );
+              } else {
+                return (
+                  <div className="Bundle">
+                    <div>
+                      <p>
+                        3D 전시회 배경 설정
+                        <br />
+                        (*의자는 예시입니다.)
+                      </p>
+                    </div>
+                    <div className="Image">
+                      <Helmet>
+                        <script
+                          type="module"
+                          src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"
+                        ></script>
+                      </Helmet>
+                      <model-viewer
+                        src="/model/examplechair.glb"
+                        shadow-intensity="1"
+                        ar
+                        camera-controls
+                        touch-action="pan-y"
+                        orientation="180deg 270deg 130deg"
+                        skybox-image={inputBack3D}
+                        environment-image={inputBack3D}
+                        style={{ width: "30vw", height: "40vh" }}
+                      ></model-viewer>
+                    </div>
+                  </div>
+                );
+              }
+            })()}
+            <div className="Line"></div>
             {(() => {
               if (isDistributed === false) {
                 return (
@@ -202,7 +254,7 @@ const AboutMyProject = () => {
               }
             })()}
           </form>
-          <div className="Line"></div>
+
           <div className="Buttons">
             <Link to={`/mypage/myproject/${exhibitId}/update`}>
               <button

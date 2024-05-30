@@ -19,8 +19,7 @@ const UploadMyProject = () => {
   const [inputBack3D, setInputBack3D] = useState(
     "https://jolvrebucket.s3.ap-northeast-3.amazonaws.com/028_hdrmaps_com_free_4K.hdr"
   );
-  const [inputBack2D, setInputBack2D] = useState("");
-
+  const [inputBack2D, setInputBack2D] = useState("ss");
   const [file, setFile] = useState(null);
   const [images, setImages] = useState(null);
   const [seeFile, setSeeFile] = useState(null);
@@ -120,6 +119,8 @@ const UploadMyProject = () => {
     formData.append("workType", inputType);
     formData.append("forSale", inputForSale);
     formData.append("checkVirtualSpace", inputVirtual);
+    formData.append("backgroundImage2d", inputBack2D);
+    formData.append("backgroundImage3d", inputBack3D);
     modelFormData.append("file", file);
 
     fetch("/api/v1/exhibit/user", {
@@ -132,7 +133,7 @@ const UploadMyProject = () => {
       .then((response) => response.json())
       .then((response) => {
         console.log(response.exhibitId);
-        fetch(`?exhibit_id=${response.exhibitId}`, {
+        fetch(`/model?exhibit_id=${response.exhibitId}`, {
           method: "POST",
           body: modelFormData,
         });
@@ -263,11 +264,7 @@ const UploadMyProject = () => {
                 return (
                   <div className="Bundle">
                     <div>
-                      <p>
-                        2D 전시회 배경 설정
-                        <br />
-                        (*의자는 예시입니다.)
-                      </p>
+                      <p>2D 전시회 배경 설정</p>
                       <select id="product" onChange={saveInputBack2D}>
                         <option value="">도시 해안가</option>
                         <option value="">유럽 도심</option>
