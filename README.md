@@ -1,6 +1,6 @@
 # 진행 상황
 
-배포 버전: 헤더 채팅 막아놈, public firebase 삭제 + 나머지 firebase 주석처리
+배포 버전: 헤더 채팅 주소 정리 필요, public firebase 삭제 + 나머지 firebase 주석처리
 
 (5/29 발표 이후)
 
