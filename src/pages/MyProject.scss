@@ -94,6 +94,20 @@
     .Letter {
       width: 55vw;
     }
+    .nowinvited {
+      width: 130px;
+      outline: none;
+      border: none;
+      margin-right: 10px;
+      margin-bottom: 5px;
+      font-size: 0.9rem;
+      color: #585858;
+      text-decoration: underline;
+      cursor: pointer;
+      &:hover {
+        color: #a4a4a4;
+      }
+    }
     .CreateButton {
       display: flex;
       align-items: center;
@@ -319,6 +333,13 @@
   }
   .call {
     margin-top: 80px;
+    font-size: 0.8rem;
+    color: red;
+    width: 55vw;
+  }
+  .warn {
+    margin-bottom: 10px;
+    text-align: right;
     font-size: 0.8rem;
     color: red;
     width: 55vw;

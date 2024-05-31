@@ -283,14 +283,38 @@ const UploadMyProject = () => {
                         (*의자는 예시입니다.)
                       </p>
                       <select id="product" onChange={saveInputBack3D}>
+                        <option value="https://jolvre-background-bucket.s3.ap-northeast-3.amazonaws.com/circus_arena_4k.hdr">
+                          중앙 무대
+                        </option>
+                        <option value="https://jolvre-background-bucket.s3.ap-northeast-3.amazonaws.com/dancing_hall_4k.hdr">
+                          작은 홀 1
+                        </option>
+                        <option value="https://jolvre-background-bucket.s3.ap-northeast-3.amazonaws.com/solitude_interior_4k.hdr">
+                          작은 홀 2
+                        </option>
                         <option value="https://jolvrebucket.s3.ap-northeast-3.amazonaws.com/028_hdrmaps_com_free_4K.hdr">
-                          도시 해안가
+                          해안가 도시
                         </option>
                         <option value="https://jolvrebucket.s3.ap-northeast-3.amazonaws.com/123_hdrmaps_com_free_4K.hdr">
-                          유럽 도심
+                          유럽 도시
+                        </option>
+                        <option value="https://jolvre-background-bucket.s3.ap-northeast-3.amazonaws.com/golden_bay_4k.hdr">
+                          저녁의 부둣가
+                        </option>
+                        <option value="https://jolvre-background-bucket.s3.ap-northeast-3.amazonaws.com/museumplein_4k.hdr">
+                          박물관 앞 광장
+                        </option>
+                        <option value="https://jolvre-background-bucket.s3.ap-northeast-3.amazonaws.com/drakensberg_solitary_mountain_puresky_4k.hdr">
+                          하늘
+                        </option>
+                        <option value="https://jolvre-background-bucket.s3.ap-northeast-3.amazonaws.com/limpopo_golf_course_4k.hdr">
+                          들판 1
                         </option>
                         <option value="https://jolvrebucket.s3.ap-northeast-3.amazonaws.com/151_hdrmaps_com_free_4K.hdr">
-                          하늘과 들판
+                          들판 2
+                        </option>
+                        <option value="https://jolvre-background-bucket.s3.ap-northeast-3.amazonaws.com/snow_field_4k.hdr">
+                          설원
                         </option>
                       </select>
                     </div>

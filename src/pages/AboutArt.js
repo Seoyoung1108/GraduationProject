@@ -58,7 +58,6 @@ const AboutArt = () => {
         setInputThumbnail(response.data.thumbnail);
         setInputImages(response.data.imagesUrl);
         setNoimages(noimages.slice(response.data.imagesUrl.length + 1, 4));
-        console.log(noimages);
       });
   }, []);
 

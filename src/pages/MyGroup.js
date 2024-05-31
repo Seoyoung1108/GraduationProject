@@ -28,6 +28,9 @@ const MyGroup = () => {
           <div className="Letter">
             <h1>내 단체 전시관</h1>
           </div>
+          <Link style={{ textDecoration: "none" }} to="/mypage/mygroup/invited">
+            <div className="nowinvited">단체 전시 초대 현황</div>
+          </Link>
           <Link style={{ textDecoration: "none" }} to="/mypage/mygroup/upload">
             <div className="CreateButton">새로 만들기</div>
           </Link>
@@ -47,9 +50,6 @@ const MyGroup = () => {
         <div className="call">
           * 추천 탭 및 배너 요청은 하단 메일로 연락 부탁드립니다.
         </div>
-        <Link style={{ textDecoration: "none" }} to="/mypage/mygroup/invited">
-          <div className="CreateButton">단체 전시 초대 현황</div>
-        </Link>
       </div>
     </div>
   );

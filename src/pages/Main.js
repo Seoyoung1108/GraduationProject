@@ -13,49 +13,21 @@ const Main = () => {
   const [groups, setGroups] = useState(null);
 
   useEffect(() => {
-    /*
-    axios
-      .get("/api/v1/user", {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        },
-      })
-      .then((response) => {
-        if (response.data.status === 401) {
-          localStorage.clear(); //로그인 관련 정보 다 삭제(내 닉네임, 토큰들)
-        } else {
-          localStorage.setItem("myNickName", response.data.nickname);
-          localStorage.setItem("myProfile", response.data.imageUrl);
-        }
-      });*/
+    axios.get("/api/v1/exhibit").then((response) => {
+      if (response.data.exhibitResponses.length > 3) {
+        setArts(response.data.exhibitResponses.slice(0, 3));
+      } else {
+        setArts(response.data.exhibitResponses);
+      }
+    });
 
-    axios
-      .get("/api/v1/exhibit", {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        },
-      })
-      .then((response) => {
-        if (response.data.exhibitResponses.length > 3) {
-          setArts(response.data.exhibitResponses.slice(0, 3));
-        } else {
-          setArts(response.data.exhibitResponses);
-        }
-      });
-
-    axios
-      .get("/api/v1/group/groups", {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        },
-      })
-      .then((response) => {
-        if (response.data.groupExhibitResponses.length > 3) {
-          setGroups(response.data.groupExhibitResponses.slice(0, 3));
-        } else {
-          setGroups(response.data.groupExhibitResponses);
-        }
-      });
+    axios.get("/api/v1/group/groups").then((response) => {
+      if (response.data.groupExhibitResponses.length > 3) {
+        setGroups(response.data.groupExhibitResponses.slice(0, 3));
+      } else {
+        setGroups(response.data.groupExhibitResponses);
+      }
+    });
   }, []);
 
   if (!arts || !groups) {

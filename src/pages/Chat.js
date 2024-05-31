@@ -8,9 +8,12 @@ import axios from "axios";
 import "./Chat.scss";
 //0513
 
-const SOCKET_SERVER_URL = "ws://localhost:8080/ws/chat";
+const SOCKET_SERVER_URL = "ws://13.208.178.255:8081/ws/chat";
 
 const Chat = () => {
+  const myID = localStorage.getItem("myID");
+  const myNickName = localStorage.getItem("myNickName");
+
   function getRoomId() {
     const accessToken = localStorage.getItem("accessToken");
 
@@ -21,8 +24,8 @@ const Chat = () => {
         Authorization: `Bearer ${accessToken}`,
       },
       body: JSON.stringify({
-        receiverEmail: "ms9648@naver.com", // receiverEmail 넣어주기.
-        sender: localStorage.getItem("user_id"),
+        receiverEmail: "bbb", // receiverEmail 넣어주기."ms9648@naver.com"
+        sender: myNickName,
       }),
     })
       .then((response) => response.json())
@@ -92,7 +95,7 @@ const Chat = () => {
     // 소켓 연결
     try {
       const clientdata = new StompJs.Client({
-        brokerURL: "ws://localhost:8080/ws/chat",
+        brokerURL: "ws://13.208.178.255:8081/ws/chat",
         connectHeaders: {
           Authorization: `Bearer ${accessToken}`,
         },

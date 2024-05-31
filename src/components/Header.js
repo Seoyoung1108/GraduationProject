@@ -32,6 +32,7 @@ const Header = () => {
         } else {
           localStorage.setItem("myNickName", response.data.nickname);
           localStorage.setItem("myProfile", response.data.imageUrl);
+          localStorage.setItem("myID", response.data.email);
           setMyNickName(response.data.nickname);
           setMyProfile(response.data.imageUrl);
           setIsLogin(1);

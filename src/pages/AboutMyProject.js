@@ -233,6 +233,7 @@ const AboutMyProject = () => {
               }
             })()}
             <div className="Line"></div>
+            <div className="warn">* 배포 시 개인 전시관에 전체 게시됩니다.</div>
             {(() => {
               if (isDistributed === false) {
                 return (
