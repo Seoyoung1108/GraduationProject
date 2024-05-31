@@ -1,4 +1,4 @@
-import { initializeApp } from "firebase/app";
+/*import { initializeApp } from "firebase/app";
 import { getMessaging, getToken, onMessage } from "firebase/messaging";
 import {
   vapidKey,
@@ -58,3 +58,4 @@ export const onMessageListener = () =>
       resolve(payload);
     });
   });
+*/
