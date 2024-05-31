@@ -21,17 +21,34 @@
     p {
       font-weight: bold;
     }
-    .PlusMember {
-      float: left;
-      color: #610b0b;
-      margin-right: 10px;
-      cursor: pointer;
-      &:hover {
-        color: #bf9e27;
+    .AboutMember {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      .PlusMember {
+        color: #610b0b;
+        margin-right: 10px;
+        cursor: pointer;
+        &:hover {
+          color: #bf9e27;
+        }
       }
-    }
-    .PrevMembers {
-      margin: 0 10px;
+      .PrevMembers {
+        margin: 0 5px;
+        display: flex;
+        flex-direction: row;
+        align-items: end;
+        justify-content: center;
+        color: black;
+        img {
+          width: 35px;
+          height: 35px;
+          margin: 3px;
+          border-radius: 50%;
+          object-fit: cover;
+          border: 2px solid black;
+        }
+      }
     }
   }
 
@@ -315,7 +332,8 @@
   align-items: center;
 }
 
-.Modal {
+.Modal,
+.InviteModal {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -363,4 +381,9 @@
       cursor: pointer;
     }
   }
+}
+
+.InviteModal {
+  width: 400px;
+  height: 280px;
 }

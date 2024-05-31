@@ -110,7 +110,7 @@ const PerChatRoom = ({ chatRoom }) => {
   };
 
   const fetchChat = function (chatRoomId) {
-    fetch("http://13.208.178.255:8081/chat/room/message", {
+    fetch("/chat/room/message", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

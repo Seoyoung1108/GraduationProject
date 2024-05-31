@@ -47,6 +47,9 @@ const MyGroup = () => {
         <div className="call">
           * 추천 탭 및 배너 요청은 하단 메일로 연락 부탁드립니다.
         </div>
+        <Link style={{ textDecoration: "none" }} to="/mypage/mygroup/invited">
+          <div className="CreateButton">단체 전시 초대 현황</div>
+        </Link>
       </div>
     </div>
   );

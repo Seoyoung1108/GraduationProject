@@ -29,18 +29,20 @@ import UpdateCommunity from "./pages/UpdateCommunity";
 import MyInvitation from "./pages/MyInvitation";
 import PerMyInvitation from "./pages/PerMyInvitation";
 import MyGroup from "./pages/MyGroup";
+import MyGroupInvited from "./pages/MyGroupInvited";
 import UploadMyGroup from "./pages/UploadMyGroup";
 import AboutMyGroup from "./pages/AboutMyGroup";
 import UpdateMyGroup from "./pages/UpdateMyGroup";
 import UploadMyGroupProject from "./pages/UploadMyGroupProject";
 
-//import Test from "./pages/test";
+import Test from "./pages/test";
 
 const App = () => {
   return (
     <Routes>
       <Route element={<Layout />}>
         <Route index element={<Main />} />
+        <Route path="/test" element={<Test />} />
         <Route path="/groups" element={<GroupExhibition />} />
         <Route path="/groups/:groupName/:groupId" element={<PerGroup />} />
         <Route path="/arts" element={<PersonalExhibition />} />
@@ -91,6 +93,7 @@ const App = () => {
         <Route path="/mypage/myinvitation/:id" element={<PerMyInvitation />} />
 
         <Route path="/mypage/mygroup" element={<MyGroup />} />
+        <Route path="/mypage/mygroup/invited" element={<MyGroupInvited />} />
         <Route path="/mypage/mygroup/:groupId" element={<AboutMyGroup />} />
         <Route path="/mypage/mygroup/upload" element={<UploadMyGroup />} />
         <Route

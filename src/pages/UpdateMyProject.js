@@ -459,7 +459,7 @@ const UpdateMyProject = () => {
                         ></script>
                       </Helmet>
                       <model-viewer
-                        src="/model/examplechair.glb"
+                        src="https://jolvrebucket.s3.ap-northeast-3.amazonaws.com/fbbf5586-3138-4dfc-94de-5a286e8a5728.glb"
                         shadow-intensity="1"
                         ar
                         camera-controls

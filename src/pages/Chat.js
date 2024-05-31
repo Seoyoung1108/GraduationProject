@@ -14,7 +14,7 @@ const Chat = () => {
   function getRoomId() {
     const accessToken = localStorage.getItem("accessToken");
 
-    fetch("http://13.208.178.255:8081/chat/room", {
+    fetch("/chat/room", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -127,7 +127,7 @@ const Chat = () => {
   // 채팅 불러오기
   const fetchChat = function (chatRoomId) {
     console.log("fetchChat: " + chatRoomId);
-    fetch("http://13.208.178.255:8081/chat/room/message", {
+    fetch("/chat/room/message", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
