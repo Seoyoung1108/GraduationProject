@@ -279,6 +279,11 @@
           background-color: white;
           font-size: 2rem;
           color: #585858;
+          img {
+            width: 30vw;
+            height: 40vh;
+            object-fit: cover;
+          }
         }
       }
       textarea {

@@ -106,6 +106,14 @@ const Art = () => {
     //e.preventDefault();
   }
 
+  function onClickBlockLogin(e) {
+    alert("로그인 후 사용해주세요.");
+  }
+
+  function onClickBlockMe(e) {
+    alert("자기자신과는 채팅할 수 없습니다.");
+  }
+
   // src="/model/8036ce28-c767-45bc-84ff-9a7fc7523e93.glb"
 
   return (
@@ -154,8 +162,9 @@ const Art = () => {
             } else {
               return (
                 <div className="Image">
+                  <img className="background" src={inputBack2D} />
                   <img
-                    clasframe="squareframe"
+                    className="squareframe"
                     style={{ width: frameWidth, height: frameHeight }}
                     src={squareframe}
                   />
@@ -197,14 +206,37 @@ const Art = () => {
               </div>
             </Link>
             <div className="Name">일기장</div>
-            <Link
-              to={`/arts/${inputAuthor}/${inputTitle}/${myNickName}/chat`}
-              state={{ artist: inputAuthor, name: inputTitle, me: myNickName }}
-            >
-              <div className="Icon">
-                <PiWechatLogoLight size={35} />
-              </div>
-            </Link>
+            {(() => {
+              if (myNickName === inputAuthor) {
+                return (
+                  <div className="Icon" onClick={onClickBlockMe}>
+                    <PiWechatLogoLight size={35} />
+                  </div>
+                );
+              } else if (accessToken === null) {
+                return (
+                  <div className="Icon" onClick={onClickBlockLogin}>
+                    <PiWechatLogoLight size={35} />
+                  </div>
+                );
+              } else {
+                return (
+                  <Link
+                    to={`/arts/${inputTitle}/${exhibitId}/${inputAuthor}/${myNickName}/chat`}
+                    state={{
+                      artist: inputAuthor,
+                      name: inputTitle,
+                      me: myNickName,
+                    }}
+                  >
+                    <div className="Icon">
+                      <PiWechatLogoLight size={35} />
+                    </div>
+                  </Link>
+                );
+              }
+            })()}
+
             <div className="Name">채팅</div>
           </nav>
         </div>

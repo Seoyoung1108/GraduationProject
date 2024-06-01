@@ -195,6 +195,8 @@ const AboutMyProject = () => {
                   <div className="Bundle">
                     <div>
                       <p>2D 전시회 배경 설정</p>
+                    </div>
+                    <div className="Image">
                       <img src={inputBack2D} />
                     </div>
                   </div>

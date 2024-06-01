@@ -64,7 +64,10 @@ const App = () => {
           path="/arts/:exhibitName/:exhibitId/diary/:diaryId/update"
           element={<UpdateDiary />}
         />
-        <Route path="/arts/:artist/:exhibitName/:me/chat" element={<Chat />} />
+        <Route
+          path="/arts/:exhibitName/:exhibitId/:artist/:me/chat"
+          element={<Chat />}
+        />
         <Route path="/community" element={<Community />} />
         <Route path="/community/:postId" element={<PerCommunity />} />
         <Route path="/community/upload" element={<UploadCommunity />} />

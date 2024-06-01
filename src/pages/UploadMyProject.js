@@ -19,7 +19,9 @@ const UploadMyProject = () => {
   const [inputBack3D, setInputBack3D] = useState(
     "https://jolvrebucket.s3.ap-northeast-3.amazonaws.com/028_hdrmaps_com_free_4K.hdr"
   );
-  const [inputBack2D, setInputBack2D] = useState("ss");
+  const [inputBack2D, setInputBack2D] = useState(
+    "https://jolvre-background-bucket.s3.ap-northeast-3.amazonaws.com/black-wall-with-row-spotlights-empty-room.jpg"
+  );
   const [file, setFile] = useState(null);
   const [images, setImages] = useState(null);
   const [seeFile, setSeeFile] = useState(null);
@@ -267,10 +269,19 @@ const UploadMyProject = () => {
                     <div>
                       <p>2D 전시회 배경 설정</p>
                       <select id="product" onChange={saveInputBack2D}>
-                        <option value="">도시 해안가</option>
-                        <option value="">유럽 도심</option>
-                        <option value="">하늘과 들판</option>
+                        <option value="https://jolvre-background-bucket.s3.ap-northeast-3.amazonaws.com/black-wall-with-row-spotlights-empty-room.jpg">
+                          전시장
+                        </option>
+                        <option value="https://jolvre-background-bucket.s3.ap-northeast-3.amazonaws.com/low-angle-shot-mesmerizing-starry-sky.jpg">
+                          우주
+                        </option>
+                        <option value="https://jolvre-background-bucket.s3.ap-northeast-3.amazonaws.com/beach.jpg">
+                          해변
+                        </option>
                       </select>
+                    </div>
+                    <div className="Image">
+                      <img src={inputBack2D} />
                     </div>
                   </div>
                 );

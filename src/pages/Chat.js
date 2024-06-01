@@ -1,69 +1,54 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import io from "socket.io-client";
-import queryString from "query-string";
 import { IoSend } from "react-icons/io5";
 import * as StompJs from "@stomp/stompjs";
-import axios from "axios";
 import "./Chat.scss";
-//0513
-
-const SOCKET_SERVER_URL = "ws://13.208.178.255:8081/ws/chat";
 
 const Chat = () => {
-  const myID = localStorage.getItem("myID");
-  const myNickName = localStorage.getItem("myNickName");
-
-  function getRoomId() {
+  const getRoomId = async () => {
     const accessToken = localStorage.getItem("accessToken");
-
-    fetch("/chat/room", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${accessToken}`,
-      },
-      body: JSON.stringify({
-        receiverEmail: "ms9648@naver.com", // receiverEmail 넣어주기."ms9648@naver.com"
-        sender: myNickName,
-      }),
-    })
-      .then((response) => response.json())
-      .then((response) => {
-        console.log(response.roomId);
-        setChatRoomId(response.roomId);
-        console.log("chatRoomId" + chatRoomId);
-      })
-      .catch(() => {
-        alert("에러났어요.");
+    try {
+      const response = await fetch("/chat/room", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`,
+        },
+        body: JSON.stringify({
+          receiverNickname: artist,
+        }),
       });
-  }
-  const location = useLocation();
+      const data = await response.json();
+      setChatRoomId(data.roomId);
+    } catch (error) {
+      alert("에러났어요.");
+    }
+  };
+
   const navigate = useNavigate();
 
-  const me = location.state.me;
-  const name = location.state.name;
-  const artist = location.state.artist;
+  const { exhibitId } = useParams();
+  const { me } = useParams();
+  const { exhibitName } = useParams();
+  const { artist } = useParams();
 
-  const param = useParams();
   const accessToken = localStorage.getItem("accessToken");
-  const userId = localStorage.getItem("user_id");
-  // const receiverEmail = getReceiverEmail(); 상대방 이메일 알아야 함.
+  const frameRef = useRef(null);
 
-  let [client, changeClient] = useState(null);
+  const [client, setClient] = useState(null);
   const [chat, setChat] = useState(""); // 입력된 chat을 받을 변수
   const [chatList, setChatList] = useState([]); // 채팅 기록
   const [isConnect, setConnect] = useState("");
-  const [chatRoomId, setChatRoomId] = useState(false);
+  const [chatRoomId, setChatRoomId] = useState("");
 
   const msgBox = chatList.map((msg, index) => {
     // 상대방의 채팅 내역일 경우
-    if (String(msg.sender.email) !== userId) {
+    if (String(msg.nickname) !== me) {
       return (
         <div key={index} className="otherChat">
           {/* 상대방 이미지 */}
           <div className="otherImg">
-            <img src="/favicon.ico" alt="" />
+            <img src={msg.receiverProfileImg} alt="" />
           </div>
           {/* 상대방 채팅 내용 */}
           <div className="otherChatBox">
@@ -71,7 +56,9 @@ const Chat = () => {
               <span>{msg.message}</span>
             </div>
             {/* 채팅 보낸 시각 */}
-            <span className="otherChatTime">{msg.message.sendTime}</span>
+            <span className="otherChatTime">
+              {String(msg.sendTime).split("T")[1].substring(0, 5)}
+            </span>
           </div>
         </div>
       );
@@ -100,7 +87,7 @@ const Chat = () => {
           Authorization: `Bearer ${accessToken}`,
         },
         debug: function (str) {
-          console.log(str);
+          // console.log(str); // 소켓 연결 정보
         },
         reconnectDelay: 5000, // 자동 재 연결
         heartbeatIncoming: 4000,
@@ -109,11 +96,11 @@ const Chat = () => {
 
       // 구독
       clientdata.onConnect = function () {
-        clientdata.subscribe("/sub/chat/" + chatRoomId, callback);
+        clientdata.subscribe("/sub/chat/" + chatRoomId, callback); // 구독하면서, 받은 메시지 chatList에 자동 저장
       };
 
       clientdata.activate(); // 클라이언트 활성화
-      changeClient(clientdata); // 클라이언트 갱신
+      setClient(clientdata); // 클라이언트 갱신
     } catch (err) {
       console.log(err);
     }
@@ -128,34 +115,30 @@ const Chat = () => {
   };
 
   // 채팅 불러오기
-  const fetchChat = function (chatRoomId) {
-    console.log("fetchChat: " + chatRoomId);
-    fetch("/chat/room/message", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${accessToken}`,
-      },
-      body: JSON.stringify({
-        roomId: chatRoomId,
-      }),
-    })
-      .then((response) => response.json())
-      .then((response) => {
-        //        console.log(response);
-        for (let i = 0; i < response.length; i++) {
-          chatList.push(response[i]);
-        }
-        console.log(chatList);
+  const fetchChat = async (chatRoomId) => {
+    try {
+      const response = await fetch("/chat/room/message", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`,
+        },
+        body: JSON.stringify({
+          roomId: chatRoomId,
+        }),
       });
+      const data = await response.json();
+      setChatList(data);
+    } catch (error) {
+      console.error("Failed to fetch chat messages:", error);
+    }
   };
+
   // 콜백함수 => ChatList 저장하기
-  const callback = function (message) {
+  const callback = (message) => {
     if (message.body) {
       let msg = JSON.parse(message.body);
-      console.log(msg);
       setChatList((chats) => [...chats, msg]);
-      console.log(chatList);
     }
   };
 
@@ -167,7 +150,7 @@ const Chat = () => {
       destination: "/pub/chat/" + chatRoomId,
       body: JSON.stringify({
         message: chat,
-        sender: userId,
+        sender: me,
       }),
       header: {
         Authorization: `Bearer ${accessToken}`,
@@ -186,24 +169,21 @@ const Chat = () => {
     if (chatRoomId) {
       connect();
       setConnect(true);
-      console.log("useEffect | isConnect = true");
+      fetchChat(chatRoomId);
     }
     return () => {
       disConnect();
       setConnect(false);
-      console.log("useEffect | isConnect = false");
     };
   }, [chatRoomId]);
 
   useEffect(() => {
-    // isConnect가 1일 때 채팅 불러오기
-    if (isConnect == true) {
-      console.log("isConnect: " + isConnect);
-      console.log("chatRoomId" + chatRoomId);
-      fetchChat(chatRoomId);
+    const frameElement = frameRef.current;
+    if (frameElement) {
+      // 스크롤을 끝으로 이동
+      frameElement.scrollTo({ top: frameElement.scrollHeight });
     }
-    return () => console.log("isConnect: " + isConnect);
-  }, [isConnect]);
+  }, [chatList]);
 
   const onChangeChat = (e) => {
     setChat(e.target.value);
@@ -223,13 +203,15 @@ const Chat = () => {
         <div className="Title">
           <div className="Who">
             <p>{artist}</p>
-            {name} / {"가격"}
+            {exhibitName} / {"가격"}
           </div>
           <button className="Back" onClick={onClick}>
             돌아가기
           </button>
         </div>
-        <div className="PrevMessages">{msgBox}</div>
+        <div className="PrevMessages" ref={frameRef}>
+          {msgBox}
+        </div>
         <div className="SendMessage">
           <form onSubmit={handleSubmit}>
             <input

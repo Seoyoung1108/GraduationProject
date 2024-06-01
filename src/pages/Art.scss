@@ -51,8 +51,14 @@
         background-color: white;
         font-size: 2rem;
         color: #585858;
-        .squareframe {
+        .background {
           position: relative;
+          width: 1200px;
+          height: 580px;
+          object-fit: cover;
+        }
+        .squareframe {
+          position: absolute;
         }
         .thumbnail {
           position: absolute;
@@ -124,6 +130,7 @@
           &:focus {
             background-color: #d8d8d8;
             .Bubbler {
+              background-color: white;
               z-index: 50;
               position: relative;
               display: block;
