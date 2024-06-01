@@ -35,6 +35,9 @@ const MyProject = () => {
             <div className="CreateButton">새로 만들기</div>
           </Link>
         </div>
+        <div className="Guide">
+          회화, 디자인, 조각 등 다양한 종류의 예술 작품 전시를 만들어 보세요!
+        </div>
         <div className="Line"></div>
         <ul className="ArtList">
           {arts &&

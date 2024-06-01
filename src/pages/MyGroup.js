@@ -35,6 +35,9 @@ const MyGroup = () => {
             <div className="CreateButton">새로 만들기</div>
           </Link>
         </div>
+        <div className="Guide">
+          단체 전시관을 만들어 동료들과 함께 단체 전시회를 개최하세요!
+        </div>
         <div className="Line"></div>
         <ul className="ArtList">
           {groups &&

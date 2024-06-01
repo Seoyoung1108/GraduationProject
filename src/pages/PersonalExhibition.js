@@ -10,7 +10,7 @@ const PersonalExhibition = () => {
 
   const [arts, setArts] = useState(null);
   const [recommend, setRecommend] = useState(null);
-  const categories = ["전체", "회화", "디자인", "사진", "조각"];
+  const categories = ["전체", "회화", "디자인", "사진", "조각", "기타"];
   const [inputWord, setInputWord] = useState("");
 
   const saveInputWord = (e) => {

@@ -51,6 +51,7 @@ const MyInvitation = () => {
             <h2>초대장을 만들 작품 및 단체 전시관을 골라주세요.</h2>
           </div>
         </div>
+        <div className="Guide">메일과 카카오톡으로 전시를 공유해 보세요!</div>
         <div className="Line"></div>
         <ul className="ArtList">
           {arts &&

@@ -39,6 +39,7 @@ const PerCommunity = () => {
         setInputContent(response.data.content);
         setInputUserName(response.data.userName);
         setView(response.data.view);
+        setInputCreatedDate(response.data.createdDate);
         setInputLastModifiedDate(response.data.last_modified_date);
         setImages(response.data.imagesUrl);
         if (response.data.category === "QUESTION") {
@@ -129,9 +130,9 @@ const PerCommunity = () => {
           <div className="RealTitle">{inputTitle}</div>
           <div className="Date">
             조회수: {view} &nbsp; &nbsp; 작성자: {inputUserName} &nbsp; &nbsp;
-            {inputLastModifiedDate.substring(0, 10) +
+            {inputCreatedDate.substring(0, 10) +
               " " +
-              inputLastModifiedDate.substring(11, 16)}
+              inputCreatedDate.substring(11, 16)}
           </div>
         </div>
         <div className="Line"></div>

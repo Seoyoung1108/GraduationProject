@@ -6,7 +6,10 @@ const UploadCommunity = () => {
   const accessToken = localStorage.getItem("accessToken");
 
   const myNickName = localStorage.getItem("myNickName");
-  const date = new Date().toISOString();
+
+  const offset = new Date().getTimezoneOffset() * 60000;
+  const date = new Date(Date.now() - offset).toISOString();
+
   const [inputTitle, setInputTitle] = useState("");
   const [inputContent, setInputContent] = useState("");
   const [images, setImages] = useState(null);

@@ -105,6 +105,24 @@ const Diary = () => {
             }
           })()}
         </div>
+
+        {(() => {
+          if (myNickName === artist) {
+            return (
+              <div className="Guide">
+                일기장에서 작품의 시작부터 끝까지의 전 과정에 대한 기록을 작성해
+                보세요.
+              </div>
+            );
+          } else {
+            return (
+              <div className="Guide">
+                일기장에서 작품의 시작부터 끝까지의 전 과정에 대한 기록을 구경해
+                보세요.
+              </div>
+            );
+          }
+        })()}
         <div className="Line"></div>
         <div className="StartContent">
           <div className="info1">번호</div>

@@ -14,7 +14,7 @@ const PerGroup = () => {
   const [inputName, setInputName] = useState("");
   const [inputIntroduction, setInputIntroduction] = useState("");
 
-  const categories = ["전체", "회화", "디자인", "사진", "조각"];
+  const categories = ["전체", "회화", "디자인", "사진", "조각", "기타"];
   const [inputWord, setInputWord] = useState("");
 
   const saveInputWord = (e) => {

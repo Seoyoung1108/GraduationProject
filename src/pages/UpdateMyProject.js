@@ -369,6 +369,7 @@ const UpdateMyProject = () => {
                   <option value="디자인">디자인</option>
                   <option value="사진">사진</option>
                   <option value="조각">조각</option>
+                  <option value="기타">기타</option>
                 </select>
               </div>
               <div>

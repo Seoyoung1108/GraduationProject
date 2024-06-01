@@ -24,7 +24,7 @@ const Chat = () => {
         Authorization: `Bearer ${accessToken}`,
       },
       body: JSON.stringify({
-        receiverEmail: "bbb", // receiverEmail 넣어주기."ms9648@naver.com"
+        receiverEmail: "ms9648@naver.com", // receiverEmail 넣어주기."ms9648@naver.com"
         sender: myNickName,
       }),
     })
