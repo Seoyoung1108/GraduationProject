@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import "./MyProject.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
 const UploadMyProject = () => {
   const accessToken = localStorage.getItem("accessToken");
+
+  const navigate = useNavigate();
 
   const [inputTitle, setInputTitle] = useState("");
   const [inputAuthorWord, setInputAuthorWord] = useState("");
@@ -17,7 +19,7 @@ const UploadMyProject = () => {
   const [inputForSale, setInputForSale] = useState(false);
   const [inputVirtual, setInputVirtual] = useState(false);
   const [inputBack3D, setInputBack3D] = useState(
-    "https://jolvrebucket.s3.ap-northeast-3.amazonaws.com/028_hdrmaps_com_free_4K.hdr"
+    "https://jolvre-background-bucket.s3.ap-northeast-3.amazonaws.com/circus_arena_4k.hdr"
   );
   const [inputBack2D, setInputBack2D] = useState(
     "https://jolvre-background-bucket.s3.ap-northeast-3.amazonaws.com/black-wall-with-row-spotlights-empty-room.jpg"
@@ -104,9 +106,18 @@ const UploadMyProject = () => {
     }
   };
 
+  function uploadModel(exhibitId) {
+    const modelFormData = new FormData();
+    modelFormData.append("file", file);
+
+    return fetch(`http://15.168.167.235/model?exhibit_id=${exhibitId}`, {
+      method: "POST",
+      body: modelFormData,
+    });
+  }
+
   function onClickUpload(e) {
     const formData = new FormData();
-    const modelFormData = new FormData();
 
     formData.append("thumbnail", file);
     for (let i = 0; i < images.length; i++) {
@@ -123,7 +134,6 @@ const UploadMyProject = () => {
     formData.append("checkVirtualSpace", inputVirtual);
     formData.append("backgroundImage2d", inputBack2D);
     formData.append("backgroundImage3d", inputBack3D);
-    modelFormData.append("file", file);
 
     fetch("/api/v1/exhibit/user", {
       method: "POST",
@@ -135,11 +145,10 @@ const UploadMyProject = () => {
       .then((response) => response.json())
       .then((response) => {
         console.log(response.exhibitId);
-        fetch(`/model?exhibit_id=${response.exhibitId}`, {
-          method: "POST",
-          body: modelFormData,
-        });
-        document.location.href = "/mypage/myproject";
+        return uploadModel(response.exhibitId);
+      })
+      .then(() => {
+        navigate("/mypage/myproject");
       })
       .catch((error) => {
         console.log(error.response);
@@ -218,7 +227,10 @@ const UploadMyProject = () => {
                 </select>
               </div>
               <div>
-                <p>3D 모델 생성 여부 (*조각품일 경우 생성을 추천합니다.)</p>
+                <p>
+                  3D 모델 생성 여부 (*썸네일을 이용해 입체 모형을 생성합니다.
+                  조각품일 경우 생성을 추천합니다.)
+                </p>
                 <input
                   className="Check"
                   id="isVirtual"
@@ -357,6 +369,10 @@ const UploadMyProject = () => {
               등록
             </button>
           </form>
+        </div>
+        <div className="call">
+          * 3D 모델 생성 시 시간이 약 30초 정도 소요되므로 등록 버튼을 누른 후
+          잠시 기다려 주세요.
         </div>
       </div>
     </div>

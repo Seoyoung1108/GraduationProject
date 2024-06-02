@@ -19,6 +19,23 @@ const Header = () => {
   const [chatRooms, setChatRooms] = useState([]);
   const [selectedChatRoom, setSelectedChatRoom] = useState(null);
 
+  async function getNewToken() {
+    const response = await fetch("/api/v1/auth/refresh", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        refreshToken: localStorage.getItem("refreshToken"),
+      }),
+    });
+
+    const data = await response.json();
+
+    localStorage.setItem("accessToken", data.accessToken);
+    localStorage.setItem("refreshToken", data.refreshToken);
+  }
+
   useEffect(() => {
     axios
       .get("/api/v1/user", {
@@ -28,11 +45,14 @@ const Header = () => {
       })
       .then((response) => {
         if (response.data.status === 401) {
-          localStorage.clear(); //로그인 관련 정보 다 삭제(내 닉네임, 토큰들)
+          if (accessToken) {
+            getNewToken();
+            window.location.reload();
+          }
+          //localStorage.clear(); //로그인 관련 정보 다 삭제(내 닉네임, 토큰들)
         } else {
           localStorage.setItem("myNickName", response.data.nickname);
           localStorage.setItem("myProfile", response.data.imageUrl);
-          localStorage.setItem("myID", response.data.email);
           setMyNickName(response.data.nickname);
           setMyProfile(response.data.imageUrl);
           setIsLogin(1);

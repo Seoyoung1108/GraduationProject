@@ -31,9 +31,13 @@ const Login = () => {
     })
       .then((response) => response.json())
       .then((response) => {
-        localStorage.setItem("accessToken", response.accessToken);
-        localStorage.setItem("refreshToken", response.refreshToken);
-        document.location.href = "/";
+        if (response.status === 401) {
+          alert("아이디 또는 비밀번호를 다시 확인해 주세요.");
+        } else {
+          localStorage.setItem("accessToken", response.accessToken);
+          localStorage.setItem("refreshToken", response.refreshToken);
+          document.location.href = "/";
+        }
       })
       .catch(() => {
         alert("다시 로그인해주세요.");

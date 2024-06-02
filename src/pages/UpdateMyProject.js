@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import "./MyProject.scss";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
 const UpdateMyProject = () => {
   const accessToken = localStorage.getItem("accessToken");
+
+  const navigate = useNavigate();
 
   const { exhibitId } = useParams();
   const [prevImage, setPrevImage] = useState(null);
@@ -102,7 +104,7 @@ const UpdateMyProject = () => {
           const back2dSelected =
             document.querySelector("select[id=back2d]").options;
           for (let i = 0; i < back2dSelected.length; i++) {
-            if (back2dSelected[i].text === response.data.background2dImage) {
+            if (back2dSelected[i].value === response.data.background2dImage) {
               back2dSelected[i].selected = true;
               break;
             }
@@ -169,9 +171,19 @@ const UpdateMyProject = () => {
     }
   };
 
+  function updateModel(exhibitId) {
+    const modelFormData = new FormData();
+    modelFormData.append("file", file);
+
+    return fetch(`http://15.168.167.235/model?exhibit_id=${exhibitId}`, {
+      method: "POST",
+      body: modelFormData,
+    });
+  }
+
   function onClickUpdate(e) {
     const formData = new FormData();
-    const modelFormData = new FormData();
+    //const modelFormData = new FormData();
 
     if (file === null && images.length === 0) {
       formData.append("title", inputTitle);
@@ -243,7 +255,6 @@ const UpdateMyProject = () => {
       formData.append("checkVirtualSpace", inputVirtual);
       formData.append("backgroundImage2d", inputBack2D);
       formData.append("backgroundImage3d", inputBack3D);
-      modelFormData.append("file", file);
 
       fetch(`/api/v1/exhibit/user/${exhibitId}`, {
         method: "PATCH",
@@ -252,12 +263,11 @@ const UpdateMyProject = () => {
           Authorization: `Bearer ${accessToken}`,
         },
       })
-        .then((res) => {
-          fetch(`?exhibit_id=${exhibitId}`, {
-            method: "POST",
-            body: modelFormData,
-          });
-          document.location.href = `/mypage/myproject/${exhibitId}`;
+        .then((response) => {
+          return updateModel(exhibitId);
+        })
+        .then(() => {
+          navigate(`/mypage/myproject/${exhibitId}`);
         })
         .catch((error) => {
           console.log(error.response);
@@ -280,7 +290,6 @@ const UpdateMyProject = () => {
       formData.append("checkVirtualSpace", inputVirtual);
       formData.append("backgroundImage2d", inputBack2D);
       formData.append("backgroundImage3d", inputBack3D);
-      modelFormData.append("file", file);
 
       fetch(`/api/v1/exhibit/user/${exhibitId}`, {
         method: "PATCH",
@@ -289,12 +298,11 @@ const UpdateMyProject = () => {
           Authorization: `Bearer ${accessToken}`,
         },
       })
-        .then((res) => {
-          fetch(`?exhibit_id=${exhibitId}`, {
-            method: "POST",
-            body: modelFormData,
-          });
-          document.location.href = `/mypage/myproject/${exhibitId}`;
+        .then((response) => {
+          return updateModel(exhibitId);
+        })
+        .then(() => {
+          navigate(`/mypage/myproject/${exhibitId}`);
         })
         .catch((error) => {
           console.log(error.response);
@@ -373,7 +381,10 @@ const UpdateMyProject = () => {
                 </select>
               </div>
               <div>
-                <p>3D 모델 생성 여부 (*조각품일 경우 생성을 추천합니다.)</p>
+                <p>
+                  3D 모델 생성 여부 (*썸네일을 이용해 입체 모형을 생성합니다.
+                  조각품일 경우 생성을 추천합니다.)
+                </p>
                 <input
                   className="Check"
                   id="isVirtual"
@@ -512,6 +523,10 @@ const UpdateMyProject = () => {
               수정
             </button>
           </form>
+        </div>
+        <div className="call">
+          * 3D 모델 생성 시 시간이 약 30초 정도 소요되므로 수정 버튼을 누른 후
+          잠시 기다려 주세요.
         </div>
       </div>
     </div>

@@ -147,7 +147,7 @@ const AboutMyProject = () => {
                 />
               </div>
               <div>
-                <p>3D 모델 생성 여부 (*조각품일 경우 생성을 추천합니다.)</p>
+                <p>3D 모델 생성 여부</p>
                 <input
                   className="Check"
                   id="isVirtual"
