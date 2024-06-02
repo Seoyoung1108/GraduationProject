@@ -175,7 +175,7 @@ const UpdateMyProject = () => {
     const modelFormData = new FormData();
     modelFormData.append("file", file);
 
-    return fetch(`http://15.168.167.235/model?exhibit_id=${exhibitId}`, {
+    return fetch(`/model?exhibit_id=${exhibitId}`, {
       method: "POST",
       body: modelFormData,
     });
