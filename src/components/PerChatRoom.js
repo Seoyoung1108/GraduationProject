@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { IoSend } from "react-icons/io5";
 import * as StompJs from "@stomp/stompjs";
 import "./PerChatRoom.scss";
+import { IoPersonCircleOutline } from "react-icons/io5";
 
 const PerChatRoom = ({ chatRoom }) => {
   const accessToken = localStorage.getItem("accessToken");
@@ -133,7 +134,15 @@ const PerChatRoom = ({ chatRoom }) => {
         <div key={index} className="otherChat">
           {/* 상대방 이미지 */}
           <div className="otherImg">
-            <img src={msg.receiverProfileImg} alt="receiverProfileImg" />
+            {(() => {
+              if (msg.receiverProfileImg === null) {
+                return <IoPersonCircleOutline size={40} />;
+              } else {
+                return (
+                  <img src={msg.receiverProfileImg} alt="receiverProfileImg" />
+                );
+              }
+            })()}
           </div>
           {/* 상대방 채팅 내용 */}
           <div className="otherChatBox">
@@ -166,7 +175,15 @@ const PerChatRoom = ({ chatRoom }) => {
   return (
     <div className="PerChatRoom">
       <div className="ReceiverInfo">
-        <img className="ProfileImg" src={chatRoom.receiverProfileImg} />
+        {(() => {
+          if (chatRoom.receiverProfileImg === null) {
+            return <IoPersonCircleOutline size={50} />;
+          } else {
+            return (
+              <img className="ProfileImg" src={chatRoom.receiverProfileImg} />
+            );
+          }
+        })()}
         {chatRoom.receiverNickname}
       </div>
       <div className="Frame">

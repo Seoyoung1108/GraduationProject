@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./ChatRooms.scss";
+import { IoPersonCircleOutline } from "react-icons/io5";
 
 const ChatRooms = ({ chatRoom, onClick }) => {
   const roomId = chatRoom.roomId;
@@ -29,7 +30,13 @@ const ChatRooms = ({ chatRoom, onClick }) => {
   return (
     <div className="ChatItem" style={{ zIndex: 50 }} onClick={onClick}>
       <div className="ProfileImg">
-        <img src={profileImg}></img>
+        {(() => {
+          if (profileImg === null) {
+            return <IoPersonCircleOutline size={50} />;
+          } else {
+            return <img src={profileImg} />;
+          }
+        })()}
       </div>
       <div className="Content">
         <div className="Nickname">{receiverNickname}</div>
