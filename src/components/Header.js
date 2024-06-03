@@ -46,10 +46,16 @@ const Header = () => {
       .then((response) => {
         if (response.data.status === 401) {
           if (accessToken) {
-            getNewToken();
+            // 액세스 토큰 만료
+            if (accessToken !== undefined) {
+              // 리프레시는 정상
+              getNewToken();
+            } else {
+              // 리프레시도 만료
+              localStorage.clear(); //로그인 관련 정보 다 삭제(내 닉네임, 토큰들)
+            }
             window.location.reload();
-          }
-          //localStorage.clear(); //로그인 관련 정보 다 삭제(내 닉네임, 토큰들)
+          } // 액세스 토큰이 없는 로그인 안한 상태면 다 암것도 안함
         } else {
           localStorage.setItem("myNickName", response.data.nickname);
           localStorage.setItem("myProfile", response.data.imageUrl);

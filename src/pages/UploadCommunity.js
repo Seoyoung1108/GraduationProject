@@ -53,8 +53,10 @@ const UploadCommunity = () => {
   function onClickUpload(e) {
     const formData = new FormData();
 
-    for (let i = 0; i < images.length; i++) {
-      formData.append("images", images[i]);
+    if (images.length !== 0) {
+      for (let i = 0; i < images.length; i++) {
+        formData.append("images", images[i]);
+      }
     }
     formData.append("title", inputTitle);
     formData.append("content", inputContent);
