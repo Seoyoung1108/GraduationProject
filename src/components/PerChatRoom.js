@@ -25,7 +25,7 @@ const PerChatRoom = ({ chatRoom }) => {
     // 소켓 연결
     try {
       const clientdata = new StompJs.Client({
-        brokerURL: "ws://15.152.149.181:8081/ws/chat",
+        brokerURL: "ws://15.168.106.131:8081/ws/chat",
         connectHeaders: {
           Authorization: `Bearer ${accessToken}`,
         },

@@ -2,7 +2,7 @@
   "name": "jolvre",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://15.152.149.181:8081",
+  "proxy": "http://15.168.106.131:8081",
   "dependencies": {
     "@stomp/stompjs": "^7.0.0",
     "@testing-library/jest-dom": "^5.17.0",
