@@ -137,13 +137,13 @@ const AboutArt = () => {
               <div className="More1">작가</div>
               <div className="More2">{inputAuthor}</div>
               <div className="More1">크기</div>
-              <div className="More2">{inputSize}</div>
+              <div className="More2">{inputSize} (cm X cm)</div>
               <div className="More1">종류</div>
               <div className="More2">{inputType}</div>
               <div className="More1">제작방식</div>
               <div className="More2">{inputProductionMethod}</div>
               <div className="More1">판매가</div>
-              <div className="More2">{inputPrice}</div>
+              <div className="More2">{inputPrice}원</div>
             </div>
           </div>
         </div>

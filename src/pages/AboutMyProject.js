@@ -132,7 +132,7 @@ const AboutMyProject = () => {
                   disabled={true}
                   id="id"
                   type="text"
-                  value={inputPrice + " 원"}
+                  value={inputPrice + "원"}
                 />
               </div>
             </div>
