@@ -139,13 +139,7 @@ const Header = () => {
           알림{" "}
         </li>
       ),
-      tabCont: (
-        <div>
-          {notices.map((notices) => (
-            <NoticeItem notices={notices} key={notices.id} />
-          ))}
-        </div>
-      ),
+      tabCont: <div></div>,
     },
   ];
 
