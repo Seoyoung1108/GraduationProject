@@ -144,16 +144,12 @@ const UploadMyProject = () => {
     })
       .then((response) => response.json())
       .then((response) => {
-        console.log(response.exhibitId);
-        return uploadModel(response.exhibitId);
-      })
-      .then(() => {
+        uploadModel(response.exhibitId);
         navigate("/mypage/myproject");
       })
       .catch((error) => {
         console.log(error.response);
       });
-
     e.preventDefault();
   }
 
@@ -365,7 +361,7 @@ const UploadMyProject = () => {
                 );
               }
             })()}
-            <button className="submit" type="submit">
+            <button className="submit" type="submit" id="submit">
               등록
             </button>
           </form>

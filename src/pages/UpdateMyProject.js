@@ -183,7 +183,6 @@ const UpdateMyProject = () => {
 
   function onClickUpdate(e) {
     const formData = new FormData();
-    //const modelFormData = new FormData();
 
     if (file === null && images.length === 0) {
       formData.append("title", inputTitle);
@@ -264,9 +263,7 @@ const UpdateMyProject = () => {
         },
       })
         .then((response) => {
-          return updateModel(exhibitId);
-        })
-        .then(() => {
+          updateModel(exhibitId);
           navigate(`/mypage/myproject/${exhibitId}`);
         })
         .catch((error) => {
@@ -299,9 +296,7 @@ const UpdateMyProject = () => {
         },
       })
         .then((response) => {
-          return updateModel(exhibitId);
-        })
-        .then(() => {
+          updateModel(exhibitId);
           navigate(`/mypage/myproject/${exhibitId}`);
         })
         .catch((error) => {
