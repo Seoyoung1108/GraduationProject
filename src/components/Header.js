@@ -50,7 +50,7 @@ const Header = () => {
             if (accessToken !== undefined) {
               // 리프레시는 정상
               getNewToken();
-              window.location.reload();
+              //window.location.reload();
             } else {
               // 리프레시도 만료
               localStorage.clear(); //로그인 관련 정보 다 삭제(내 닉네임, 토큰들)
