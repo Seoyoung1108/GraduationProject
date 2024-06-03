@@ -9,9 +9,6 @@ import { IoPersonCircleOutline } from "react-icons/io5";
 const PerChatRoom = ({ chatRoom }) => {
   const accessToken = localStorage.getItem("accessToken");
 
-  const location = useLocation();
-  const navigate = useNavigate();
-
   const frameRef = useRef(null);
 
   let [client, changeClient] = useState(null);
@@ -127,7 +124,7 @@ const PerChatRoom = ({ chatRoom }) => {
   };
 
   const msgBox = chatList.map((msg, index) => {
-    console.log(msg);
+    //console.log(msg);
     // 상대방의 채팅 내역일 경우
     if (String(msg.nickname) !== me) {
       return (
@@ -206,9 +203,10 @@ const PerChatRoom = ({ chatRoom }) => {
               }}
               onClick={() => console.log("클릭")}
             />
+            {/*
             <button type="submit" onClick={(ev) => ev.stopPropagation()}>
               <IoSend />
-            </button>
+            </button>*/}
           </form>
         </div>
       </div>

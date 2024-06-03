@@ -22,6 +22,7 @@ const Art = () => {
 
   const [inputTitle, setInputTitle] = useState("");
   const [inputIsSale, setInputIsSale] = useState("비매품");
+  const [inputPrice, setInputPrice] = useState(0);
   const [inputThumbnail, setInputThumbnail] = useState(null);
   const [inputCheck3D, setInputCheck3D] = useState(false);
   const [inputModel, setInputModel] = useState(null);
@@ -63,6 +64,7 @@ const Art = () => {
         setInputModel(response.data.image3d);
         setInputBack2D(response.data.background2dImage);
         setInputBack3D(response.data.background3dImage);
+        setInputPrice(response.data.price);
         if (response.data.forSale === true) {
           setInputIsSale("판매 중");
         }
@@ -82,8 +84,8 @@ const Art = () => {
   useEffect(() => {
     setFrameWidth(thumbnailRef.current?.offsetWidth + 30);
     setFrameHeight(thumbnailRef.current?.offsetHeight + 30);
-    console.log(thumbnailRef.current?.offsetWidth || 0); // 컴포넌트의 width
-    console.log(thumbnailRef.current?.offsetHeight || 0); // 컴포넌트의 height
+    //console.log(thumbnailRef.current?.offsetWidth || 0); // 컴포넌트의 width
+    //console.log(thumbnailRef.current?.offsetHeight || 0); // 컴포넌트의 height
   }, [inputThumbnail]);
 
   function onClickCommentUpload(e) {
@@ -223,11 +225,7 @@ const Art = () => {
                 return (
                   <Link
                     to={`/arts/${inputTitle}/${exhibitId}/${inputAuthor}/${myNickName}/chat`}
-                    state={{
-                      artist: inputAuthor,
-                      name: inputTitle,
-                      me: myNickName,
-                    }}
+                    state={{ price: inputPrice }}
                   >
                     <div className="Icon">
                       <PiWechatLogoLight size={35} />
@@ -236,7 +234,6 @@ const Art = () => {
                 );
               }
             })()}
-
             <div className="Name">채팅</div>
           </nav>
         </div>

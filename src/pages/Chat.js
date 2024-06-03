@@ -25,12 +25,14 @@ const Chat = () => {
     }
   };
 
+  const location = useLocation();
   const navigate = useNavigate();
 
   const { exhibitId } = useParams();
   const { me } = useParams();
   const { exhibitName } = useParams();
   const { artist } = useParams();
+  const price = location.state.price;
 
   const accessToken = localStorage.getItem("accessToken");
   const frameRef = useRef(null);
@@ -203,7 +205,7 @@ const Chat = () => {
         <div className="Title">
           <div className="Who">
             <p>{artist}</p>
-            {exhibitName} / {"가격"}
+            {exhibitName} / {price}원
           </div>
           <button className="Back" onClick={onClick}>
             돌아가기
@@ -225,9 +227,10 @@ const Chat = () => {
                 }
               }}
             />
+            {/*
             <button type="submit">
               <IoSend size={30} />
-            </button>
+            </button> */}
           </form>
         </div>
       </div>

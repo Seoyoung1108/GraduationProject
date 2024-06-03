@@ -12,8 +12,9 @@
       display: flex;
       flex-direction: row;
       align-items: flex-start;
-      background-color: #d8d8d8;
+      //background-color: #d8d8d8;
       padding: 5px 0 0 10px;
+      border-bottom: 1px solid #a6a6a6;
       .Who {
         display: flex;
         flex-direction: column;
@@ -40,7 +41,7 @@
       }
     }
     .PrevMessages {
-      height: 50vh;
+      height: 60vh;
       overflow-y: scroll;
       //background-color: #a9d0f5;
       .otherChat {
@@ -95,18 +96,19 @@
       }
     }
     .SendMessage {
-      margin-top: 20px;
-      padding-top: 10px;
+      margin-top: 15px;
+      //padding-top: 10px;
+      background-color: #6e6e6e;
       input {
-        width: 65vw;
-        height: 90px;
-        background-color: #d8d8d8;
+        width: 68vw;
+        height: 35px;
+        background-color: #e6e6e6;
         border: none;
         outline: none;
-        border-radius: 10px;
+        border-radius: 15px;
         padding-left: 10px;
         font-size: 1rem;
-        margin: 0 10px 10px 10px;
+        margin: 0 10px 15px 10px;
         float: left;
       }
       button {
