@@ -1,4 +1,3 @@
-/*
 import React, { useState, useEffect } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import { requestPermission, onMessageListener } from "../firebase";
@@ -29,4 +28,3 @@ function Notification() {
 }
 
 export default Notification;
-*/

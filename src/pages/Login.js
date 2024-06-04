@@ -2,13 +2,17 @@ import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import "./Login.scss";
 import { Link, useNavigate } from "react-router-dom";
-import bg from "../assets/20240427_002645.png";
 import advertisepic from "../assets/6864606.jpg";
+import { GoogleLogin } from "@react-oauth/google";
+import { GoogleOAuthProvider } from "@react-oauth/google";
+import { jwtDecode } from "jwt-decode";
 
 const Login = () => {
   // 지정된 ID를 가진 유저에 대한 요청
   const [inputId, setInputId] = useState(""); //메일
   const [inputPw, setInputPw] = useState(""); //비번
+  const clientId =
+    "860691160146-n8e8qvksfbop58pnb18aahi90t3e3ppo.apps.googleusercontent.com";
 
   const saveInputId = (e) => {
     setInputId(e.target.value);
@@ -19,6 +23,41 @@ const Login = () => {
   };
 
   function onClickLogin(e) {
+    fetch("/api/v1/auth/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: inputId,
+        password: inputPw,
+      }),
+    })
+      .then((response) => response.json())
+      .then((response) => {
+        if (response.status === 401) {
+          alert("아이디 또는 비밀번호를 다시 확인해 주세요.");
+        } else {
+          localStorage.setItem("accessToken", response.accessToken);
+          localStorage.setItem("refreshToken", response.refreshToken);
+          document.location.href = "/";
+        }
+      })
+      .catch(() => {
+        alert("다시 로그인해주세요.");
+      });
+    e.preventDefault();
+  }
+
+  const Rest_api_key = "886e5c45d9be130f6770a898d8c0c4f7"; //REST API KEY
+  const redirect_uri = "http://localhost:3000/kakaologin"; //Redirect URI
+  // oauth 요청 URL
+  const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${Rest_api_key}&redirect_uri=${redirect_uri}&response_type=code`;
+  const handleLogin = () => {
+    window.location.href = kakaoURL;
+  };
+
+  function onClickAuthLogin(e) {
     fetch("/api/v1/auth/login", {
       method: "POST",
       headers: {
@@ -80,6 +119,19 @@ const Login = () => {
           <Link to="/findPW">
             <button className="join">비밀번호 찾기</button>
           </Link>*/}
+          <GoogleOAuthProvider clientId={clientId}>
+            <GoogleLogin
+              onSuccess={(res) => {
+                const responsePayload = jwtDecode(res.credential);
+                console.log(responsePayload);
+                onClickAuthLogin(responsePayload.email);
+              }}
+              onFailure={(err) => {
+                console.log(err);
+              }}
+            />
+          </GoogleOAuthProvider>
+          <button onClick={handleLogin}>카카오 로그인</button>
         </div>
       </div>
       <div className="Advertise">
