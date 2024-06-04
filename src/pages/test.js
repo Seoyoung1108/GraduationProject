@@ -1,12 +1,9 @@
-import React, { useState, useEffect } from "react";
+/*import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Notification from "../components/Notification";
 import { vapidKey } from "../keys/keys";
 
 const Test = () => {
-  // Import the functions you need from the SDKs you need
-
-  const token = localStorage.getItem("token");
 
   function test() {
     fetch("https://fcm.googleapis.com/v1/projects/jolvre-cdfe2/messages:send", {
@@ -40,3 +37,4 @@ const Test = () => {
 };
 
 export default Test;
+*/
