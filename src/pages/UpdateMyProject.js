@@ -519,10 +519,6 @@ const UpdateMyProject = () => {
             </button>
           </form>
         </div>
-        <div className="call">
-          * 3D 모델 생성 시 시간이 약 30초 정도 소요되므로 수정 버튼을 누른 후
-          잠시 기다려 주세요.
-        </div>
       </div>
     </div>
   );

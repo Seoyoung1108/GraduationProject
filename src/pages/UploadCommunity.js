@@ -12,7 +12,7 @@ const UploadCommunity = () => {
 
   const [inputTitle, setInputTitle] = useState("");
   const [inputContent, setInputContent] = useState("");
-  const [images, setImages] = useState(null);
+  const [images, setImages] = useState([]);
   const [seeImages, setSeeImages] = useState(null);
   const [inputCategory, setInputCategory] = useState("CHAT");
 

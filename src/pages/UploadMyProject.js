@@ -25,7 +25,7 @@ const UploadMyProject = () => {
     "https://jolvre-background-bucket.s3.ap-northeast-3.amazonaws.com/black-wall-with-row-spotlights-empty-room.jpg"
   );
   const [file, setFile] = useState(null);
-  const [images, setImages] = useState(null);
+  const [images, setImages] = useState([]);
   const [seeFile, setSeeFile] = useState(null);
   const [seeImages, setSeeImages] = useState(null);
 
@@ -119,38 +119,130 @@ const UploadMyProject = () => {
   function onClickUpload(e) {
     const formData = new FormData();
 
-    formData.append("thumbnail", file);
-    for (let i = 0; i < images.length; i++) {
-      formData.append("images", images[i]);
-    }
-    formData.append("title", inputTitle);
-    formData.append("authorWord", inputAuthorWord);
-    formData.append("introduction", inputIntroduction);
-    formData.append("size", inputSize);
-    formData.append("productionMethod", inputProductionMethod);
-    formData.append("price", +inputPrice);
-    formData.append("workType", inputType);
-    formData.append("forSale", inputForSale);
-    formData.append("checkVirtualSpace", inputVirtual);
-    formData.append("backgroundImage2d", inputBack2D);
-    formData.append("backgroundImage3d", inputBack3D);
+    if (file === null && images.length === 0) {
+      formData.append("title", inputTitle);
+      formData.append("authorWord", inputAuthorWord);
+      formData.append("introduction", inputIntroduction);
+      formData.append("size", inputSize);
+      formData.append("productionMethod", inputProductionMethod);
+      formData.append("price", +inputPrice);
+      formData.append("workType", inputType);
+      formData.append("forSale", inputForSale);
+      formData.append("checkVirtualSpace", inputVirtual);
+      formData.append("backgroundImage2d", inputBack2D);
+      formData.append("backgroundImage3d", inputBack3D);
 
-    fetch("/api/v1/exhibit/user", {
-      method: "POST",
-      body: formData,
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    })
-      .then((response) => response.json())
-      .then((response) => {
-        uploadModel(response.exhibitId);
-        navigate("/mypage/myproject");
+      fetch("/api/v1/exhibit/user", {
+        method: "POST",
+        body: formData,
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
       })
-      .catch((error) => {
-        console.log(error.response);
-      });
-    e.preventDefault();
+        .then((response) => response.json())
+        .then((response) => {
+          navigate("/mypage/myproject");
+        })
+        .catch((error) => {
+          console.log(error.response);
+        });
+      e.preventDefault();
+    } else if (file === null) {
+      for (let i = 0; i < images.length; i++) {
+        formData.append("images", images[i]);
+      }
+      formData.append("title", inputTitle);
+      formData.append("authorWord", inputAuthorWord);
+      formData.append("introduction", inputIntroduction);
+      formData.append("size", inputSize);
+      formData.append("productionMethod", inputProductionMethod);
+      formData.append("price", +inputPrice);
+      formData.append("workType", inputType);
+      formData.append("forSale", inputForSale);
+      formData.append("checkVirtualSpace", inputVirtual);
+      formData.append("backgroundImage2d", inputBack2D);
+      formData.append("backgroundImage3d", inputBack3D);
+
+      fetch("/api/v1/exhibit/user", {
+        method: "POST",
+        body: formData,
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
+        .then((response) => response.json())
+        .then((response) => {
+          navigate("/mypage/myproject");
+        })
+        .catch((error) => {
+          console.log(error.response);
+        });
+      e.preventDefault();
+    } else if (images.length === 0) {
+      formData.append("thumbnail", file);
+      formData.append("title", inputTitle);
+      formData.append("authorWord", inputAuthorWord);
+      formData.append("introduction", inputIntroduction);
+      formData.append("size", inputSize);
+      formData.append("productionMethod", inputProductionMethod);
+      formData.append("price", +inputPrice);
+      formData.append("workType", inputType);
+      formData.append("forSale", inputForSale);
+      formData.append("checkVirtualSpace", inputVirtual);
+      formData.append("backgroundImage2d", inputBack2D);
+      formData.append("backgroundImage3d", inputBack3D);
+
+      fetch("/api/v1/exhibit/user", {
+        method: "POST",
+        body: formData,
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
+        .then((response) => response.json())
+        .then((response) => {
+          uploadModel(response.exhibitId);
+          navigate("/mypage/myproject");
+        })
+        .catch((error) => {
+          console.log(error.response);
+        });
+      e.preventDefault();
+    } else {
+      formData.append("thumbnail", file);
+
+      for (let i = 0; i < images.length; i++) {
+        formData.append("images", images[i]);
+      }
+      formData.append("title", inputTitle);
+      formData.append("authorWord", inputAuthorWord);
+      formData.append("introduction", inputIntroduction);
+      formData.append("size", inputSize);
+      formData.append("productionMethod", inputProductionMethod);
+      formData.append("price", +inputPrice);
+      formData.append("workType", inputType);
+      formData.append("forSale", inputForSale);
+      formData.append("checkVirtualSpace", inputVirtual);
+      formData.append("backgroundImage2d", inputBack2D);
+      formData.append("backgroundImage3d", inputBack3D);
+
+      fetch("/api/v1/exhibit/user", {
+        method: "POST",
+        body: formData,
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
+        .then((response) => response.json())
+        .then((response) => {
+          uploadModel(response.exhibitId);
+          navigate("/mypage/myproject");
+        })
+        .catch((error) => {
+          console.log(error.response);
+        });
+      e.preventDefault();
+    }
   }
 
   return (
@@ -365,10 +457,6 @@ const UploadMyProject = () => {
               등록
             </button>
           </form>
-        </div>
-        <div className="call">
-          * 3D 모델 생성 시 시간이 약 30초 정도 소요되므로 등록 버튼을 누른 후
-          잠시 기다려 주세요.
         </div>
       </div>
     </div>

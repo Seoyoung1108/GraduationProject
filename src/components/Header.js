@@ -52,8 +52,7 @@ const Header = () => {
               getNewToken();
               //window.location.reload();
             } else {
-              // 리프레시도 만료
-              localStorage.clear(); //로그인 관련 정보 다 삭제(내 닉네임, 토큰들)
+              localStorage.clear(); //로그인 관련 정보 다 삭제(내 닉네임, 토큰들) -> 로그아웃되도록
               window.location.reload();
             }
           } // 액세스 토큰이 없는 로그인 안한 상태면 다 암것도 안함
