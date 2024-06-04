@@ -1,4 +1,4 @@
-/*import { initializeApp } from "firebase/app";
+import { initializeApp } from "firebase/app";
 import { getMessaging, getToken, onMessage } from "firebase/messaging";
 import {
   vapidKey,
@@ -36,7 +36,7 @@ export const requestPermission = () => {
         .then((currentToken) => {
           if (currentToken) {
             console.log("Client Token: ", currentToken);
-            localStorage.setItem("token", currentToken);
+            //localStorage.setItem("token", currentToken);
           } else {
             console.log("fail");
           }
@@ -56,6 +56,6 @@ export const onMessageListener = () =>
   new Promise((resolve) => {
     onMessage(messaging, (payload) => {
       resolve(payload);
+      console.log("ok");
     });
   });
-*/
