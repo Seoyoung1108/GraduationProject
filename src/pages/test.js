@@ -1,3 +1,4 @@
+/*
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Notification from "../components/Notification";
@@ -6,7 +7,7 @@ import { GoogleLogin } from "@react-oauth/google";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 
 const Test = () => {
-  /*
+  
   function test() {
     fetch("https://fcm.googleapis.com/v1/projects/jolvre-cdfe2/messages:send", {
       method: "POST",
@@ -29,7 +30,6 @@ const Test = () => {
         console.log(error.response);
       });
   }
-  */
 
   const clientId =
     "860691160146-n8e8qvksfbop58pnb18aahi90t3e3ppo.apps.googleusercontent.com";
@@ -51,10 +51,6 @@ const Test = () => {
       </div>
     </>
   );
-  /*
-  return (
-    
-  );*/
 };
 
-export default Test;
+export default Test;*/

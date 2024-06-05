@@ -132,8 +132,8 @@ const Diary = () => {
         <div className="Line"></div>
         <div className="Content">
           {diaries &&
-            diaries.map((diaries) => (
-              <DiaryItem diaries={diaries} key={diaries.id} />
+            diaries.map((diaries, index) => (
+              <DiaryItem diaries={diaries} index={index} key={diaries.id} />
             ))}
         </div>
         <div className="Line"></div>

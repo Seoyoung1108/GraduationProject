@@ -36,7 +36,7 @@ import AboutMyGroup from "./pages/AboutMyGroup";
 import UpdateMyGroup from "./pages/UpdateMyGroup";
 import UploadMyGroupProject from "./pages/UploadMyGroupProject";
 
-import Test from "./pages/test";
+//import Test from "./pages/test";
 
 const App = () => {
   return (
@@ -44,7 +44,7 @@ const App = () => {
       <Route path="/kakaologin" element={<KakaoLogin />} />
       <Route element={<Layout />}>
         <Route index element={<Main />} />
-        <Route path="/test" element={<Test />} />
+        {/*<Route path="/test" element={<Test />} />*/}
         <Route path="/groups" element={<GroupExhibition />} />
         <Route path="/groups/:groupName/:groupId" element={<PerGroup />} />
         <Route path="/arts" element={<PersonalExhibition />} />

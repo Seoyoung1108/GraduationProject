@@ -21,7 +21,7 @@ const PerCommunity = () => {
   const [images, setImages] = useState(null);
   const [inputComment, setInputComment] = useState("");
   const [comments, setComments] = useState(null);
-  const pages = [1, 2, 3, 4, 5, 6, 7, 8];
+  const [pages, setPages] = useState([1]);
 
   const saveInputComment = (e) => {
     setInputComment(e.target.value);
@@ -48,13 +48,18 @@ const PerCommunity = () => {
       });
 
     axios
-      .get(`/api/v1/comment/getComment/${postId}?page=1&size=10`, {
+      .get(`/api/v1/comment/getComment/${postId}?page=1&size=5`, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
       })
       .then((response) => {
         setComments(response.data.content);
+        let filteredPages = [];
+        for (let i = 1; i <= response.data.totalPages; i++) {
+          filteredPages.push(i);
+        }
+        setPages(filteredPages);
       });
   }, []);
 
@@ -107,7 +112,7 @@ const PerCommunity = () => {
 
   function onClickPage(e) {
     const page = e.target.value;
-    fetch(`/api/v1/comment/getComment/${postId}?page=${page}&size=10`, {
+    fetch(`/api/v1/comment/getComment/${postId}?page=${page}&size=5`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${accessToken}`,

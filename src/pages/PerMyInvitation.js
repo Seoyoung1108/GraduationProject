@@ -79,8 +79,8 @@ const PerMyInvitation = () => {
         link: {
           mobileWebUrl:
             isGroup === 0
-              ? `http://13.208.246.21/arts/${inputTitle}/${id}`
-              : `http://13.208.246.21/groups/${inputTitle}/${id}`,
+              ? `http://13.208.139.6/arts/${inputTitle}/${id}`
+              : `http://13.208.139.6/groups/${inputTitle}/${id}`,
         },
       },
       buttons: [
@@ -89,8 +89,8 @@ const PerMyInvitation = () => {
           link: {
             mobileWebUrl:
               isGroup === 0
-                ? `http://13.208.246.21/arts/${inputTitle}/${id}`
-                : `http://13.208.246.21/groups/${inputTitle}/${id}`,
+                ? `http://13.208.139.6/arts/${inputTitle}/${id}`
+                : `http://13.208.139.6/groups/${inputTitle}/${id}`,
           },
         },
       ],
@@ -109,8 +109,8 @@ const PerMyInvitation = () => {
       image: file,
       link:
         isGroup === 0
-          ? `http://13.208.246.21/arts/${inputTitle}/${id}`
-          : `http://13.208.246.21/groups/${inputTitle}/${id}`,
+          ? `http://13.208.139.6/arts/${inputTitle}/${id}`
+          : `http://13.208.139.6/groups/${inputTitle}/${id}`,
     };
 
     emailjs

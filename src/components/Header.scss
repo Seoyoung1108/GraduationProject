@@ -93,10 +93,11 @@
       z-index: 50;
       position: relative;
       display: block;
-      border: 2px solid black;
+      border: 1px solid black;
       border-radius: 4px;
       width: 400px;
-      height: 500px;
+      min-height: 500px;
+      height: auto;
       left: -350px;
       top: 18px;
       background-color: white;

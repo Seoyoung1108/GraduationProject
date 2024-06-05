@@ -119,6 +119,7 @@ const Login = () => {
           <Link to="/findPW">
             <button className="join">비밀번호 찾기</button>
           </Link>*/}
+          {/* 
           <GoogleOAuthProvider clientId={clientId}>
             <GoogleLogin
               onSuccess={(res) => {
@@ -131,7 +132,7 @@ const Login = () => {
               }}
             />
           </GoogleOAuthProvider>
-          <button onClick={handleLogin}>카카오 로그인</button>
+          <button onClick={handleLogin}>카카오 로그인</button>*/}
         </div>
       </div>
       <div className="Advertise">

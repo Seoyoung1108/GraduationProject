@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 const SignUp = () => {
   const [inputId, setInputId] = useState(""); //Email
   const [inputPw, setInputPw] = useState("");
+  const [inputAuthNum, setInputAuthNum] = useState("");
   const [inputName, setInputName] = useState("");
   const [inputNickName, setInputNickName] = useState("");
   const [inputAge, setInputAge] = useState(20);
@@ -13,12 +14,18 @@ const SignUp = () => {
   const [inputSchool, setInputSchool] = useState("");
   const [isDupEmail, setIsDupEmail] = useState(true);
   const [isDupNick, setIsDupNick] = useState(true);
+  //const [afterEmailDup, setAfterEmailDup] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isVerified, setIsVerified] = useState(false);
 
   const saveInputId = (e) => {
     setInputId(e.target.value);
   };
   const saveInputPw = (e) => {
     setInputPw(e.target.value);
+  };
+  const saveInputAuthNum = (e) => {
+    setInputAuthNum(e.target.value);
   };
   const saveInputName = (e) => {
     setInputName(e.target.value);
@@ -74,8 +81,48 @@ const SignUp = () => {
     e.preventDefault();
   }
 
+  function onClickStartVerify(e) {
+    fetch(`/api/v1/signUp/email/${inputId}`, {
+      method: "GET",
+    })
+      .then((response) => {
+        setIsOpen(true);
+        alert("작성하신 메일로 인증 번호가 전송되었습니다.");
+      })
+      .catch((error) => {
+        console.log(error.response);
+      });
+    e.preventDefault();
+  }
+
+  function onClickVerify(e) {
+    fetch("/api/v1/signUp/email", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: inputId,
+        authNum: inputAuthNum,
+      }),
+    })
+      .then((response) => response.json())
+      .then((response) => {
+        if (response.verifyResult === true) {
+          setIsVerified(true);
+          alert("메일 인증에 성공했습니다.");
+        } else {
+          alert("메일 인증을 다시 해주세요.");
+        }
+      })
+      .catch((error) => {
+        console.log(error.response);
+      });
+    e.preventDefault();
+  }
+
   function onClickJoin(e) {
-    if (isDupEmail === false && isDupNick === false) {
+    if (isDupEmail === false && isDupNick === false && isVerified === true) {
       fetch("/api/v1/signUp", {
         method: "POST",
         headers: {
@@ -94,10 +141,6 @@ const SignUp = () => {
         .then((response) => response.json())
         .then((response) => {
           if (response.accessToken) {
-            /*
-            sessionStorage.setItem("accessToken", response.accessToken);
-            sessionStorage.setItem("refreshToken", response.refreshToken);
-            sessionStorage.setItem("myNickName", inputNickName);*/
             alert("회원가입이 완료되었습니다.");
             document.location.href = "/login";
           } else {
@@ -107,10 +150,12 @@ const SignUp = () => {
         .catch((error) => {
           console.log(error.response);
         });
-    } else if (isDupEmail) {
+    } else if (isDupEmail === true) {
       alert("이메일 중복 확인을 해주세요.");
-    } else if (isDupNick) {
+    } else if (isDupNick === true) {
       alert("닉네임 중복 확인을 해주세요.");
+    } else if (isVerified === false) {
+      alert("메일 인증을 해주세요.");
     }
     e.preventDefault();
   }
@@ -140,13 +185,54 @@ const SignUp = () => {
               {(() => {
                 if (isDupEmail === false) {
                   return (
-                    <div className="FinishVerify">
-                      중복 확인이 완료되었습니다.
-                    </div>
+                    <>
+                      <div className="FinishVerify">
+                        중복 확인이 완료되었습니다.
+                      </div>
+                      <button
+                        className="gotoverify"
+                        onClick={onClickStartVerify}
+                        style={{ backgroundColor: "#610b0b" }}
+                      >
+                        메일 인증
+                      </button>
+                    </>
                   );
                 }
               })()}
             </div>
+            {(() => {
+              if (isOpen === true) {
+                if (isVerified === false) {
+                  return (
+                    <>
+                      <p style={{ color: "#610b0b" }}>
+                        입력하신 메일로 전송된 번호를 입력해주세요.
+                      </p>
+                      <div className="NeedVerify">
+                        <input
+                          id="id"
+                          type="text"
+                          value={inputAuthNum}
+                          onChange={saveInputAuthNum}
+                        />
+                        <button className="gotoverify" onClick={onClickVerify}>
+                          인증하기
+                        </button>
+                      </div>
+                    </>
+                  );
+                } else {
+                  return (
+                    <div className="NeedVerify">
+                      <div className="FinishVerify">
+                        메일 인증이 완료되었습니다.
+                      </div>
+                    </div>
+                  );
+                }
+              }
+            })()}
             <p>비밀번호</p>
             <input
               id="password"

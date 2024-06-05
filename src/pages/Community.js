@@ -9,7 +9,7 @@ const Community = () => {
   const accessToken = localStorage.getItem("accessToken");
 
   const [posts, setPosts] = useState(null);
-  const pages = [1, 2, 3, 4, 5, 6, 7, 8];
+  const [pages, setPages] = useState([1]);
   const categories = ["전체", "자유", "질문"];
   const [inputWord, setInputWord] = useState("");
 
@@ -26,6 +26,11 @@ const Community = () => {
       })
       .then((response) => {
         setPosts(response.data.content);
+        let filteredPages = [];
+        for (let i = 1; i <= response.data.totalPages; i++) {
+          filteredPages.push(i);
+        }
+        setPages(filteredPages);
       });
   }, []);
 

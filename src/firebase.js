@@ -1,3 +1,4 @@
+/*
 import { initializeApp } from "firebase/app";
 import { getMessaging, getToken, onMessage } from "firebase/messaging";
 import {
@@ -59,3 +60,4 @@ export const onMessageListener = () =>
       console.log("ok");
     });
   });
+*/
