@@ -18,6 +18,7 @@ import UploadCommunity from "./pages/UploadCommunity";
 import FAQ from "./pages/FAQ";
 import Login from "./pages/Login";
 import KakaoLogin from "./pages/KakaoLogin";
+import FindPW from "./pages/FindPW";
 import SignUp from "./pages/SignUp";
 import Layout_Mypage from "./Layout_Mypage";
 import MyInformation from "./pages/MyInformation";
@@ -76,6 +77,7 @@ const App = () => {
         <Route path="/community/:postId/update" element={<UpdateCommunity />} />
         <Route path="/FAQ" element={<FAQ />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/findPW" element={<FindPW />} />
         <Route path="/signup" element={<SignUp />} />
       </Route>
       <Route element={<Layout_Mypage />}>

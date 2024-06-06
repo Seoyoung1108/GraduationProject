@@ -247,7 +247,6 @@ const AboutMyGroup = () => {
       </div>
       <Modal
         className="InviteModal"
-        style={{ width: "200px" }}
         isOpen={modalIsOpen}
         onRequestClose={() => setModalIsOpen(false)}
       >

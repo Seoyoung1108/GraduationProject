@@ -388,7 +388,7 @@
   }
 
   input {
-    width: 260px;
+    width: 290px;
     height: 35px;
     font-size: 1.1rem;
     margin-bottom: 15px;
@@ -399,7 +399,7 @@
   }
 
   .sub {
-    width: 270px;
+    width: 290px;
     display: flex;
     justify-content: center;
     .submit {
@@ -410,7 +410,7 @@
       font-size: 1rem;
       border-radius: 5px;
       border: 2px solid #bf9e27;
-      width: 120px;
+      padding: 0 20px;
       height: 40px;
       cursor: pointer;
     }

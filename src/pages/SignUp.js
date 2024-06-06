@@ -207,7 +207,7 @@ const SignUp = () => {
                   return (
                     <>
                       <p style={{ color: "#610b0b" }}>
-                        입력하신 메일로 전송된 번호를 입력해주세요.
+                        메일로 전송된 인증 번호를 입력해주세요.
                       </p>
                       <div className="NeedVerify">
                         <input
