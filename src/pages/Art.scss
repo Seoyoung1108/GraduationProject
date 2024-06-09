@@ -257,4 +257,67 @@
       margin-bottom: 50px;
     }
   }
+
+  @media (max-width: 950px) {
+    .Frame {
+      width: 800px;
+      height: 470px;
+
+      .TitleFrame {
+        .ArtName {
+          width: 620px;
+        }
+      }
+
+      .ImageFrame {
+        width: 800px;
+        height: 380px;
+
+        .Image {
+          width: 700px;
+          height: 340px;
+
+          .background {
+            position: relative;
+            width: 700px;
+            height: 340px;
+            object-fit: cover;
+          }
+          .squareframe {
+            position: absolute;
+          }
+          .thumbnail {
+            position: absolute;
+            max-width: 600px;
+            max-height: 270px;
+          }
+        }
+
+        .Menu {
+          width: 65px;
+          height: 370px;
+        }
+      }
+
+      .ButtonFrame {
+        width: 780px;
+      }
+    }
+
+    .CommentFrame {
+      width: 800px;
+
+      .SubTitle {
+        width: 700px;
+      }
+      .Line {
+        width: 700px;
+      }
+      .SendComment {
+        input {
+          width: 630px;
+        }
+      }
+    }
+  }
 }

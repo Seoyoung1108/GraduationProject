@@ -14,6 +14,7 @@ import squareframe from "../assets/squareframe.jpg";
 
 const Art = () => {
   const thumbnailRef = useRef();
+  const mediaQueryList = window.matchMedia("(max-width: 950px)");
 
   const accessToken = localStorage.getItem("accessToken");
 
@@ -139,27 +140,57 @@ const Art = () => {
                   </div>
                 );
               } else {
-                return (
-                  <div className="Image">
-                    <Helmet>
-                      <script
-                        type="module"
-                        src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"
-                      ></script>
-                    </Helmet>
-                    <model-viewer
-                      src={inputModel}
-                      shadow-intensity="1"
-                      ar
-                      camera-controls
-                      touch-action="pan-y"
-                      orientation="180deg 270deg 130deg"
-                      skybox-image={inputBack3D}
-                      environment-image={inputBack3D}
-                      style={{ width: "1200px", height: "580px" }}
-                    ></model-viewer>
-                  </div>
-                );
+                if (mediaQueryList.matches) {
+                  return (
+                    <div className="Image">
+                      <Helmet>
+                        <script
+                          type="module"
+                          src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"
+                        ></script>
+                      </Helmet>
+                      <model-viewer
+                        src={inputModel}
+                        shadow-intensity="1"
+                        ar
+                        camera-controls
+                        touch-action="pan-y"
+                        orientation="180deg 270deg 130deg"
+                        skybox-image={inputBack3D}
+                        environment-image={inputBack3D}
+                        style={{
+                          width: "700px",
+                          height: "340px",
+                        }}
+                      ></model-viewer>
+                    </div>
+                  );
+                } else {
+                  return (
+                    <div className="Image">
+                      <Helmet>
+                        <script
+                          type="module"
+                          src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"
+                        ></script>
+                      </Helmet>
+                      <model-viewer
+                        src={inputModel}
+                        shadow-intensity="1"
+                        ar
+                        camera-controls
+                        touch-action="pan-y"
+                        orientation="180deg 270deg 130deg"
+                        skybox-image={inputBack3D}
+                        environment-image={inputBack3D}
+                        style={{
+                          width: "1200px",
+                          height: "580px",
+                        }}
+                      ></model-viewer>
+                    </div>
+                  );
+                }
               }
             } else {
               return (
