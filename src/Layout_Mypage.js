@@ -5,7 +5,7 @@ import Navbar from "./components/Navbar";
 
 const Layout_Mypage = () => {
   return (
-    <div style={{ backgroundColor: "#610b0b" }}>
+    <div style={{ backgroundColor: "#610b0b", width: "100vw" }}>
       <header style={{ width: "100vw" }}>
         <Header />
       </header>
