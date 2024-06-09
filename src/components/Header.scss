@@ -158,4 +158,25 @@
       }
     }
   }
+
+  @media (max-width: 950px) {
+    .ShowMenu {
+      width: 97vw;
+
+      .SiteName {
+        margin: 20px 6vw 0 2vw;
+      }
+
+      .Options {
+        .Option {
+          margin-right: 15px;
+          font-size: 1rem;
+        }
+      }
+    }
+
+    .Notice {
+      display: none;
+    }
+  }
 }
