@@ -23,7 +23,7 @@ const InvitedItem = ({ invitations }) => {
       }),
     })
       .then((response) => {
-        alert(name + "전시관의 멤버가 되었습니다.");
+        alert(name + " 전시관의 멤버가 되었습니다.");
         document.location.href = "/mypage/mygroup";
       })
       .catch((error) => {

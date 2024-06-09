@@ -89,8 +89,17 @@ const UploadMyProject = () => {
   const onChangeImg = (e) => {
     e.preventDefault();
     if (e.target.files) {
-      const uploadFile = e.target.files;
-      setImages(uploadFile);
+      let filteredFile = [];
+
+      for (let i = 0; i < e.target.files.length; i++) {
+        filteredFile.push(e.target.files[i]);
+      }
+
+      if (filteredFile.length > 3) {
+        setImages(filteredFile.slice(0, 3));
+      } else {
+        setImages(filteredFile);
+      }
 
       // 미리보기
       let filteredImg = [];
@@ -258,7 +267,7 @@ const UploadMyProject = () => {
               onChange={onChangeFile}
             />
             <img className="see" src={seeFile} />
-            <p>추가 사진 (최대 3개)</p>
+            <p>추가 사진 (*업로드 한 사진들 중 3개까지만 저장됩니다.)</p>
             <input
               type="file"
               multiple
@@ -268,9 +277,9 @@ const UploadMyProject = () => {
             />
             <div>
               {seeImages &&
-                seeImages.map((image) => (
-                  <img className="plussee" src={image} />
-                ))}
+                seeImages
+                  .slice(0, 3)
+                  .map((image) => <img className="plussee" src={image} />)}
             </div>
             <div className="Line"></div>
             <div className="Bundle">

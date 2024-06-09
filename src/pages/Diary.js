@@ -60,7 +60,7 @@ const Diary = () => {
           trigger: triggerRef.current, // 스크롤이 발생되는 요소 위치
           start: "top top", // "요소위치 시작위치"
           end: "bottom bottom", // "요소위치 끝위치"
-          scrub: 5, // 되감기 기능, 또한 스크롤을 부드러운 애니메이션 추가.
+          scrub: 5, // 시간
           pin: true, // 가로스크롤시 페이지를 고정할 수 있는 기능
         },
       }

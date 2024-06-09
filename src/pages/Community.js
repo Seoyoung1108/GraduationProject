@@ -11,8 +11,12 @@ const Community = () => {
   const [posts, setPosts] = useState(null);
   const [pages, setPages] = useState([1]);
   const categories = ["전체", "자유", "질문"];
+  const [inputCate, setInputCate] = useState("제목");
   const [inputWord, setInputWord] = useState("");
 
+  const saveInputCate = (e) => {
+    setInputCate(e.target.value);
+  };
   const saveInputWord = (e) => {
     setInputWord(e.target.value);
   };
@@ -177,6 +181,10 @@ const Community = () => {
           ))}
         </div>
         <div className="Finder">
+          <select className="Choose" id="category" onChange={saveInputCate}>
+            <option value="제목">제목</option>
+            <option value="작성자">작성자</option>
+          </select>
           <input
             className="Category"
             type="text"
