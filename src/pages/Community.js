@@ -60,19 +60,38 @@ const Community = () => {
   }
 
   function onClickFind(e) {
-    fetch(`/api/v1/post?keyword=${inputWord}&page=1&size=10`, {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    })
-      .then((response) => response.json())
-      .then((response) => {
-        setPosts(response.content);
+    console.log(inputCate);
+    if (inputCate === "제목") {
+      fetch(`/api/v1/post?keyword=${inputWord}&page=1&size=10`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
       })
-      .catch((error) => {
-        console.log(error.response);
-      });
+        .then((response) => response.json())
+        .then((response) => {
+          setPosts(response.content);
+        })
+        .catch((error) => {
+          console.log(error.response);
+        });
+    } else {
+      fetch(`/api/v1/post/user/${inputWord}?page=1&size=10`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
+        .then((response) => response.json())
+        .then((response) => {
+          if (response.status !== 400) {
+            setPosts(response.content);
+          }
+        })
+        .catch((error) => {
+          console.log(error.response);
+        });
+    }
   }
 
   function onClickFilter(e) {
