@@ -1,6 +1,4 @@
-// swiper 삭제하기
 import React, { useState, useEffect, useRef } from "react";
-
 import banner1 from "../assets/10412734.jpg";
 import banner2 from "../assets/7452709.jpg";
 import banner3 from "../assets/7413395.jpg";

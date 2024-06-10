@@ -47,36 +47,39 @@
       column-gap: 0px;
 
       .Container {
+        display: flex;
+        flex-direction: column;
         width: 37vw;
-        height: 35vw;
-        //background-color: #585858;
+        height: 75vh;
+
         .Image {
-          position: relative;
-          z-index: 1;
           width: 148vw;
           transition: transform 0.5s;
+
           .Item {
+            display: flex;
+            justify-content: center;
+            align-items: center;
             width: 37vw;
+            height: 70vh;
             float: left;
             text-align: center;
             font-size: 5rem;
             img {
-              max-width: 32vw;
-              max-height: 30vw;
+              max-width: 34vw;
+              max-height: 67vh;
             }
           }
         }
-        .Buttons {
-          position: absolute;
-          left: 22%;
-          top: 100%;
-          z-index: 10;
+        .buttons {
+          height: 5vh;
+          text-align: center;
+
           .gotodif {
             width: 40px;
             height: 4px;
             outline: none;
             border: none;
-            //background-color: #585858;
             margin: 0 15px;
             cursor: pointer;
             &:hover {
@@ -86,21 +89,9 @@
         }
       }
 
-      .Image {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 37vw;
-        height: 35vw;
-        img {
-          max-width: 35vw;
-          max-height: 35vw;
-        }
-      }
-
       .VerticalLine {
         width: 2px;
-        height: 35vw;
+        height: 75vh;
         background-color: #a4a4a4;
       }
 
@@ -110,7 +101,7 @@
         justify-content: center;
         align-items: center;
         width: 37vw;
-        height: 35vw;
+        height: 75vh;
         .Title {
           width: 25vw;
           color: #610b0b;
@@ -142,7 +133,7 @@
         justify-content: center;
         align-items: center;
         width: 37vw;
-        height: 35vw;
+        height: 75vh;
         .More1 {
           width: 28vw;
           color: #610b0b;

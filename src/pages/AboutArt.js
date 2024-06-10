@@ -99,7 +99,7 @@ const AboutArt = () => {
                 </div>
               ))}
             </div>
-            <div className="Buttons">
+            <div className="buttons">
               <button
                 className="gotodif"
                 onClick={onClick0}
