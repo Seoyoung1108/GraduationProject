@@ -97,14 +97,9 @@ const Login = () => {
     fetch(`/api/v1/auth/pw/email/${inputId}`, {
       method: "GET",
     })
-      .then((response) => response.json())
       .then((response) => {
-        if (response.user === false) {
-          alert("가입되지 않은 이메일입니다.");
-        } else {
-          alert("작성하신 메일로 인증 번호가 전송되었습니다.");
-          setIsVerified(true);
-        }
+        alert("작성하신 메일로 인증 번호가 전송되었습니다.");
+        setIsVerified(true);
       })
       .catch((error) => {
         console.log(error.response);
@@ -125,16 +120,22 @@ const Login = () => {
     })
       .then((response) => response.json())
       .then((response) => {
-        if (response.verifyResult === true) {
-          localStorage.setItem(
-            "tempAccessToken",
-            response.tokenResponse.accessToken
-          );
-          navigate("/findPW", { state: { id: inputId } });
-        } else {
-          alert("메일 인증을 다시 해주세요.");
-          setModalIsOpen(false);
+        if (response.status === 400) {
+          alert("가입되지 않은 이메일입니다.");
           setIsVerified(false);
+          setInputAuthNum("");
+        } else {
+          if (response.verifyResult === true) {
+            localStorage.setItem(
+              "tempAccessToken",
+              response.tokenResponse.accessToken
+            );
+            navigate("/findPW", { state: { id: inputId } });
+          } else {
+            alert("메일 인증을 다시 해주세요.");
+            setIsVerified(false);
+            setInputAuthNum("");
+          }
         }
       })
       .catch((error) => {
