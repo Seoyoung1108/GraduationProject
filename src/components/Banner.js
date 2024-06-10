@@ -1,5 +1,5 @@
 // swiper 삭제하기
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 import banner1 from "../assets/10412734.jpg";
 import banner2 from "../assets/7452709.jpg";
@@ -18,25 +18,27 @@ const Banner = () => {
     setSelect(2);
   };
 
-  const [intervalId, setIntervalId] = useState(null);
+  const useInterval = (callback, delay) => {
+    const savedCallback = useRef(null);
 
-  const autoMoveSlide = () => {
-    if (intervalId !== null) {
-      clearInterval(intervalId);
-    }
+    useEffect(() => {
+      savedCallback.current = callback;
+    }, [callback]);
 
-    setIntervalId(
-      setInterval(() => {
-        setSelect((select + 1) % 3);
-      }, 20000)
-    );
+    useEffect(() => {
+      const executeCallback = () => {
+        savedCallback.current();
+      };
+
+      const timerId = setInterval(executeCallback, delay);
+
+      return () => clearInterval(timerId);
+    }, []);
   };
 
-  useEffect(() => {
-    autoMoveSlide();
-
-    return () => clearInterval(intervalId);
-  }, []);
+  useInterval(() => {
+    setSelect((select + 1) % 3);
+  }, 10000);
 
   return (
     <div>

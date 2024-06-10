@@ -60,7 +60,6 @@ const Community = () => {
   }
 
   function onClickFind(e) {
-    console.log(inputCate);
     if (inputCate === "제목") {
       fetch(`/api/v1/post?keyword=${inputWord}&page=1&size=10`, {
         method: "GET",
