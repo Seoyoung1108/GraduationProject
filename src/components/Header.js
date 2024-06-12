@@ -150,7 +150,7 @@ const Header = () => {
         <Link to="/" style={{ textDecoration: "none" }}>
           <div className="SiteName">
             <img src={jolvre} />
-            Jolvre
+            JOLVRE
           </div>
         </Link>
         <div className="Options">
