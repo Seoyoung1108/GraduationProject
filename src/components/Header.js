@@ -8,6 +8,7 @@ import { Notices } from "../TestCases";
 import NoticeItem from "./NoticeItem";
 import PerChatRoom from "./PerChatRoom";
 import ChatRooms from "./ChatRooms";
+import jolvre from "../assets/icon_jolvre.jpg";
 
 const Header = () => {
   const notices = Notices;
@@ -147,7 +148,10 @@ const Header = () => {
     <header className="Header">
       <div className="ShowMenu">
         <Link to="/" style={{ textDecoration: "none" }}>
-          <div className="SiteName">Jolvre 졸브르</div>
+          <div className="SiteName">
+            <img src={jolvre} />
+            Jolvre
+          </div>
         </Link>
         <div className="Options">
           <Link to="/groups">
