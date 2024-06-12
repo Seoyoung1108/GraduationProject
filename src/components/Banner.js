@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import banner1 from "../assets/10412734.jpg";
 import banner2 from "../assets/7452709.jpg";
 import banner3 from "../assets/7413395.jpg";
@@ -52,15 +53,21 @@ const Banner = () => {
                   : "translate(-200vw)",
           }}
         >
-          <div className="Item">
-            <img src={banner1} />
-          </div>
-          <div className="Item">
-            <img src={banner2} />
-          </div>
-          <div className="Item">
-            <img src={banner3} />
-          </div>
+          <Link to="/arts/sample2D/1">
+            <div className="Item">
+              <img src={banner1} />
+            </div>
+          </Link>
+          <Link to="/arts/sample3D/13">
+            <div className="Item">
+              <img src={banner2} />
+            </div>
+          </Link>
+          <Link to="/groups/sample단체전시/1">
+            <div className="Item">
+              <img src={banner3} />
+            </div>
+          </Link>
         </div>
         <div className="Buttons">
           <button
