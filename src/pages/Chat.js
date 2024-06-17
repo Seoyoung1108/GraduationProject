@@ -3,6 +3,7 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { IoSend } from "react-icons/io5";
 import * as StompJs from "@stomp/stompjs";
 import "./Chat.scss";
+import { IoPersonCircleOutline } from "react-icons/io5";
 
 const Chat = () => {
   const getRoomId = async () => {
@@ -50,7 +51,13 @@ const Chat = () => {
         <div key={index} className="otherChat">
           {/* 상대방 이미지 */}
           <div className="otherImg">
-            <img src={msg.receiverProfileImg} alt="" />
+            {(() => {
+              if (msg.receiverProfileImg === null) {
+                return <IoPersonCircleOutline size={40} />;
+              } else {
+                return <img src={msg.receiverProfileImg} alt="" />;
+              }
+            })()}
           </div>
           {/* 상대방 채팅 내용 */}
           <div className="otherChatBox">

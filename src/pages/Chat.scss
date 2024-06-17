@@ -49,10 +49,15 @@
         justify-content: left;
         margin-top: 10px;
         margin-left: 20px;
-        .otherImg > img {
-          border-radius: 30px;
-          width: 30px;
-          margin-right: 10px;
+        .otherImg {
+          padding-right: 5px;
+          img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 5px;
+          }
         }
         .otherChatBox {
           display: inline-block;
