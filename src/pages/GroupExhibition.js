@@ -38,7 +38,7 @@ const GroupExhibition = () => {
   }
 
   function onClickFind(e) {
-    fetch(`/api/v1/group/groups//keyword?keyword=${inputWord}&page=1&size=10`, {
+    fetch(`/api/v1/group/groups/keyword?keyword=${inputWord}&page=1&size=10`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${accessToken}`,
