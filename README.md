@@ -1,92 +1,21 @@
-# 진행 상황
+# 소개
 
-배포 버전: public firebase 삭제 + 나머지 firebase 주석처리(에러가 떠서ㅜ)
+'졸브르'는 온라인 졸업 작품 전시 플랫폼입니다.
 
-(6/05 발표 이후)
+기존 졸업 작품의 경우 단발성으로 졸업 작품전이 끝나면 버려지는 문제를 해결하고자 '졸브르'를 고안했습니다.
 
-메일 인증 기능 구현
+'졸브르'는 다음의 주요 기능들을 제공합니다.
 
-비밀번호 찾기 기능 구현
+- '단체 전시'와 '개인 전시'를 통해 졸업 작품을 온라인 공간에 영구적으로 저장 / 기업이나 대중에게 예술가로서 자신의 이름과 작품을 홍보 / 불특정 다수로부터 작품을 평가 받는 기회
 
-푸쉬알림 기능 구현 중
+- '일기장'을 통해 작품을 만드는 과정에서 느꼈던 감정과 사진들을 편리하게 기록 / 대중에게 자신의 이야기를 전달
 
----
+- '온라인 초대장'을 통해 온라인 공간으로 불특정 다수를 초대해 홍보
 
-3D모델에 체크 & 배경 선택 & 모델 존재 -> 3D모델 띄우기
+- '채팅'을 통해 작품 구매를 원하는 사람과 거래
 
-3D모델에 체크 & 배경 선택 & 모델 존재X -> 생성 중이라는 문구 띄우기
+- '커뮤니티'를 통해 다양한 학교의 졸업생들과 소통
 
-3D모델에 체크X & 배경 선택 -> 배경까지 적용된 2D 이미지+액자 띄우기
+# 사용 기술
 
----
-
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+React + SCSS
